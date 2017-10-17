@@ -1,0 +1,193 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4986.064589846403 Adjusted=2.0051875847687772E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4986.064589846403 Adjusted=2.0051875847687772E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4986.064589846403 Adjusted=2.0051875847687772E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4885.011774253314 Adjusted=2.0466590057548954E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4885.011774253314 Adjusted=2.0466590057548954E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4787.023546733918 Adjusted=2.0885444489556358E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4787.023546733918 Adjusted=2.0885444489556358E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4597.29553438165 Adjusted=2.1747188551126341E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4558.891761106689 Adjusted=2.193034511322039E-4 Hits=2
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4558.891761106689 Adjusted=2.193034511322039E-4 Hits=2
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4558.891761106689 Adjusted=2.193034511322039E-4 Hits=2
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Combine}}\chunk{\gpbox{CompareAPDSI}}\chunk{\gpbox{CompareHydro}}\end{bundle}}\end{bundle}
+                                                                                                                                                    

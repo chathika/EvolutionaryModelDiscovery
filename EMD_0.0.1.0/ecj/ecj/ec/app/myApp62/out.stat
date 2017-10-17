@@ -1,0 +1,456 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=5109.011910572523 Adjusted=1.9569426011141342E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=5095.2790643957005 Adjusted=1.9622159370869864E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareYield}}\end{bundle}
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4728.421244725128 Adjusted=2.1144236223730997E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4662.317005038716 Adjusted=2.1443963576130457E-4 Hits=2
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4957.7090023551045 Adjusted=2.0166539305392934E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4957.7090023551045 Adjusted=2.0166539305392934E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4957.7090023551045 Adjusted=2.0166539305392934E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4956.892494097226 Adjusted=2.0169860504046455E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4782.1281409039175 Adjusted=2.0906820192590942E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4957.7090023551045 Adjusted=2.0166539305392934E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=5006.933294808117 Adjusted=1.996831709073944E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=5006.933294808117 Adjusted=1.996831709073944E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=5006.933294808117 Adjusted=1.996831709073944E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4806.115441850415 Adjusted=2.0802496051874875E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4806.115441850415 Adjusted=2.0802496051874875E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4806.115441850415 Adjusted=2.0802496051874875E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4801.759094113126 Adjusted=2.0821364978012902E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4808.623314047045 Adjusted=2.0791649048260968E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=5117.476586100926 Adjusted=1.9537063092473078E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4873.258302479029 Adjusted=2.051594187143106E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4873.258302479029 Adjusted=2.051594187143106E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4873.258302479029 Adjusted=2.051594187143106E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4873.258302479029 Adjusted=2.051594187143106E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4873.258302479029 Adjusted=2.051594187143106E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4685.083275032089 Adjusted=2.1339782955375508E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4789.34831416025 Adjusted=2.0875308733688615E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 50
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 51
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 52
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 53
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 54
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4694.065386933334 Adjusted=2.1298957897009565E-4 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 55
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4933.132577501226 Adjusted=2.0266986836953342E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}
+
+Generation: 56
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4830.179319161967 Adjusted=2.0698879795947285E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Max}}\chunk{\gpbox{PotentialFarms}}\chunk{\gpbox{CompareDistance}}\end{bundle}

@@ -1,0 +1,29 @@
+Automated Pattern Oriented Modeling and Theory Refinment Of Data-Drive Agent-Based Models Using Genetic Programming
+
+
+
+Agent-based models provide a computational technique for the modeling and simulation of complex systems
+
+Many model development frameworks and software exist which provide the basic behaviors of agents with varying levels of control to the developer from more standardized and restrictive software used in the industry such as AnyLogic and Simio, to more flexible and maleable frameworks such as netlogo, Repast Symphony and HPC and Mason. Model developers can choose the building blocks they require to define their agent behaviors and construct the rules of behavior accordingly. However, development ease might compromise accuracy if modelers do not have enough information of the micro behaviors of the actual agents they are simulating and generate a tree of rules which do not represent the actual decision tree used in the real world.
+
+Yet, this modular approach fits well with a prominent agent-based modeling strategy suggested in the literature known as Pattern-Oriented Modeling. Pattern-oriented modeling recommends the development of several competeing models 
+
+In this paper we propose an evolutionary computation strategy (genetic programming in particular) to automate the rule refinement process of the households in the model. Our results show us that multiple decision trees exist which can match the population data to a considerable degree, and in some cases better than that reported in the literature. 
+
+Methodology
+
+We look at a commonly used problem in computational agent-based modeling literature, the Artificial Anasazi problem. The Artifical Anasazi attempts to recreate the rise and fall of the Anasazi tribe that once populated the <> region of Nevada through the years of ... and ... . This model has been developed using expert knowledge from archealogists and is driven by data 
+
+The model used was obtained from the Netlogo libraries and is also availble on the OpenABM repository. ECJ developed by Luke et al was used for genetic programming. ECJ allows users to define a GPProblem, GPNodes and GPNodeConstraints. 
+
+The fitness function used was essentially the minimization of the L2 error output by running the Netlogo model itself. Each GP individual was run 10 times and L2 error values 
+we performed two decision tree discovery experiments on the artifical anasazi problem: farm searching 2) farm and settlement searching
+
+1. Evolution of farm searching
+
+
+2. Evolution of farm and settlement search
+
+In the second experiment, both the farm and settlement searches were discovered together. 
+The function set is as follows:
+The terminal set used consists of

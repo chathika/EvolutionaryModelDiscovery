@@ -1,0 +1,132 @@
+parent.0 = ../../gp/koza/koza.params
+print-params = true
+
+generations = 50
+pop.subpop.0.species.pipe.tries = 1
+pop.subpop.0.species.pipe.maxdepth = 8
+pop.subpop.0.species.pipe.toss = false
+pop.subpop.0.duplicate-retries = 100
+pop.subpop.0.size = 50
+
+stat = ec.simple.SimpleStatistics
+stat.do-per-generation-description = true
+stat.file = out.stat
+stat.num-children = 1
+stat.child.0 = ec.simple.SimpleShortStatistics
+stat.child.0.file = out2.stat
+stat.child.0.do-size = true
+stat.child.0.do-time = true
+stat.child.0.do-subpops = true
+
+pop.subpop.0.species.ind.tree.0.print-style = latex
+
+# the next four items are already defined in koza.params, but we
+# put them here to be clear.
+########
+
+gp.type.a.size = 3
+gp.type.a.0.name = Patch
+gp.type.a.1.name = PatchSet
+gp.type.a.2.name = Comparator
+
+gp.tc.size = 1
+gp.tc.0 = ec.gp.GPTreeConstraints
+gp.tc.0.name = tc0
+gp.tc.0.fset = f0
+gp.tc.0.returns = Patch
+gp.tc.0.init.min-size = 2
+gp.tc.0.init.max-size = 8
+gp.tc.0.init = ec.gp.koza.HalfBuilder
+gp.tc.0.init.min-depth = 2
+gp.tc.0.init.max-depth = 8
+gp.tc.0.init.growp = 0.5
+
+####
+
+gp.nc.size = 5
+
+gp.nc.0 = ec.gp.GPNodeConstraints
+gp.nc.0.name = PatchConstraints
+gp.nc.0.returns = Patch
+gp.nc.0.size = 0
+
+gp.nc.1 = ec.gp.GPNodeConstraints
+gp.nc.1.name = SetConstraints
+gp.nc.1.returns = PatchSet
+gp.nc.1.size = 0
+
+gp.nc.2 = ec.gp.GPNodeConstraints
+gp.nc.2.name = MinMaxConstraints
+gp.nc.2.returns = Patch
+gp.nc.2.size = 2
+gp.nc.2.child.0 = PatchSet
+gp.nc.2.child.1 = Comparator
+
+gp.nc.3 = ec.gp.GPNodeConstraints
+gp.nc.3.name = ComparatorConstraintsType0
+gp.nc.3.returns = Comparator
+gp.nc.3.size = 0
+
+gp.nc.4 = ec.gp.GPNodeConstraints
+gp.nc.4.name = CombineNegateConstraints
+gp.nc.4.returns = Comparator
+gp.nc.4.size = 2
+gp.nc.4.child.0 = Comparator
+gp.nc.4.child.1 = Comparator
+
+###################################
+
+# We have one function set, of class GPFunctionSet
+
+gp.fs.size = 1
+gp.fs.0 = ec.gp.GPFunctionSet
+
+# We'll call the function set "f0".
+
+gp.fs.0.name = f0
+
+
+# Function set for settlement search:
+
+gp.fs.0.size = 19
+gp.fs.0.func.0 = ec.app.GECCOReplication01.Myself
+gp.fs.0.func.0.nc = PatchConstraints
+gp.fs.0.func.1 = ec.app.GECCOReplication01.PotentialFarms
+gp.fs.0.func.1.nc = SetConstraints
+gp.fs.0.func.2 = ec.app.GECCOReplication01.Max
+gp.fs.0.func.2.nc = MinMaxConstraints
+gp.fs.0.func.3 = ec.app.GECCOReplication01.Min
+gp.fs.0.func.3.nc = MinMaxConstraints
+gp.fs.0.func.4 = ec.app.GECCOReplication01.CompareQuality
+gp.fs.0.func.4.nc = ComparatorConstraintsType0
+gp.fs.0.func.5 = ec.app.GECCOReplication01.CompareAPDSI
+gp.fs.0.func.5.nc = ComparatorConstraintsType0
+gp.fs.0.func.6 = ec.app.GECCOReplication01.CompareYield
+gp.fs.0.func.6.nc = ComparatorConstraintsType0
+gp.fs.0.func.7 = ec.app.GECCOReplication01.CompareNearbyWater
+gp.fs.0.func.7.nc = ComparatorConstraintsType0
+gp.fs.0.func.8 = ec.app.GECCOReplication01.CompareHydro
+gp.fs.0.func.8.nc = ComparatorConstraintsType0
+gp.fs.0.func.9 = ec.app.GECCOReplication01.CompareDistance
+gp.fs.0.func.9.nc = ComparatorConstraintsType0
+gp.fs.0.func.10 = ec.app.GECCOReplication01.Combine
+gp.fs.0.func.10.nc = CombineNegateConstraints
+gp.fs.0.func.11 = ec.app.GECCOReplication01.Negate
+gp.fs.0.func.11.nc = CombineNegateConstraints
+gp.fs.0.func.12 = ec.app.GECCOReplication01.PotentialFarmsNearFamily
+gp.fs.0.func.12.nc = SetConstraints
+gp.fs.0.func.13 = ec.app.GECCOReplication01.PotentialFarmsNearNeighbors
+gp.fs.0.func.13.nc = SetConstraints
+gp.fs.0.func.14 = ec.app.GECCOReplication01.PotentialFarmsNearBestPerformers
+gp.fs.0.func.14.nc = SetConstraints
+gp.fs.0.func.15 = ec.app.GECCOReplication01.HomophilyAge
+gp.fs.0.func.15.nc = ComparatorConstraintsType0
+gp.fs.0.func.16 = ec.app.GECCOReplication01.HomophilyCornStocks
+gp.fs.0.func.16.nc = ComparatorConstraintsType0
+gp.fs.0.func.17 = ec.app.GECCOReplication01.ZonalDifference
+gp.fs.0.func.17.nc = ComparatorConstraintsType0
+gp.fs.0.func.18 = ec.app.GECCOReplication01.Multiply
+gp.fs.0.func.18.nc = CombineNegateConstraints
+
+eval.problem = ec.app.GECCOReplication01.MyProblem
+eval.problem.data = ec.app.GECCOReplication01.NetlogoData

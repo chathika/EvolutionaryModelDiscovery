@@ -1,0 +1,136 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4871.021035807085 Adjusted=2.0525362937689836E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4871.021035807085 Adjusted=2.0525362937689836E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4829.825461495917 Adjusted=2.070039598761118E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4829.825461495917 Adjusted=2.070039598761118E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4829.825461495917 Adjusted=2.070039598761118E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4793.992887150549 Adjusted=2.0855088287612778E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=4792.750128448211 Adjusted=2.0860494877811056E-4 Hits=0
+Tree 0:
+\begin{bundle}{\gpbox{Min}}\chunk{\gpbox{PotentialFarms}}\chunk{\begin{bundle}{\gpbox{Negate}}\chunk{\gpbox{CompareNearbyWater}}\chunk{\gpbox{CompareNearbyWater}}\end{bundle}}\end{bundle}

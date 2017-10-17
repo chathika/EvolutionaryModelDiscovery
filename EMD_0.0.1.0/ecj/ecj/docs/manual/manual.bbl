@@ -1,0 +1,177 @@
+\begin{thebibliography}{10}
+
+\bibitem{chellapilla:1998:piempwsx}
+Kumar Chellapilla.
+\newblock A preliminary investigation into evolving modular programs without
+  subtree crossover.
+\newblock In John~R. Koza, Wolfgang Banzhaf, Kumar Chellapilla, Kalyanmoy Deb,
+  Marco Dorigo, David~B. Fogel, Max~H. Garzon, David~E. Goldberg, Hitoshi Iba,
+  and Rick Riolo, editors, {\em Genetic Programming 1998: Proceedings of the
+  Third Annual Conference}, pages 23--31, University of Wisconsin, Madison,
+  Wisconsin, USA, 22-25 July 1998. Morgan Kaufmann.
+
+\bibitem{nsga2}
+Kalyanmoy Deb, Amrit Pratap, Sameer Agarwal, and T.~Meyarivan.
+\newblock A fast elitist non-dominated sorting genetic algorithm for
+  multi-objective optimization: {NSGA-II}.
+\newblock In Marc Schoenauer, Kalyanmoy Deb, G{\"u}nther Rudolph, Xin Yao,
+  Evelyne Lutton, Juan~Julian Merelo, and Hans-Paul Schwefel, editors, {\em
+  Parallel Problem Solving from Nature (PPSN VI)}, pages 849--858. Springer,
+  2000.
+
+\bibitem{koza:book}
+John~R. Koza.
+\newblock {\em Genetic Programming: On the Programming of Computers by Means of
+  Natural Selection}.
+\newblock MIT Press, 1992.
+
+\bibitem{koza:gp2}
+John~R. Koza.
+\newblock {\em Genetic Programming {II}: Automatic Discovery of Reusable
+  Programs}.
+\newblock MIT Press, 1994.
+
+\bibitem{langdon:1999:fairxo}
+W.~B. Langdon.
+\newblock Size fair and homologous tree genetic programming crossovers.
+\newblock In Wolfgang Banzhaf, Jason Daida, Agoston~E. Eiben, Max~H. Garzon,
+  Vasant Honavar, Mark Jakiela, and Robert~E. Smith, editors, {\em Proceedings
+  of the Genetic and Evolutionary Computation Conference}, volume~2, pages
+  1092--1097, Orlando, Florida, USA, 13-17 July 1999. Morgan Kaufmann.
+
+\bibitem{luke:genetic1998}
+Sean Luke.
+\newblock Genetic programming produced competitive soccer softbot teams for
+  robocup97.
+\newblock In John~R. Koza, Wolfgang Banzhaf, Kumar Chellapilla, Kalyanmoy Deb,
+  Marco Dorigo, David~B. Fogel, Max~H. Garzon, David~E. Goldberg, Hitoshi Iba,
+  and Rick Riolo, editors, {\em Genetic Programming 1998: Proceedings of the
+  Third Annual Conference}, pages 214--222, University of Wisconsin, Madison,
+  Wisconsin, USA, 1998. Morgan Kaufmann.
+
+\bibitem{Luke2009Metaheuristics}
+Sean Luke.
+\newblock {\em Essentials of Metaheuristics}.
+\newblock 2009.
+\newblock Available at http://cs.gmu.edu/$\sim$sean/book/metaheuristics/.
+
+\bibitem{luke.cioffi-revilla.ea:mason}
+Sean Luke, Cladio Cioffi-Revilla, Liviu Panait, Keith Sullivan, and Gabriel
+  Balan.
+\newblock {MASON}: A multiagent simulation environment.
+\newblock {\em Simulation}, 81(7):517--527, July 2005.
+
+\bibitem{Luke1:2001:GECCO}
+Sean Luke and Liviu Panait.
+\newblock A survey and comparison of tree generation algorithms.
+\newblock In Lee Spector, Erik~D. Goodman, Annie Wu, W.~B. Langdon,
+  Hans-Michael Voigt, Mitsuo Gen, Sandip Sen, Marco Dorigo, Shahram Pezeshk,
+  Max~H. Garzon, and Edmund Burke, editors, {\em Proceedings of the Genetic and
+  Evolutionary Computation Conference (GECCO-2001)}, pages 81--88, San
+  Francisco, California, USA, 7--11 July 2001. Morgan Kaufmann.
+
+\bibitem{Luke:2006:EC}
+Sean Luke and Liviu Panait.
+\newblock A comparison of bloat control methods for genetic programming.
+\newblock {\em Evolutionary Computation}, 14(3):309--344, Fall 2006.
+
+\bibitem{Luke2013MetaEA}
+Sean Luke and A.~K. M. Khaled~Ahsan Talukder.
+\newblock Is the meta-ea a viable optimization method?
+\newblock In {\em Proceedings of the 15th Annual Conference on Genetic and
+  Evolutionary Computation (GECCO 2013)}, 2013.
+
+\bibitem{mersennetwister}
+Makato Matsumoto and Takuji Nishimura.
+\newblock Mersenne twister: a 623-dimensionally equidistributed uniform
+  pseudo-random number generator.
+\newblock {\em ACM Transactions on Modeling and Computer Simulation},
+  8(1):3--30, 1998.
+
+\bibitem{OReilly:thesis}
+Una-May O'Reilly.
+\newblock {\em An Analysis of Genetic Programming}.
+\newblock PhD thesis, Carleton University, Ottawa-Carleton Institute for
+  Computer Science, Ottawa, Ontario, Canada, 22 September 1995.
+
+\bibitem{Panait02acomparison}
+Liviu Panait.
+\newblock A comparison of two competitive fitness functions.
+\newblock In {\em GECCO 2002: Proceedings of the Genetic and Evolutionary
+  Computation Conference}, pages 503--511. Morgan Kaufmann Publishers, 2002.
+
+\bibitem{poli03simple}
+Ricardo Poli.
+\newblock A simple but theoretically-motivated method to control bloat in
+  genetic programming.
+\newblock In {\em Genetic Programming, Proceedings of EuroGP'2003}, pages
+  204--217. Springer, 14-16 April 2003.
+
+\bibitem{poli08:fieldguide}
+Riccardo Poli, William~B. Langdon, and Nicholas~Freitag McPhee.
+\newblock {\em A Field Guide to Genetic Programming}.
+\newblock Available in print from lulu.com, 2008.
+
+\bibitem{differentialevolution}
+Kenneth Price, Rainer Storn, and Journi Lampinen.
+\newblock {\em Differential Evolution: A Practical Approach to Global
+  Optimization}.
+\newblock Springer, 2005.
+
+\bibitem{lilgp}
+Bill Punch and Douglas Zongker.
+\newblock {lil-gp 1.1}. {A} genetic programming system.
+\newblock Available at http://garage.cse.msu.edu/software/lil-gp/, 1998.
+
+\bibitem{grammaticalevolution}
+Conor Ryan, J.~J. Collins, and Michael O'Neill.
+\newblock Grammatical evolution: Evolving programs for an arbitrary language.
+\newblock In {\em EuroGP 1998}, pages 83--96, 1998.
+
+\bibitem{adm}
+Lee Spector.
+\newblock Simultaneous evolution of programs and their control structures.
+\newblock In Peter~J. Angeline and K.~E. {Kinnear, Jr.}, editors, {\em Advances
+  in Genetic Programming 2}, chapter~7, pages 137--154. MIT Press, 1996.
+
+\bibitem{push3}
+Lee Spector, Jon Klein, and Martin Keijzer.
+\newblock The {Push3} execution stack and the evolution of control.
+\newblock In {\em Proceedings of the Genetic and Evolutionary Conference (GECCO
+  2005)}, pages 1689--1696. Springer, 2005.
+
+\bibitem{push}
+Lee Spector and Alan Robinson.
+\newblock Genetic programming and autoconstructive evolution with the push
+  programming language.
+\newblock {\em Genetic Programming and Evolvable Machines}, 3(1):7--40, 2002.
+
+\bibitem{nsga}
+N.~Srinivas and Kalyanmoy Deb.
+\newblock Multiobjective optimization using nondominated sorting in genetic
+  algorithms.
+\newblock {\em Evolutionary Computation}, 2:221--248, 1994.
+
+\bibitem{opportunistic}
+Keith Sullivan, Sean Luke, Curt Larock, Sean Cier, and Steven Armentrout.
+\newblock Opportunistic evolution: efficient evolutionary computation on
+  large-scale computational grids.
+\newblock In {\em GECCO '08: Proceedings of the 2008 GECCO conference companion
+  on Genetic and evolutionary computation}, pages 2227--2232, New York, NY,
+  USA, 2008. ACM.
+
+\bibitem{Tisue04netlogo:a}
+Seth Tisue and Uri Wilensky.
+\newblock Netlogo: A simple environment for modeling complexity.
+\newblock In {\em International Conference on Complex Systems}, pages 16--21,
+  2004.
+
+\bibitem{spea2}
+Eckart Zitzler, Marco Laumanns, and Lothar Thiele.
+\newblock {SPEA2}: Improving the strength pareto evolutionary algorithm for
+  multiobjective optimization.
+\newblock In K.~Giannakoglou, D.~Tshalis, J.~Periaux, K.~Papailiou, and
+  T.~Fogarty, editors, {\em Evolutionary Methods for Design, Optimization, and
+  Control}, pages 19--26, 2002.
+
+\end{thebibliography}

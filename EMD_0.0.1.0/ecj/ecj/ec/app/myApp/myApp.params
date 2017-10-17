@@ -1,0 +1,116 @@
+parent.0 = ../../gp/koza/koza.params
+print-params = true
+
+generations = 20
+pop.subpop.0.species.pipe.tries = 1
+pop.subpop.0.species.pipe.maxdepth = 6
+pop.subpop.0.species.pipe.toss = false
+pop.subpop.0.duplicate-retries = 100
+pop.subpop.0.size = 20
+
+stat = ec.simple.SimpleStatistics
+stat.do-per-generation-description = true
+stat.file = $out.stat
+stat.num-children = 1
+stat.child.0 = ec.simple.SimpleShortStatistics
+stat.child.0.file = $out2.stat
+stat.child.0.do-size = true
+stat.child.0.do-time = true
+stat.child.0.do-subpops = true
+
+pop.subpop.0.species.ind.tree.0.print-style = latex
+
+# the next four items are already defined in koza.params, but we
+# put them here to be clear.
+########
+gp.type.a.size = 3
+gp.type.a.0.name = Patch
+gp.type.a.1.name = PatchList
+gp.type.a.2.name = Comparator
+
+gp.tc.size = 1
+gp.tc.0 = ec.gp.GPTreeConstraints
+gp.tc.0.name = tc0
+gp.tc.0.fset = f0
+
+gp.tc.size = 1
+gp.tc.0 = ec.gp.GPTreeConstraints
+gp.tc.0.name = tc0
+gp.tc.0.fset = f0
+gp.tc.0.returns = Patch
+gp.tc.0.init.min-size = 3
+gp.tc.0.init.max-size = 6
+gp.tc.0.init = ec.gp.koza.HalfBuilder
+gp.tc.0.init.min-depth = 3
+gp.tc.0.init.max-depth = 6
+gp.tc.0.init.growp = 0.5
+###
+
+gp.nc.size = 6
+
+gp.nc.0 = ec.gp.GPNodeConstraints
+gp.nc.0.name = nc0
+gp.nc.0.returns = Patch
+gp.nc.0.size = 1
+gp.nc.0.child.0 = PatchList
+
+gp.nc.1 = ec.gp.GPNodeConstraints
+gp.nc.1.name = nc1
+gp.nc.1.returns = PatchList
+gp.nc.1.size = 2
+gp.nc.1.child.0 = Comparator
+gp.nc.1.child.1 = PatchList
+
+gp.nc.2 = ec.gp.GPNodeConstraints
+gp.nc.2.name = nc2
+gp.nc.2.returns = Patch
+gp.nc.2.size = 0
+
+gp.nc.3 = ec.gp.GPNodeConstraints
+gp.nc.3.name = nc3
+gp.nc.3.returns = PatchList
+gp.nc.3.size = 0
+
+gp.nc.4 = ec.gp.GPNodeConstraints
+gp.nc.4.name = nc4
+gp.nc.4.returns = Comparator
+gp.nc.4.size = 0
+
+gp.nc.5 = ec.gp.GPNodeConstraints
+gp.nc.5.name = nc5
+gp.nc.5.returns = Comparator
+gp.nc.5.size = 1
+gp.nc.5.child.0 = Patch
+###################################
+
+# We have one function set, of class GPFunctionSet
+gp.fs.size = 1
+gp.fs.0 = ec.gp.GPFunctionSet
+# We'll call the function set "f0".
+gp.fs.0.name = f0
+
+# Functions
+gp.fs.0.size = 10
+gp.fs.0.func.0 = ec.app.myApp.Pop
+gp.fs.0.func.0.nc = nc0
+gp.fs.0.func.1 = ec.app.myApp.SortBy
+gp.fs.0.func.1.nc = nc1
+gp.fs.0.func.2 = ec.app.myApp.Myself
+gp.fs.0.func.2.nc = nc2
+gp.fs.0.func.3 = ec.app.myApp.Patches
+gp.fs.0.func.3.nc = nc3
+gp.fs.0.func.4 = ec.app.myApp.CompareQuality
+gp.fs.0.func.4.nc = nc4
+gp.fs.0.func.5 = ec.app.myApp.CompareDistance
+gp.fs.0.func.5.nc = nc5
+gp.fs.0.func.6 = ec.app.myApp.CompareAPDSI
+gp.fs.0.func.6.nc = nc4
+gp.fs.0.func.7 = ec.app.myApp.CompareYield
+gp.fs.0.func.7.nc = nc4
+gp.fs.0.func.8 = ec.app.myApp.CompareNearbyWater
+gp.fs.0.func.8.nc = nc4
+gp.fs.0.func.9 = ec.app.myApp.CompareHydro
+gp.fs.0.func.9.nc = nc4
+
+eval.problem = ec.app.myApp.MyProblem
+eval.problem.data = ec.app.myApp.NetlogoData

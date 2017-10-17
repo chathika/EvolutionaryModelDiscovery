@@ -1,0 +1,40 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=817.3114461452257 Adjusted=0.0012220286111243397 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\begin{bundle}{\gpbox{CompareDistance}}\chunk{\begin{bundle}{\gpbox{Pop}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\begin{bundle}{\gpbox{CompareDistance}}\chunk{\gpbox{myself}}\end{bundle}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}}\end{bundle}
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=795.5733781367999 Adjusted=0.0012553771283933927 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\begin{bundle}{\gpbox{CompareDistance}}\chunk{\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=795.5733781367999 Adjusted=0.0012553771283933927 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\begin{bundle}{\gpbox{CompareDistance}}\chunk{\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=795.5733781367999 Adjusted=0.0012553771283933927 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\begin{bundle}{\gpbox{CompareDistance}}\chunk{\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: true
+Fitness: Standardized=795.5733781367999 Adjusted=0.0012553771283933927 Hits=1
+Tree 0:
+\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\begin{bundle}{\gpbox{CompareDistance}}\chunk{\begin{bundle}{\gpbox{Pop}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}}\chunk{\begin{bundle}{\gpbox{SortBy}}\chunk{\gpbox{CompareQuality}}\chunk{\gpbox{patches}}\end{bundle}}\end{bundle}}\end{bundle}

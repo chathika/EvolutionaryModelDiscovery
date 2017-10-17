@@ -1,0 +1,265 @@
+\contentsline {chapter}{\numberline {1}Introduction}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}About ECJ}{7}{section.1.1}
+\contentsline {paragraph}{Why ECJ was Made}{7}{section*.2}
+\contentsline {section}{\numberline {1.2}Overview}{9}{section.1.2}
+\contentsline {paragraph}{Top-level Loop}{9}{section*.4}
+\contentsline {paragraph}{Parameterized Construction}{9}{section*.6}
+\contentsline {paragraph}{State Objects}{9}{section*.7}
+\contentsline {paragraph}{Breeding}{10}{section*.9}
+\contentsline {paragraph}{Evaluation}{10}{section*.10}
+\contentsline {paragraph}{Utilities}{12}{section*.11}
+\contentsline {paragraph}{Representations and Genetic Programming}{12}{section*.12}
+\contentsline {paragraph}{Out of the Box Capabilities}{13}{section*.14}
+\contentsline {paragraph}{Idiosyncracies}{14}{section*.15}
+\contentsline {section}{\numberline {1.3}Unpacking ECJ and Using the Tutorials}{15}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}The \textsf {ec} Directory, the CLASSPATH, and jar files}{15}{subsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.1.1}The \textsf {ec/display} Directory: ECJ's GUI}{15}{subsubsection.1.3.1.1}
+\contentsline {subsubsection}{\numberline {1.3.1.2}The \textsf {ec/app} Directory: Demo Applications}{15}{subsubsection.1.3.1.2}
+\contentsline {subsection}{\numberline {1.3.2}The \textsf {docs} Directory}{16}{subsection.1.3.2}
+\contentsline {subsubsection}{\numberline {1.3.2.1}Tutorials}{16}{subsubsection.1.3.2.1}
+\contentsline {chapter}{\numberline {2}\textsf {ec.Evolve} and Utility Classes}{17}{chapter.2}
+\contentsline {section}{\numberline {2.1}The Parameter Database}{18}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Inheritance}{19}{subsection.2.1.1}
+\contentsline {paragraph}{Overriding the Parameter File}{20}{section*.16}
+\contentsline {subsection}{\numberline {2.1.2}Kinds of Parameters}{20}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Namespace Hierarchies and Parameter Bases}{22}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Parameter Files in Jar Files}{24}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Accessing Parameters}{24}{subsection.2.1.5}
+\contentsline {subsection}{\numberline {2.1.6}Debugging Your Parameters}{26}{subsection.2.1.6}
+\contentsline {subsection}{\numberline {2.1.7}Building a Parameter Database from Scratch}{28}{subsection.2.1.7}
+\contentsline {section}{\numberline {2.2}Output}{30}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Creating and Writing to Logs}{30}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Quieting the Program}{32}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}The \textsf {ec.util.Code} Class}{32}{subsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3.1}Decoding the Hard Way}{33}{subsubsection.2.2.3.1}
+\contentsline {subsubsection}{\numberline {2.2.3.2}Decoding the Easy Way}{34}{subsubsection.2.2.3.2}
+\contentsline {section}{\numberline {2.3}Checkpointing}{35}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Implementing Checkpointable Code}{37}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.4}Threads and Random Number Generation}{38}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Random Numbers}{38}{subsection.2.4.1}
+\contentsline {paragraph}{Any gotchas?}{40}{section*.17}
+\contentsline {subsection}{\numberline {2.4.2}Selecting Randomly from Distributions}{41}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Thread-Local Storage}{43}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Multithreading Support}{43}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Jobs}{44}{section.2.5}
+\contentsline {section}{\numberline {2.6}The \textsf {ec.Evolve} Top-level}{45}{section.2.6}
+\contentsline {section}{\numberline {2.7}Integrating ECJ with other Applications or Libraries}{47}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Control by ECJ}{47}{subsection.2.7.1}
+\contentsline {paragraph}{Set up the library}{48}{section*.18}
+\contentsline {paragraph}{Prepare the simulation and evaluate an individual}{49}{section*.19}
+\contentsline {paragraph}{Optionally Delete the Simulation each Generation}{50}{section*.20}
+\contentsline {paragraph}{Clean up the Library}{50}{section*.21}
+\contentsline {subsection}{\numberline {2.7.2}Control by another Application or Library}{51}{subsection.2.7.2}
+\contentsline {chapter}{\numberline {3}\textsf {ec.EvolutionState} and the ECJ Evolutionary Process}{53}{chapter.3}
+\contentsline {section}{\numberline {3.1}Common Patterns}{55}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Setup}{55}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Singletons and Cliques}{55}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Prototypes}{55}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}The Flyweight Pattern}{56}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Groups}{56}{subsection.3.1.5}
+\contentsline {section}{\numberline {3.2}Populations, Subpopulations, Species, Individuals, and Fitnesses}{57}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Making Large Numbers of Subpopulations}{59}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}How Species Make Individuals}{60}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Reading and Writing Populations and Subpopulations}{61}{subsection.3.2.3}
+\contentsline {paragraph}{In Subpopulation:}{61}{section*.24}
+\contentsline {subsection}{\numberline {3.2.4}About Individuals}{62}{subsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Implementing an Individual}{63}{subsubsection.3.2.4.1}
+\contentsline {subsection}{\numberline {3.2.5}About Fitnesses}{65}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}Initializers and Finishers}{67}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Population Files and Subpopulation Files}{69}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.4}Evaluators and Problems}{69}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Problems}{71}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Implementing a Problem}{71}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Breeders}{72}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Breeding Pipelines and BreedingSources}{74}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}SelectionMethods}{76}{subsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.2.1}Implementing a Simple SelectionMethod}{77}{subsubsection.3.5.2.1}
+\contentsline {subsubsection}{\numberline {3.5.2.2}Standard Classes}{77}{subsubsection.3.5.2.2}
+\contentsline {subsection}{\numberline {3.5.3}BreedingPipelines}{80}{subsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.3.1}Implementing a Simple BreedingPipeline}{81}{subsubsection.3.5.3.1}
+\contentsline {subsubsection}{\numberline {3.5.3.2}Standard Utility Pipelines}{83}{subsubsection.3.5.3.2}
+\contentsline {subsection}{\numberline {3.5.4}Setting up a Pipeline}{85}{subsection.3.5.4}
+\contentsline {subsubsection}{\numberline {3.5.4.1}A Genetic Algorithm Pipeline}{85}{subsubsection.3.5.4.1}
+\contentsline {subsubsection}{\numberline {3.5.4.2}A Genetic Programming Pipeline}{87}{subsubsection.3.5.4.2}
+\contentsline {section}{\numberline {3.6}Exchangers}{88}{section.3.6}
+\contentsline {section}{\numberline {3.7}Statistics}{88}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Creating a Statistics Chain}{91}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Tabular Statistics}{91}{subsection.3.7.2}
+\contentsline {paragraph}{Restricting Rows with a Modulus}{93}{section*.27}
+\contentsline {subsection}{\numberline {3.7.3}Quieting the Statistics}{94}{subsection.3.7.3}
+\contentsline {subsection}{\numberline {3.7.4}Implementing a Statistics Object}{94}{subsection.3.7.4}
+\contentsline {section}{\numberline {3.8}Debugging an Evolutionary Process}{96}{section.3.8}
+\contentsline {chapter}{\numberline {4}Basic Evolutionary Processes}{101}{chapter.4}
+\contentsline {section}{\numberline {4.1}Generational Evolution}{101}{section.4.1}
+\contentsline {paragraph}{Generations and Evaluations}{101}{section*.29}
+\contentsline {subsection}{\numberline {4.1.1}The Genetic Algorithm (The \textsf {ec.simple} Package)}{103}{subsection.4.1.1}
+\contentsline {paragraph}{An Example}{103}{section*.30}
+\contentsline {subsection}{\numberline {4.1.2}Evolution Strategies (The \textsf {ec.es} Package)}{105}{subsection.4.1.2}
+\contentsline {paragraph}{\relax $\bm {(\mu , \lambda )}\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{106}{section*.31}
+\contentsline {paragraph}{\relax $\bm {(\mu + \lambda )}\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{106}{section*.32}
+\contentsline {paragraph}{Example}{106}{section*.33}
+\contentsline {section}{\numberline {4.2}Steady-State Evolution (The \textsf {ec.steadystate} Package)}{107}{section.4.2}
+\contentsline {paragraph}{Example}{111}{section*.35}
+\contentsline {subsection}{\numberline {4.2.1}Steady State Statistics}{112}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Producing More than One Individual at a Time}{112}{subsection.4.2.2}
+\contentsline {chapter}{\numberline {5}Representations}{115}{chapter.5}
+\contentsline {section}{\numberline {5.1}Vector and List Representations (The \textsf {ec.vector} Package)}{115}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Vectors}{116}{subsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.1.1}Initialization}{117}{subsubsection.5.1.1.1}
+\contentsline {subsubsection}{\numberline {5.1.1.2}Crossover}{118}{subsubsection.5.1.1.2}
+\contentsline {paragraph}{Customizing Crossover}{120}{section*.36}
+\contentsline {subsubsection}{\numberline {5.1.1.3}Multi-Vector Crossover}{121}{subsubsection.5.1.1.3}
+\contentsline {subsubsection}{\numberline {5.1.1.4}Mutation}{121}{subsubsection.5.1.1.4}
+\contentsline {paragraph}{Kinds of Mutations}{122}{section*.37}
+\contentsline {paragraph}{Bit-Flip Mutation}{122}{section*.38}
+\contentsline {paragraph}{Uniform Mutation}{122}{section*.39}
+\contentsline {paragraph}{Mixtures}{123}{section*.40}
+\contentsline {paragraph}{Uniform Mutation}{123}{section*.41}
+\contentsline {paragraph}{Random Walk Mutation}{123}{section*.42}
+\contentsline {paragraph}{Mixtures}{123}{section*.43}
+\contentsline {paragraph}{Uniform Mutation}{124}{section*.44}
+\contentsline {paragraph}{Gaussian Mutation}{124}{section*.45}
+\contentsline {paragraph}{Polynomial Mutation}{124}{section*.46}
+\contentsline {paragraph}{Mixtures}{125}{section*.47}
+\contentsline {paragraph}{Example}{126}{section*.48}
+\contentsline {paragraph}{Another Example}{127}{section*.49}
+\contentsline {subsubsection}{\numberline {5.1.1.5}Heterogeneous Vector Individuals}{127}{subsubsection.5.1.1.5}
+\contentsline {paragraph}{What You Can Do}{128}{section*.50}
+\contentsline {subsection}{\numberline {5.1.2}Lists}{129}{subsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.2.1}Utility Methods}{129}{subsubsection.5.1.2.1}
+\contentsline {subsubsection}{\numberline {5.1.2.2}Initialization}{130}{subsubsection.5.1.2.2}
+\contentsline {subsubsection}{\numberline {5.1.2.3}Crossover}{130}{subsubsection.5.1.2.3}
+\contentsline {subsubsection}{\numberline {5.1.2.4}Mutation}{131}{subsubsection.5.1.2.4}
+\contentsline {paragraph}{Example}{131}{section*.51}
+\contentsline {subsection}{\numberline {5.1.3}Arbitrary Genes: \textsf {ec.vector.Gene}}{132}{subsection.5.1.3}
+\contentsline {paragraph}{Example}{133}{section*.52}
+\contentsline {section}{\numberline {5.2}Genetic Programming (The \textsf {ec.gp} Package)}{134}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}GPNodes, GPTrees, and GPIndividuals}{136}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}GPNodes}{137}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}GPTrees}{137}{subsubsection.5.2.1.2}
+\contentsline {subsubsection}{\numberline {5.2.1.3}GPIndividual}{138}{subsubsection.5.2.1.3}
+\contentsline {subsubsection}{\numberline {5.2.1.4}GPNodeConstraints}{138}{subsubsection.5.2.1.4}
+\contentsline {subsubsection}{\numberline {5.2.1.5}GPTreeConstraints}{138}{subsubsection.5.2.1.5}
+\contentsline {subsubsection}{\numberline {5.2.1.6}GPFunctionSet}{138}{subsubsection.5.2.1.6}
+\contentsline {subsection}{\numberline {5.2.2}Basic Setup}{139}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Defining GPNodes}{140}{subsubsection.5.2.2.1}
+\contentsline {subsection}{\numberline {5.2.3}Defining the Representation, Problem, and Statistics}{141}{subsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.3.1}GPData}{142}{subsubsection.5.2.3.1}
+\contentsline {subsubsection}{\numberline {5.2.3.2}KozaFitness}{143}{subsubsection.5.2.3.2}
+\contentsline {subsubsection}{\numberline {5.2.3.3}GPProblem}{144}{subsubsection.5.2.3.3}
+\contentsline {subsubsection}{\numberline {5.2.3.4}GPNode Subclasses}{145}{subsubsection.5.2.3.4}
+\contentsline {subsubsection}{\numberline {5.2.3.5}Statistics}{147}{subsubsection.5.2.3.5}
+\contentsline {subsection}{\numberline {5.2.4}Initialization}{148}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}Breeding}{152}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}A Complete Example}{159}{subsection.5.2.6}
+\contentsline {subsection}{\numberline {5.2.7}GPNodes in Depth}{162}{subsection.5.2.7}
+\contentsline {paragraph}{Sanity Checking}{162}{section*.57}
+\contentsline {subsection}{\numberline {5.2.8}GPTrees and GPIndividuals in Depth}{166}{subsection.5.2.8}
+\contentsline {subsubsection}{\numberline {5.2.8.1}Pretty-Printing Trees}{167}{subsubsection.5.2.8.1}
+\contentsline {subsubsection}{\numberline {5.2.8.2}GPIndividuals}{170}{subsubsection.5.2.8.2}
+\contentsline {subsection}{\numberline {5.2.9}Ephemeral Random Constants}{170}{subsection.5.2.9}
+\contentsline {paragraph}{Example}{172}{section*.59}
+\contentsline {subsection}{\numberline {5.2.10}Automatically Defined Functions and Macros}{173}{subsection.5.2.10}
+\contentsline {subsubsection}{\numberline {5.2.10.1}About ADF Stacks}{176}{subsubsection.5.2.10.1}
+\contentsline {paragraph}{Example}{177}{section*.63}
+\contentsline {subsection}{\numberline {5.2.11}Strongly Typed Genetic Programming}{179}{subsection.5.2.11}
+\contentsline {paragraph}{Example}{181}{section*.65}
+\contentsline {paragraph}{Mixing ADF and ADMs and Typed GP}{184}{section*.66}
+\contentsline {subsubsection}{\numberline {5.2.11.1}Inside GPTypes}{184}{subsubsection.5.2.11.1}
+\contentsline {subsection}{\numberline {5.2.12}Parsimony Pressure (The \textsf {ec.parsimony} Package)}{185}{subsection.5.2.12}
+\contentsline {section}{\numberline {5.3}Grammatical Evolution (The \textsf {ec.gp.ge} Package)}{187}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}GEIndividuals, GESpecies, and Grammars}{188}{subsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Strong Typing}{189}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.3.1.2}ADFs and ERCs}{190}{subsubsection.5.3.1.2}
+\contentsline {subsection}{\numberline {5.3.2}Translation and Evaluation}{190}{subsection.5.3.2}
+\contentsline {paragraph}{Handling ERCs}{192}{section*.67}
+\contentsline {paragraph}{Handling ADFs and Multiple Trees}{192}{section*.68}
+\contentsline {paragraph}{Grammatical Evolution Does Not Support GroupedProblemForm}{192}{section*.69}
+\contentsline {subsection}{\numberline {5.3.3}Printing}{192}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Initialization and Breeding}{193}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Dealing with GP}{194}{subsection.5.3.5}
+\contentsline {paragraph}{One Last Note}{194}{section*.70}
+\contentsline {subsection}{\numberline {5.3.6}A Complete Example}{194}{subsection.5.3.6}
+\contentsline {subsubsection}{\numberline {5.3.6.1}Grammar Files}{196}{subsubsection.5.3.6.1}
+\contentsline {subsection}{\numberline {5.3.7}How Parsing is Done}{196}{subsection.5.3.7}
+\contentsline {section}{\numberline {5.4}Push (The \textsf {ec.gp.push} Package)}{197}{section.5.4}
+\contentsline {paragraph}{Evaluation}{198}{section*.72}
+\contentsline {paragraph}{Some Caveats}{198}{section*.73}
+\contentsline {subsection}{\numberline {5.4.1}Push and GP}{199}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Defining the Push Instruction Set}{200}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Creating a Push Problem}{201}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Building a Custom Instruction}{202}{subsection.5.4.4}
+\contentsline {section}{\numberline {5.5}Rulesets and Collections (The \textsf {ec.rule} Package)}{203}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}RuleIndividuals and RuleSpecies}{204}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}RuleSets and RuleSetConstraints}{204}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Rules and RuleConstraints}{207}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}Initialization}{209}{subsection.5.5.4}
+\contentsline {subsection}{\numberline {5.5.5}Mutation}{209}{subsection.5.5.5}
+\contentsline {subsection}{\numberline {5.5.6}Crossover}{211}{subsection.5.5.6}
+\contentsline {chapter}{\numberline {6}Parallel Processes}{213}{chapter.6}
+\contentsline {section}{\numberline {6.1}Distributed Evaluation (The \textsf {ec.eval} Package)}{213}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}The Master}{213}{subsection.6.1.1}
+\contentsline {paragraph}{Warning!}{215}{section*.75}
+\contentsline {paragraph}{Keep Your Master Single-Threaded}{215}{section*.76}
+\contentsline {subsection}{\numberline {6.1.2}Slaves}{215}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Opportunistic Evolution}{217}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Asynchronous Evolution}{217}{subsection.6.1.4}
+\contentsline {paragraph}{Rescheduling Lost Jobs}{219}{section*.78}
+\contentsline {subsection}{\numberline {6.1.5}The MasterProblem}{219}{subsection.6.1.5}
+\contentsline {paragraph}{Checkpointing and Synchronization}{219}{section*.79}
+\contentsline {paragraph}{Asynchronous Evolution}{220}{section*.80}
+\contentsline {paragraph}{Batching up Jobs}{220}{section*.81}
+\contentsline {paragraph}{Sending Initialization Data from the Master to the Slaves}{221}{section*.82}
+\contentsline {subsection}{\numberline {6.1.6}Noisy Distributed Problems}{222}{subsection.6.1.6}
+\contentsline {section}{\numberline {6.2}Island Models (The \textsf {ec.exchange} Package)}{223}{section.6.2}
+\contentsline {paragraph}{Mixing Island Models, Threading, and Distributed Evaluation}{223}{section*.83}
+\contentsline {subsection}{\numberline {6.2.1}Islands}{223}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}The Server}{225}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1}Synchronicity}{226}{subsubsection.6.2.2.1}
+\contentsline {subsection}{\numberline {6.2.3}Internal Island Models}{226}{subsection.6.2.3}
+\contentsline {paragraph}{Reminder}{228}{section*.84}
+\contentsline {subsection}{\numberline {6.2.4}The Exchanger}{228}{subsection.6.2.4}
+\contentsline {chapter}{\numberline {7}Additional Evolutionary Algorithms}{231}{chapter.7}
+\contentsline {section}{\numberline {7.1}Coevolution (The \textsf {ec.coevolve} Package)}{231}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Coevolutionary Fitness}{231}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Grouped Problems}{232}{subsection.7.1.2}
+\contentsline {paragraph}{Example}{233}{section*.85}
+\contentsline {subsection}{\numberline {7.1.3}One-Population Competitive Coevolution}{234}{subsection.7.1.3}
+\contentsline {subsection}{\numberline {7.1.4}Multi-Population Coevolution}{236}{subsection.7.1.4}
+\contentsline {paragraph}{Reminder}{238}{section*.86}
+\contentsline {subsubsection}{\numberline {7.1.4.1}Parallel and Sequential Coevolution}{238}{subsubsection.7.1.4.1}
+\contentsline {subsubsection}{\numberline {7.1.4.2}Maintaining Context}{239}{subsubsection.7.1.4.2}
+\contentsline {paragraph}{Warning}{240}{section*.87}
+\contentsline {subsection}{\numberline {7.1.5}Performing Distributed Evaluation with Coevolution}{240}{subsection.7.1.5}
+\contentsline {paragraph}{The crucial item.}{240}{section*.88}
+\contentsline {section}{\numberline {7.2}Spatially Embedded Evolutionary Algorithms (The \textsf {ec.spatial} Package)}{241}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Implementing a Space}{242}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Spatial Breeding}{243}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Coevolutionary Spatial Evaluation}{244}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}Particle Swarm Optimization (The \textsf {ec.pso} Package)}{245}{section.7.3}
+\contentsline {paragraph}{Reading and Writing}{246}{section*.89}
+\contentsline {paragraph}{Updating}{246}{section*.90}
+\contentsline {section}{\numberline {7.4}Differential Evolution (The \textsf {ec.de} Package)}{249}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Evaluation}{249}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}Breeding}{249}{subsection.7.4.2}
+\contentsline {subsubsection}{\numberline {7.4.2.1}The DE/rand/1/bin Operator}{251}{subsubsection.7.4.2.1}
+\contentsline {subsubsection}{\numberline {7.4.2.2}The DE/best/1/bin Operator}{251}{subsubsection.7.4.2.2}
+\contentsline {subsubsection}{\numberline {7.4.2.3}The DE/rand/1/either-or Operator}{252}{subsubsection.7.4.2.3}
+\contentsline {section}{\numberline {7.5}Multiobjective Optimization (The \textsf {ec.multiobjective} Package)}{253}{section.7.5}
+\contentsline {subsubsection}{\numberline {7.5.0.4}The MultiObjectiveFitness class}{253}{subsubsection.7.5.0.4}
+\contentsline {subsubsection}{\numberline {7.5.0.5}The MultiObjectiveStatistics class}{255}{subsubsection.7.5.0.5}
+\contentsline {subsection}{\numberline {7.5.1}Selecting with Multiple Objectives}{256}{subsection.7.5.1}
+\contentsline {subsubsection}{\numberline {7.5.1.1}Pareto Ranking}{256}{subsubsection.7.5.1.1}
+\contentsline {subsubsection}{\numberline {7.5.1.2}Archives}{257}{subsubsection.7.5.1.2}
+\contentsline {subsection}{\numberline {7.5.2}NSGA-II (The \textsf {ec.multiobjective.nsga2} Package)}{257}{subsection.7.5.2}
+\contentsline {paragraph}{Where to get examples}{258}{section*.91}
+\contentsline {subsection}{\numberline {7.5.3}SPEA2 (The \textsf {ec.multiobjective.spea2} Package)}{258}{subsection.7.5.3}
+\contentsline {paragraph}{Where to get examples}{259}{section*.92}
+\contentsline {section}{\numberline {7.6}Meta-Evolutionary Algorithms}{259}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}The Two Parameter Files}{259}{subsection.7.6.1}
+\contentsline {subsection}{\numberline {7.6.2}Defining the Parameters}{262}{subsection.7.6.2}
+\contentsline {subsection}{\numberline {7.6.3}Statistics and Messages}{264}{subsection.7.6.3}
+\contentsline {subsection}{\numberline {7.6.4}Populations Versus Generations}{265}{subsection.7.6.4}
+\contentsline {subsection}{\numberline {7.6.5}Using Meta-Evolution with Distributed Evaluation}{265}{subsection.7.6.5}
+\contentsline {subsection}{\numberline {7.6.6}Customization}{267}{subsection.7.6.6}
+\contentsline {section}{\numberline {7.7}Resets (The \textsf {ec.evolve} Package)}{268}{section.7.7}
