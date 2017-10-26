@@ -1,9 +1,9 @@
 parent.0 = ../ecj/ecj/ec/gp/koza/koza.params
 print-params = true
 
-generations = 50
+generations = 200
 pop.subpop.0.species.pipe.tries = 1
-pop.subpop.0.species.pipe.maxdepth = 8
+pop.subpop.0.species.pipe.maxdepth = 10
 pop.subpop.0.species.pipe.toss = false
 pop.subpop.0.duplicate-retries = 100
 pop.subpop.0.size = 50
