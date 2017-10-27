@@ -48,6 +48,14 @@ public class MyProblem extends GPProblem implements SimpleProblemForm {
         if (!(input instanceof NetlogoData)) {
             state.output.fatal("GPData class must subclass from " + NetlogoData.class, base.push(P_DATA), null);
         }
+		//setup log file
+		try{
+			List<String> logFileHeader = new ArrayList<String>();
+			logFileHeader.add(new String("Generation,IndividualID,Evaluation,IndividualSyntaxLogic,L2-error"));
+			Files.write(Paths.get(allIndividualsLogPath), logFileHeader, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND, StandardOpenOption.SYNC);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     public void evaluate(final EvolutionState state, final Individual ind, final int subpopulation,
@@ -132,7 +140,7 @@ public class MyProblem extends GPProblem implements SimpleProblemForm {
 				if (result <= 850)	hits++;
 				finalResult += result;
 			}
-			finalResult = (100000 - (finalResult / runs));
+			finalResult = finalResult / runs;
 			System.out.println("Final Fitness: "+finalResult);
             // the fitness better be KozaFitness!
             KozaFitness f = ((KozaFitness) ind.fitness);
