@@ -92,7 +92,7 @@ public class MyProblem extends GPProblem implements SimpleProblemForm {
 					e.printStackTrace();
 				}
 
-				result = 0;
+				result = 5000;
 				try {
 					workspace = HeadlessWorkspace.newInstance();
 					workspace.open(decisionTreePath);
