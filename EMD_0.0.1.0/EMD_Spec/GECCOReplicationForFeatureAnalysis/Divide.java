@@ -3,10 +3,10 @@ import ec.*;
 import ec.gp.*;
 import ec.util.*;
 
-public class Negate extends GPNode {
+public class Divide extends GPNode {
 
 	
-	public String toString() {return "Negate";	} // returns Patch
+	public String toString() {return "Divide";	} // returns Patch
  //static int con = 0;int visits = 0;
 	public int expectedChildren() { // takes two comparators
 		return 2;
@@ -24,11 +24,11 @@ public class Negate extends GPNode {
 		StringBuffer comparator2 = new StringBuffer(data2.netlogoString);
 		StringBuffer comparator2Logic = new StringBuffer(data2.logicString);
 		
-		data1.netlogoString.append(" - " ) ;
-		data1.logicString.append("<->");
+		data1.netlogoString.append(" / " ) ;
+		data1.logicString.append("</>");
 		data1.netlogoString.append(comparator2);
-		data1.logicString.append(comparator2Logic);        
-
+		data1.logicString.append(comparator2Logic);
+		
 		//surround with brackets
 		data1.netlogoString.insert(0,"(");
 		data1.netlogoString.append(")");

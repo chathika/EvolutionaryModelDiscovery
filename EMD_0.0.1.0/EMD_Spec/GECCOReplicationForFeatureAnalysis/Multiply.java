@@ -28,5 +28,9 @@ public class Multiply extends GPNode {
 		data1.logicString.append("<*>");
 		data1.netlogoString.append(comparator2);
 		data1.logicString.append(comparator2Logic);
+		
+		//surround with brackets
+		data1.netlogoString.insert(0,"(");
+		data1.netlogoString.append(")");
 	}
 }
