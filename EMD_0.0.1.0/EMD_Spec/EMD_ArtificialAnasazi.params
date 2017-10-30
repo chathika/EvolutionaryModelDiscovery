@@ -88,7 +88,7 @@ gp.fs.0.name = f0
 
 # Function set for settlement search:
 
-gp.fs.0.size = 19
+gp.fs.0.size = 20
 gp.fs.0.func.0 = GECCOReplicationForFeatureAnalysis.Myself
 gp.fs.0.func.0.nc = PatchConstraints
 gp.fs.0.func.1 = GECCOReplicationForFeatureAnalysis.PotentialFarms
@@ -127,6 +127,8 @@ gp.fs.0.func.17 = GECCOReplicationForFeatureAnalysis.ZonalDifference
 gp.fs.0.func.17.nc = ComparatorConstraintsType0
 gp.fs.0.func.18 = GECCOReplicationForFeatureAnalysis.Multiply
 gp.fs.0.func.18.nc = CombineNegateConstraints
+gp.fs.0.func.19 = GECCOReplicationForFeatureAnalysis.Divide
+gp.fs.0.func.19.nc = CombineNegateConstraints
 
 eval.problem = GECCOReplicationForFeatureAnalysis.MyProblem
 eval.problem.data = GECCOReplicationForFeatureAnalysis.NetlogoData
