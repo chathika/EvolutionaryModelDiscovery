@@ -32,5 +32,7 @@ public class Negate extends GPNode {
 		//surround with brackets
 		data1.netlogoString.insert(0,"(");
 		data1.netlogoString.append(")");
+		data1.logicString.insert(0,"(");
+		data1.logicString.append(")");
 	}
 }
