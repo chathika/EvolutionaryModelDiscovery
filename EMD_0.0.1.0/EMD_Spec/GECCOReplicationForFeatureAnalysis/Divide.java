@@ -31,6 +31,6 @@ public class Divide extends GPNode {
 		
 		//surround with brackets
 		data1.netlogoString.insert(0,"(");
-		data1.netlogoString.append("0.00001)");
+		data1.netlogoString.append(" + 0.00001 )");
 	}
 }
