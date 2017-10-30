@@ -24,14 +24,14 @@ public class Divide extends GPNode {
 		StringBuffer comparator2 = new StringBuffer(data2.netlogoString);
 		StringBuffer comparator2Logic = new StringBuffer(data2.logicString);
 		
-		data1.netlogoString.append(" / " ) ;
+		data1.netlogoString.append(" / ( " ) ;
 		data1.logicString.append("</>");
 		data1.netlogoString.append(comparator2);
 		data1.logicString.append(comparator2Logic);
 		
 		//surround with brackets
 		data1.netlogoString.insert(0,"(");
-		data1.netlogoString.append(" + 0.00001 )");
+		data1.netlogoString.append(" + 0.00001 ) )");
 		data1.logicString.insert(0,"(");
 		data1.logicString.append(")");
 	}
