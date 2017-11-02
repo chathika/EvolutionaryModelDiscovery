@@ -2,12 +2,40 @@ parent.0 = ../ecj/ecj/ec/gp/koza/koza.params
 print-params = true
 
 generations = 200
-pop.subpop.0.species.pipe.tries = 1
+pop.subpop.0.size = 128
+
+pop.subpop.0.duplicate-retries = 100
+#20 tries due to strong typing bias, this gives equal chance of selecting each node if selection fails due to type mismatch
+pop.subpop.0.species.pipe.tries = 20
 pop.subpop.0.species.pipe.maxdepth = 10
 pop.subpop.0.species.pipe.toss = false
-pop.subpop.0.duplicate-retries = 100
-pop.subpop.0.size = 50
 
+#Breeding Pipelines: MultiBreeding: Crossover + MutateDemote + MutateOneNode + Reproduction: TournamentSelection
+pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
+pop.subpop.0.species.pipe.num-sources = 4
+pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
+pop.subpop.0.species.pipe.source.0.prob = 0.7
+pop.subpop.0.species.pipe.source.0.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.tries = 20
+pop.subpop.0.species.pipe.source.0.maxdepth = 20
+pop.subpop.0.species.pipe.source.1 = ec.gp.breed.MutateDemotePipeline
+pop.subpop.0.species.pipe.source.1.prob = 0.1
+pop.subpop.0.species.pipe.source.1.tries = 20
+pop.subpop.0.species.pipe.source.1.maxdepth = 20
+pop.subpop.0.species.pipe.source.1.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.2 = ec.gp.breed.MutateOneNodePipeline
+pop.subpop.0.species.pipe.source.2.prob = 0.1
+pop.subpop.0.species.pipe.source.2.tries = 20
+pop.subpop.0.species.pipe.source.2.maxdepth = 20
+pop.subpop.0.species.pipe.source.2.ns.0 = ec.gp.koza.KozaNodeSelector
+pop.subpop.0.species.pipe.source.2.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.3 = ec.breed.ReproductionPipeline
+pop.subpop.0.species.pipe.source.3.prob = 0.1
+pop.subpop.0.species.pipe.source.3.tries = 20
+pop.subpop.0.species.pipe.source.3.maxdepth = 20
+pop.subpop.0.species.pipe.source.3.source.0 = ec.select.TournamentSelection
+
+#Output statistics files
 stat = ec.simple.SimpleStatistics
 stat.do-per-generation-description = true
 stat.file = out.stat
@@ -20,31 +48,36 @@ stat.child.0.do-subpops = true
 
 pop.subpop.0.species.ind.tree.0.print-style = latex
 
-# the next four items are already defined in koza.params, but we
-# put them here to be clear.
-########
 
-gp.type.a.size = 3
-gp.type.a.0.name = Patch
-gp.type.a.1.name = PatchSet
-gp.type.a.2.name = Comparator
-
+###########################
+#All the GP tree constraints go here
 gp.tc.size = 1
 gp.tc.0 = ec.gp.GPTreeConstraints
 gp.tc.0.name = tc0
 gp.tc.0.fset = f0
 gp.tc.0.returns = Patch
-gp.tc.0.init.min-size = 2
-gp.tc.0.init.max-size = 8
 gp.tc.0.init = ec.gp.koza.HalfBuilder
 gp.tc.0.init.min-depth = 2
-gp.tc.0.init.max-depth = 8
+gp.tc.0.init.max-depth = 10
 gp.tc.0.init.growp = 0.5
 
-####
+####Nodes######
+#GP node types
+gp.type.a.size = 4
+gp.type.a.0.name = Patch
+gp.type.a.1.name = PatchSet
+gp.type.a.2.name = Comparator
+gp.type.a.3.name = Comparators
 
-gp.nc.size = 5
+#Define a type set where Comparator and Comparators can be considered same
+gp.type.s.size = 1
+gp.type.s.0.name = Comparator_or_Comparators
+gp.type.s.0.size = 2
+gp.type.s.0.member.0 = Comparator
+gp.type.s.0.member.1 = Comparators
 
+#GP Node constraints
+gp.nc.size = 6
 gp.nc.0 = ec.gp.GPNodeConstraints
 gp.nc.0.name = PatchConstraints
 gp.nc.0.returns = Patch
@@ -60,7 +93,7 @@ gp.nc.2.name = MinMaxConstraints
 gp.nc.2.returns = Patch
 gp.nc.2.size = 2
 gp.nc.2.child.0 = PatchSet
-gp.nc.2.child.1 = Comparator
+gp.nc.2.child.1 = Comparator_or_Comparators
 
 gp.nc.3 = ec.gp.GPNodeConstraints
 gp.nc.3.name = ComparatorConstraintsType0
@@ -69,25 +102,26 @@ gp.nc.3.size = 0
 
 gp.nc.4 = ec.gp.GPNodeConstraints
 gp.nc.4.name = CombineNegateConstraints
-gp.nc.4.returns = Comparator
+gp.nc.4.returns = Comparators
 gp.nc.4.size = 2
-gp.nc.4.child.0 = Comparator
-gp.nc.4.child.1 = Comparator
+gp.nc.4.child.0 = Comparator_or_Comparators
+gp.nc.4.child.1 = Comparator_or_Comparators
+
+gp.nc.5 = ec.gp.GPNodeConstraints
+gp.nc.5.name = MultiplyDivideConstraints
+gp.nc.5.returns = Comparators
+gp.nc.5.size = 2
+gp.nc.5.child.0 = Comparator
+gp.nc.5.child.1 = Comparator
 
 ###################################
-
-# We have one function set, of class GPFunctionSet
+#GP Function set
 
 gp.fs.size = 1
 gp.fs.0 = ec.gp.GPFunctionSet
-
-# We'll call the function set "f0".
-
 gp.fs.0.name = f0
 
-
-# Function set for settlement search:
-
+# Function set for farm plot search:
 gp.fs.0.size = 20
 gp.fs.0.func.0 = GECCOReplicationForFeatureAnalysis.Myself
 gp.fs.0.func.0.nc = PatchConstraints
@@ -126,9 +160,10 @@ gp.fs.0.func.16.nc = ComparatorConstraintsType0
 gp.fs.0.func.17 = GECCOReplicationForFeatureAnalysis.ZonalDifference
 gp.fs.0.func.17.nc = ComparatorConstraintsType0
 gp.fs.0.func.18 = GECCOReplicationForFeatureAnalysis.Multiply
-gp.fs.0.func.18.nc = CombineNegateConstraints
+gp.fs.0.func.18.nc = MultiplyDivideConstraints
 gp.fs.0.func.19 = GECCOReplicationForFeatureAnalysis.Divide
-gp.fs.0.func.19.nc = CombineNegateConstraints
+gp.fs.0.func.19.nc = MultiplyDivideConstraints
 
+#Where the problem and data are
 eval.problem = GECCOReplicationForFeatureAnalysis.MyProblem
 eval.problem.data = GECCOReplicationForFeatureAnalysis.NetlogoData

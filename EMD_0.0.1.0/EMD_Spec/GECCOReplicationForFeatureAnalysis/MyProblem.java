@@ -107,7 +107,7 @@ public class MyProblem extends GPProblem implements SimpleProblemForm {
 							try {
 								System.out.println("Monitor Thread Started");
 								final HeadlessWorkspace myWorkspace = workspace;
-								Thread.sleep(180000);
+								Thread.sleep(300000);
 								System.out.println("Monitor Thread Interrupted Unacceptably long Simulation Run");
 								if(isRunning)
 								myWorkspace.dispose();
