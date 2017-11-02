@@ -9,6 +9,7 @@ pop.subpop.0.duplicate-retries = 100
 pop.subpop.0.species.pipe.tries = 20
 pop.subpop.0.species.pipe.maxdepth = 10
 pop.subpop.0.species.pipe.toss = false
+breed.elite.0=2
 
 #Breeding Pipelines: MultiBreeding: Crossover + MutateDemote + MutateOneNode + Reproduction: TournamentSelection
 pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
