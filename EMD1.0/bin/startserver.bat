@@ -1,1 +1,1 @@
-java -cp "C:\Users\ch328575\AppData\Local\Continuum\Anaconda2\share\py4j\py4j0.10.6.jar;C:\Program Files\NetLogo 6.0.2\app\netlogo-6.0.2.jar;C:\Users\ch328575\Documents\Projects\EMD\EMD1.0\bin" NetLogoBridge
+java -cp "C:/Users/ch328575/AppData/Local/Continuum/Anaconda2/share/py4j/py4j0.10.6.jar;C:/Program Files/NetLogo 6.0.2/app/netlogo-6.0.2.jar;." NetLogoBridge
