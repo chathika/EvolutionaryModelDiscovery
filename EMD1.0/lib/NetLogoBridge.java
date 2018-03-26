@@ -14,7 +14,7 @@ import org.nlogo.headless.HeadlessWorkspace;
 public class NetLogoBridge {
 	
 	HeadlessWorkspace ws;
-	
+	static GatewayServer gs;
 	public NetLogoBridge() {
 		ws = HeadlessWorkspace.newInstance();
 	}
@@ -111,15 +111,23 @@ public class NetLogoBridge {
 		}
 		return ss;
 	}
+	/** 
+	* Shutdown GatewayServer
+	**/
+	public void shutdownServer(){
+		System.out.println("Shutting Down Server");
+		gs.shutdown();
+	}
 	
 	/**
 	 * Launch the Gateway Server.
 	 */
 	public static void main(String[] args) {
-		GatewayServer gs = new GatewayServer(new NetLogoBridge());
+		gs = new GatewayServer(new NetLogoBridge());
 		gs.start();
 		System.out.println("Server running");
-
 	}
+	
+	
 
 }
