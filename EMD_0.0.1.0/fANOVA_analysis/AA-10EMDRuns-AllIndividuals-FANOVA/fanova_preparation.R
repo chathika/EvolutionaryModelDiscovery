@@ -1,135 +1,196 @@
-library(stringr)
 
-#######Build factor vector####################
-factor_names = c("<CompareQuality>","<CompareDryness>","<CompareYield>","<CompareWater>","<CompareDistance>","<HomophilyAge>","<HomophilyCornStocks>","<SocialPresence>","<flee-migrate>")
-factor_and_interaction_names = c()
-for(factor_name_i in factor_names) {
-  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i, sep = "")))
-  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i, sep = "")))
-}
-for(factor_name_i in factor_names) {
-  for(factor_name_j in factor_names) {
-    factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "</>", factor_name_j, sep = "")))
-    factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "<*>", factor_name_j, sep = "")))
-    factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "</>", factor_name_j, sep = "")))
-    factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "<*>", factor_name_j, sep = "")))
-  }
-}
-factor_and_interaction_counts = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names), nrow = 0)), factor_and_interaction_names)
-for (gp_syntax_tree in AA_10EMDRuns_AllIndividuals_FANOVA$IndividualSyntaxLogic) {
-  split = strsplit(gp_syntax_tree, "\\[")
-  #handle min/max
-  min_or_max = 0
-  switch (substr(split[[1]][1], 2, 4) , 
-    "max" = (min_or_max = 1), 
-    "min" = (min_or_max = -1)
-    )
-  #handle connectivity
-  connectivity_string = strsplit(split[[1]][1], ">\\s*\\(<")[[1]][2]
-  connectivity_string = substr(connectivity_string,1,nchar(connectivity_string)-3) 
-  #switch (connectivity_string , 
-    #"AllPotentialFarms" = print(1), 
-    #"PotentialFarmsNearFamily" = print(2),
-    #"PotentialFarmsNearNeighbors" = print(3),
-    #"PotentialFarmsNearBestPerformers" = print(4)
-  #)
-  #handle factors
-  factors_str = substr(split[[1]][2], 1, nchar(split[[1]][2])-1)
-  if(!grepl("\\(",factors_str)){
-    factors_str = paste("(",factors_str,")", sep = "")
-  }
-  factors_str = strsplit(factors_str, "")[[1]]
-  factors_str = paste(simplify(factors_str),collapse="")
-  #Count linear components 
-  factor_and_interaction_counts_i = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names), nrow = 0)), factor_and_interaction_names)
-  for (i in 1:length(factor_and_interaction_names)) {
-    search_string = factor_and_interaction_names[i]
-    if(min_or_max == -1) {
-      if(substr(search_string,2,2) == "-") {search_string = paste("<+>",substr(search_string,4,nchar(search_string)),sep = "")} else 
-      if(substr(search_string,2,2) == "+") {search_string = paste("<->",substr(search_string,4,nchar(search_string)),sep = "")}
-    } 
-    factor_and_interaction_counts_i[1,i] = str_count(factors_str, search_string)
-  }
-  factor_and_interaction_counts = rbind(factor_and_interaction_counts, factor_and_interaction_counts_i)
-  #print(factor_and_interaction_counts_i)
-}
- 
 
-simplify <- function(factors) {
-  factors_ = factors
-  if (factors_[2] != "-" && factors_[2] != "+" && factors_[3] != ">") {
-    #if there is no sign in the first element, add plus
-    factors_ = append(factors_, c("<","+",">"), after = 0)
-    
-  } 
-  if ((factors_[2] == "-" || factors_[2] == "+") && factors[4] == "(" ) {
-    #remove covering bracket 
-    sign_ = factors_[1:3]
-    
-    factors_ = factors_[6:length(factors_)-1]
-    factors_ = c(sign_,factors_)
-  } 
-  
-  invert = ifelse(factors_[2] == "-",TRUE, FALSE)
-  if(invert){
-    k = 4
-    while (k <= length(factors_)) {
-      if (factors_[k] == "("){
-        #this is a complex term... skip it
-        #jump to end of term 
-        bracket_residue = 1
-        l = k + 1
-        while (l <= length(factors_)) {
-          if (factors_[l] == "(") {
-            bracket_residue = bracket_residue + 1
-          } else if (factors_[l] == ")") {
-            bracket_residue = bracket_residue - 1
-          }
-          if (bracket_residue == 0) {
-            break
-          }
-          l = l + 1
-        }
-        k = l
-      } else if (factors_[k] == "+") {
-        factors_[k] = "-"
-      } else if (factors_[k] == "-") {
-        factors_[k] = "+"
-      }
-      k = k + 1
-    }
-  }
-  ## any more brackets?
-  m = 1
-  while (m <= length(factors_)) {
-    if (factors_[m] == "(") {
-      
-      bracket_residue = 1
-      n = m + 1
-      while (n <= length(factors_)) {
-        if (factors_[n] == "(") {
-          bracket_residue = bracket_residue + 1
-        } else if (factors_[n] == ")") {
-          bracket_residue = bracket_residue - 1
-        }
-        if (bracket_residue == 0) {
-          break
-        }
-        n = n + 1
-      }
-      factors_ = c(factors_[c(0:(m-4))], simplify(factors_[(m-3):n]),  factors_[c(n:length(factors_)+1)] )
-      factors_ = factors_[!is.na(factors_)]
-    }
-    
-    m = m + 1
-  }
-  return (factors_)
+
+
+
+parse_and_count <- function(chunk_id) {
+install.packages("stringr", repos = "http://cran.us.r-project.org")
+	library(stringr)
+	EMD_Results_ = read.csv( paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_id , ".csv", sep= ""))
+
+	print(paste("done reading chunk", chunk_id))
+	#######Build factor vector####################
+	factor_names = c("<CompareQuality>","<CompareDryness>","<CompareYield>","<CompareWater>","<CompareDistance>","<HomophilyAge>","<HomophilyCornStocks>","<SocialPresence>","<flee-migrate>")
+	factor_and_interaction_names = c()
+	for(factor_name_i in factor_names) {
+	  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i, sep = "")))
+	  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i, sep = "")))
+	}
+	for(factor_name_i in factor_names) {
+	  for(factor_name_j in factor_names) {
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "</>", factor_name_j, sep = "")))
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "<*>", factor_name_j, sep = "")))
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "</>", factor_name_j, sep = "")))
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "<*>", factor_name_j, sep = "")))
+	  }
+	}
+	factor_and_interaction_counts = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names) + 1 , nrow = 0)), c("factor_str",factor_and_interaction_names))
+	
+	simplify <- function(factors) {
+	install.packages("stringr", repos = "http://cran.us.r-project.org")
+	library(stringr)
+	  factors_ = factors
+	  if (factors_[2] != "-" && factors_[2] != "+" && factors_[3] != ">") {
+		#if there is no sign in the first element, add plus
+		factors_ = append(factors_, c("<","+",">"), after = 0)
+		
+	  } 
+	  if ((factors_[2] == "-" || factors_[2] == "+") && factors[4] == "(" ) {
+		#remove covering bracket 
+		sign_ = factors_[1:3]
+		
+		factors_ = factors_[6:length(factors_)-1]
+		factors_ = c(sign_,factors_)
+	  } 
+	  
+	  invert = ifelse(factors_[2] == "-",TRUE, FALSE)
+	  if(invert){
+		k = 4
+		while (k <= length(factors_)) {
+		  if (factors_[k] == "("){
+			#this is a complex term... skip it
+			#jump to end of term 
+			bracket_residue = 1
+			l = k + 1
+			while (l <= length(factors_)) {
+			  if (factors_[l] == "(") {
+				bracket_residue = bracket_residue + 1
+			  } else if (factors_[l] == ")") {
+				bracket_residue = bracket_residue - 1
+			  }
+			  if (bracket_residue == 0) {
+				break
+			  }
+			  l = l + 1
+			}
+			k = l
+		  } else if (factors_[k] == "+") {
+			factors_[k] = "-"
+		  } else if (factors_[k] == "-") {
+			factors_[k] = "+"
+		  }
+		  k = k + 1
+		}
+	  }
+	  ## any more brackets?
+	  m = 1
+	  while (m <= length(factors_)) {
+		if (factors_[m] == "(") {
+		  
+		  bracket_residue = 1
+		  n = m + 1
+		  while (n <= length(factors_)) {
+			if (factors_[n] == "(") {
+			  bracket_residue = bracket_residue + 1
+			} else if (factors_[n] == ")") {
+			  bracket_residue = bracket_residue - 1
+			}
+			if (bracket_residue == 0) {
+			  break
+			}
+			n = n + 1
+		  }
+		  factors_ = c(factors_[c(0:(m-4))], simplify(factors_[(m-3):n]),  factors_[c(n:length(factors_)+1)] )
+		  factors_ = factors_[!is.na(factors_)]
+		}
+		
+		m = m + 1
+	  }
+	  return (factors_)
+	}
+	
+	iteration = 1
+	for (gp_syntax_tree in EMD_Results_$IndividualSyntaxLogic) {
+		print(iteration)
+		iteration = iteration + 1
+	  split_syntax = strsplit(gp_syntax_tree, "\\[")
+	  #handle min/max
+	  min_or_max = 0
+	  switch (substr(split_syntax[[1]][1], 2, 4) , 
+		"max" = (min_or_max = 1), 
+		"min" = (min_or_max = -1)
+		)
+	  #handle connectivity
+	  #connectivity_string = strsplit(split_syntax[[1]][1], ">\\s*\\(<")[[1]][2]
+	  #connectivity_string = substr(connectivity_string,1,nchar(connectivity_string)-3) 
+	  #switch (connectivity_string , 
+		#"AllPotentialFarms" = print(1), 
+		#"PotentialFarmsNearFamily" = print(2),
+		#"PotentialFarmsNearNeighbors" = print(3),
+		#"PotentialFarmsNearBestPerformers" = print(4)
+	  #)
+	  #handle factors
+	  factors_str = substr(split_syntax[[1]][2], 1, nchar(split_syntax[[1]][2])-1)
+	  if(!grepl("\\(",factors_str)){
+		factors_str = paste("(",factors_str,")", sep = "")
+	  }
+	  factors_str = strsplit(factors_str, "")[[1]]
+	  factors_str = paste(simplify(factors_str),collapse="")
+	  #Count linear components 
+	  factor_and_interaction_counts_i = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names) + 1 , nrow = 0)), c("factor_str",factor_and_interaction_names))
+	  for (i in 1:length(factor_and_interaction_names)) {
+		search_string = factor_and_interaction_names[i]
+		if(min_or_max == -1) {
+		  if(substr(search_string,2,2) == "-") {search_string = paste("<+>",substr(search_string,4,nchar(search_string)),sep = "")} else 
+		  if(substr(search_string,2,2) == "+") {search_string = paste("<->",substr(search_string,4,nchar(search_string)),sep = "")}
+		} 
+		factor_and_interaction_counts_i[1,(i+1)] = str_count(factors_str, search_string)
+	  }
+	  factor_and_interaction_counts_i[1,1] = factors_str
+	  factor_and_interaction_counts = rbind(factor_and_interaction_counts, factor_and_interaction_counts_i)
+	  #print(factor_and_interaction_counts_i)
+	}
+	#write out the results
+	write.csv(factor_and_interaction_counts, paste("factor_and_interaction_counts", chunk_id, ".csv", sep = ""))
 }
-paste(t,collapse="")
-paste(simplify(t),collapse="")
-t = c("<","-",">","(","(","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","*",">","<","S","o","c","i","a","l","P","r","e","s","e","n","c","e",">",")","<","-",">","(","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","+",">","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">",")","<","+",">","(","<","C","o","m","p","a","r","e","Y","i","e","l","d",">","<","-",">","<","S","o","c","i","a","l","P","r","e","s","e","n","c","e",">",")",")",")","<","-",">","(","(","(","<","C","o","m","p","a","r","e","Y","i","e","l","d",">","<","*",">","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">",")","<","-",">","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","-",">","<","H","o","m","o","p","h","i","l","y","A","g","e",">",")",")","<","+",">","(","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">","<","/",">","<","H","o","m","o","p","h","i","l","y","A","g","e",">",")",")",")")
-str_count(AA_10EMDRuns_AllIndividuals_FANOVA$IndividualSyntaxLogic, "(<+>)*<flee-migrate>")
-sum(str_count(AA_10EMDRuns_AllIndividuals_FANOVA$IndividualSyntaxLogic, "<-><CompareDryness>"))
+
+
+all_data = read.csv("testdata.csv")
+#Chunk the data by processors
+#find processor count 
+library(parallel)
+library(foreach)
+no_cores = 72#detectCores()* 2 - 1  #EC2 instance had two nodes but was not detected :-/
+chunk_size = nrow(all_data) / no_cores
+n_chunks = no_cores
+
+#chunk the data and write
+for(chunk_i in 1:n_chunks) {
+	chunk_start = floor((chunk_i - 1) * chunk_size + 1	)
+	chunk_end = floor(chunk_i * chunk_size)
+	if (chunk_i == n_chunks) {
+		chunk_end = nrow(all_data)
+	}
+	chunk = all_data[chunk_start:chunk_end,]
+	print (paste ("From rows ", chunk_start, " to " , chunk_end))
+	chunk_size_i = nrow(chunk)
+	print(paste("Size of chunk ", chunk_size_i))
+	write.csv(chunk, paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_i , ".csv", sep= ""))
+}
+
+#make cluster
+cl = makeForkCluster(no_cores)
+doParallel::registerDoParallel(cl)
+
+print ("cluster ready... processing")
+#read all chunks and process in parallel.
+#parLapply(cl,1:n_chunks, parse_and_count)
+foreach(i = 1:n_chunks, .combine = 'c') %dopar% {
+  parse_and_count(i)
+}
+parallel::stopCluster(cl)
+#read back in and aggregate in order
+col_names = colnames(read.csv(paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_i , ".csv", sep= "")))
+all_results = setNames(data.frame(matrix(ncol = length(col_names), nrow = 0)), col_names)
+for(chunk_i in 1:n_chunks) {
+	all_results = rbind(all_results,read.csv(paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_i , ".csv", sep= "")))
+}
+write.csv(all_results, "all_results.csv")
+#paste(t,collapse="")
+#paste(simplify(t),collapse="")
+#t = c("<","-",">","(","(","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","*",">","<","S","o","c","i","a","l","P","r","e","s","e","n","c","e",">",")","<","-",">","(","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","+",">","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">",")","<","+",">","(","<","C","o","m","p","a","r","e","Y","i","e","l","d",">","<","-",">","<","S","o","c","i","a","l","P","r","e","s","e","n","c","e",">",")",")",")","<","-",">","(","(","(","<","C","o","m","p","a","r","e","Y","i","e","l","d",">","<","*",">","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">",")","<","-",">","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","-",">","<","H","o","m","o","p","h","i","l","y","A","g","e",">",")",")","<","+",">","(","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">","<","/",">","<","H","o","m","o","p","h","i","l","y","A","g","e",">",")",")",")")
+#str_count(AA_10EMDRuns_AllIndividuals_FANOVA$IndividualSyntaxLogic, "(<+>)*<flee-migrate>")
+#sum(str_count(AA_10EMDRuns_AllIndividuals_FANOVA$IndividualSyntaxLogic, "<-><CompareDryness>"))
 
 
 
