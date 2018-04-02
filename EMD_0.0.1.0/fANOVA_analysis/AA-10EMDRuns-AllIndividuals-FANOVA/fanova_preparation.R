@@ -1,33 +1,6 @@
 
-
-
-
-
-parse_and_count <- function(chunk_id) {
-install.packages("stringr", repos = "http://cran.us.r-project.org")
-	library(stringr)
-	EMD_Results_ = read.csv( paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_id , ".csv", sep= ""))
-
-	print(paste("done reading chunk", chunk_id))
-	#######Build factor vector####################
-	factor_names = c("<CompareQuality>","<CompareDryness>","<CompareYield>","<CompareWater>","<CompareDistance>","<HomophilyAge>","<HomophilyCornStocks>","<SocialPresence>","<flee-migrate>")
-	factor_and_interaction_names = c()
-	for(factor_name_i in factor_names) {
-	  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i, sep = "")))
-	  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i, sep = "")))
-	}
-	for(factor_name_i in factor_names) {
-	  for(factor_name_j in factor_names) {
-		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "</>", factor_name_j, sep = "")))
-		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "<*>", factor_name_j, sep = "")))
-		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "</>", factor_name_j, sep = "")))
-		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "<*>", factor_name_j, sep = "")))
-	  }
-	}
-	factor_and_interaction_counts = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names) + 1 , nrow = 0)), c("factor_str",factor_and_interaction_names))
-	
 	simplify <- function(factors) {
-	install.packages("stringr", repos = "http://cran.us.r-project.org")
+###	install.packages("stringr", repos = "http://cran.us.r-project.org")
 	library(stringr)
 	  factors_ = factors
 	  if (factors_[2] != "-" && factors_[2] != "+" && factors_[3] != ">") {
@@ -98,6 +71,30 @@ install.packages("stringr", repos = "http://cran.us.r-project.org")
 	  }
 	  return (factors_)
 	}
+
+parse_and_count <- function(chunk_id) {
+##install.packages("stringr", repos = "http://cran.us.r-project.org")
+	library(stringr)
+	EMD_Results_ = read.csv( paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_id , ".csv", sep= ""))
+
+	print(paste("done reading chunk", chunk_id))
+	#######Build factor vector####################
+	factor_names = c("<CompareQuality>","<CompareDryness>","<CompareYield>","<CompareWater>","<CompareDistance>","<HomophilyAge>","<HomophilyCornStocks>","<SocialPresence>","<flee-migrate>")
+	factor_and_interaction_names = c()
+	for(factor_name_i in factor_names) {
+	  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i, sep = "")))
+	  factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i, sep = "")))
+	}
+	for(factor_name_i in factor_names) {
+	  for(factor_name_j in factor_names) {
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "</>", factor_name_j, sep = "")))
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<+>",factor_name_i , "<*>", factor_name_j, sep = "")))
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "</>", factor_name_j, sep = "")))
+		factor_and_interaction_names = c(factor_and_interaction_names,(paste("<->",factor_name_i , "<*>", factor_name_j, sep = "")))
+	  }
+	}
+	factor_and_interaction_counts = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names) + 1 , nrow = 0)), c("gp_syntax",factor_and_interaction_names))
+	
 	
 	iteration = 1
 	for (gp_syntax_tree in EMD_Results_$IndividualSyntaxLogic) {
@@ -127,16 +124,21 @@ install.packages("stringr", repos = "http://cran.us.r-project.org")
 	  factors_str = strsplit(factors_str, "")[[1]]
 	  factors_str = paste(simplify(factors_str),collapse="")
 	  #Count linear components 
-	  factor_and_interaction_counts_i = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names) + 1 , nrow = 0)), c("factor_str",factor_and_interaction_names))
+	  factor_and_interaction_counts_i = setNames(data.frame(matrix(ncol = length(factor_and_interaction_names) + 1 , nrow = 0)), c("gp_syntax",factor_and_interaction_names))
 	  for (i in 1:length(factor_and_interaction_names)) {
-		search_string = factor_and_interaction_names[i]
+		search_string = toString(factor_and_interaction_names[i])
 		if(min_or_max == -1) {
 		  if(substr(search_string,2,2) == "-") {search_string = paste("<+>",substr(search_string,4,nchar(search_string)),sep = "")} else 
 		  if(substr(search_string,2,2) == "+") {search_string = paste("<->",substr(search_string,4,nchar(search_string)),sep = "")}
 		} 
-		factor_and_interaction_counts_i[1,(i+1)] = str_count(factors_str, search_string)
+		if(str_count (search_string, "[*/]") == 0) {
+			string_to_check = str_replace_all(factors_str, "<[+-]*><[:alnum:]*><\\*><[:alnum:]*>", "")
+			factor_and_interaction_counts_i[1,(i+1)] = str_count(string_to_check, coll(search_string))
+		} else {
+			factor_and_interaction_counts_i[1,(i+1)] = str_count(factors_str, coll(search_string))
+		}
 	  }
-	  factor_and_interaction_counts_i[1,1] = factors_str
+	  factor_and_interaction_counts_i[1,1] = gp_syntax_tree
 	  factor_and_interaction_counts = rbind(factor_and_interaction_counts, factor_and_interaction_counts_i)
 	  #print(factor_and_interaction_counts_i)
 	}
@@ -145,12 +147,12 @@ install.packages("stringr", repos = "http://cran.us.r-project.org")
 }
 
 
-all_data = read.csv("testdata.csv")
+all_data = read.csv("AA_10EMDRuns_AllIndividuals_FANOVA.csv")
 #Chunk the data by processors
 #find processor count 
 library(parallel)
-library(foreach)
-no_cores = 72#detectCores()* 2 - 1  #EC2 instance had two nodes but was not detected :-/
+#library(foreach)
+no_cores = 72#detectCores() - 1  #EC2 instance had two nodes but was not detected :-/
 chunk_size = nrow(all_data) / no_cores
 n_chunks = no_cores
 
@@ -170,22 +172,23 @@ for(chunk_i in 1:n_chunks) {
 
 #make cluster
 cl = makeForkCluster(no_cores)
-doParallel::registerDoParallel(cl)
+#doParallel::registerDoParallel(cl)
 
 print ("cluster ready... processing")
 #read all chunks and process in parallel.
-#parLapply(cl,1:n_chunks, parse_and_count)
-foreach(i = 1:n_chunks, .combine = 'c') %dopar% {
-  parse_and_count(i)
-}
-parallel::stopCluster(cl)
+parLapply(cl,1:n_chunks, parse_and_count)
+stopCluster(cl)
+
 #read back in and aggregate in order
 col_names = colnames(read.csv(paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_i , ".csv", sep= "")))
 all_results = setNames(data.frame(matrix(ncol = length(col_names), nrow = 0)), col_names)
 for(chunk_i in 1:n_chunks) {
 	all_results = rbind(all_results,read.csv(paste("AA_10EMDRuns_AllIndividuals_FANOVA_chunk" , chunk_i , ".csv", sep= "")))
 }
+
 write.csv(all_results, "all_results.csv")
+
+
 #paste(t,collapse="")
 #paste(simplify(t),collapse="")
 #t = c("<","-",">","(","(","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","*",">","<","S","o","c","i","a","l","P","r","e","s","e","n","c","e",">",")","<","-",">","(","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","+",">","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">",")","<","+",">","(","<","C","o","m","p","a","r","e","Y","i","e","l","d",">","<","-",">","<","S","o","c","i","a","l","P","r","e","s","e","n","c","e",">",")",")",")","<","-",">","(","(","(","<","C","o","m","p","a","r","e","Y","i","e","l","d",">","<","*",">","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">",")","<","-",">","(","<","f","l","e","e","-","m","i","g","r","a","t","e",">","<","-",">","<","H","o","m","o","p","h","i","l","y","A","g","e",">",")",")","<","+",">","(","<","C","o","m","p","a","r","e","D","r","y","n","e","s","s",">","<","/",">","<","H","o","m","o","p","h","i","l","y","A","g","e",">",")",")",")")
