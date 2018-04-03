@@ -4,6 +4,9 @@ from pyfanova.fanova import Fanova
 f=Fanova('./')
 f.print_all_marginals()
 
+import matplotlib
+matplotlib.use('Agg')
+
 from pyfanova.visualizer import Visualizer
 vis=Visualizer(f)
 vis.create_all_plots('./plots')
