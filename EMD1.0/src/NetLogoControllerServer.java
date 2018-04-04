@@ -9,18 +9,37 @@ import java.io.IOException;
 import bsearch.nlogolink.NetLogoLinkException;
 import javax.imageio.ImageIO;
 import bsearch.space.*;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.nlogo.headless.HeadlessWorkspace; 
 import emd.server.HeadlessWorkspaceController;
 
 public class NetLogoControllerServer {
 	
-	HashMap<Integer,HeadlessWorkspaceController> controllerStore;
+	ConcurrentHashMap<Integer,HeadlessWorkspaceController> controllerStore;
 	
 	static GatewayServer gs;
+	long uptime;
 	
 	public NetLogoControllerServer() {
-		controllerStore = new HashMap<Integer,HeadlessWorkspaceController>();
+		controllerStore = new ConcurrentHashMap<Integer,HeadlessWorkspaceController>();
+		uptime = System.currentTimeMillis();
+		
+		//Start monitor thread
+		Thread statusThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true){
+					try{
+						Thread.sleep(20000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println("Status checking...");
+					statusCheck();
+				}
+			}
+		});		
+		statusThread.start();
 	}
 	/**
 	 * Launch the Gateway Server.
@@ -109,7 +128,7 @@ public class NetLogoControllerServer {
 	 * Internal method to retrieve workspace from store using session id
 	 * @param session id to get
 	 * @return NetLogo HeadlessWorkspace
-	**/
+	 */
 	private HeadlessWorkspaceController getControllerFromStore(int session){
 		//Get controller from store
 		HeadlessWorkspaceController controller = controllerStore.get(session);
@@ -122,8 +141,18 @@ public class NetLogoControllerServer {
 	/** 
 	 * Internal method to remove the controller from the store
 	 * @param session id to get
-	*/
+	 */
 	private void removeControllerFromStore(int session){
 		controllerStore.remove(session);
 	}
+	
+	/**
+	 * This is run by a monitor thread that regularly reports the status
+	 * of the controllerStore
+	 */
+	private void statusCheck(){
+		
+		System.out.println("This server has been up since " + uptime + " till " + System.currentTimeMillis()); 
+		System.out.println("There are currently " + controllerStore.size() + " NetLogo workspaces on this server");
+	}	
 }
