@@ -1,0 +1,170 @@
+
+----- ./counts//AA_EMDRun10_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 50.27%
+Sum of fractions for pairwise interaction effects 33.46%
+7.85% due to main effect: neg.CompareQuality
+7.81% due to main effect: neg.CompareDryness
+6.10% due to main effect: neg.CompareDryness.div.HomophilyCornStocks
+5.39% due to main effect: pos.CompareQuality.mul.flee-migrate
+3.80% due to main effect: pos.CompareDryness
+2.65% due to main effect: pos.CompareWater
+2.56% due to interaction: neg.CompareQuality x neg.CompareDryness
+2.34% due to interaction: pos.CompareDryness.div.HomophilyCornStocks x neg.CompareQuality
+1.80% due to main effect: pos.CompareDistance
+1.79% due to main effect: pos.CompareDryness.div.HomophilyCornStocks
+1.67% due to main effect: pos.CompareQuality
+1.61% due to interaction: pos.CompareDryness.div.HomophilyCornStocks x neg.CompareDryness.div.HomophilyCornStocks
+1.60% due to main effect: pos.CompareDryness.mul.HomophilyCornStocks
+1.56% due to main effect: pos.CompareDryness.mul.SocialPresence
+1.56% due to main effect: pos.flee-migrate
+1.55% due to main effect: neg.CompareDistance.mul.HomophilyCornStocks
+1.11% due to interaction: pos.CompareQuality.mul.flee-migrate x neg.CompareDryness.div.HomophilyCornStocks
+
+----- ./counts//AA_EMDRun1_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 80.46%
+Sum of fractions for pairwise interaction effects 15.97%
+23.80% due to main effect: neg.CompareDistance.mul.HomophilyCornStocks
+6.04% due to main effect: neg.CompareQuality
+4.74% due to main effect: neg.CompareDistance.mul.flee-migrate
+3.56% due to main effect: neg.CompareDistance.mul.CompareDistance
+3.47% due to main effect: neg.CompareDryness.mul.CompareYield
+3.42% due to main effect: neg.CompareDryness
+3.27% due to main effect: pos.CompareDryness.mul.HomophilyCornStocks
+3.21% due to main effect: pos.CompareWater.div.SocialPresence
+3.11% due to main effect: neg.CompareDistance.div.CompareYield
+2.79% due to main effect: neg.CompareDryness.div.CompareWater
+2.77% due to main effect: neg.HomophilyCornStocks
+2.57% due to main effect: pos.CompareDryness
+2.47% due to main effect: neg.CompareQuality.mul.flee-migrate
+2.28% due to main effect: pos.HomophilyCornStocks.div.SocialPresence
+1.90% due to main effect: pos.CompareDryness.div.CompareYield
+1.84% due to main effect: neg.HomophilyCornStocks.div.CompareQuality
+1.33% due to interaction: pos.CompareQuality x neg.CompareQuality
+1.30% due to main effect: neg.CompareQuality.div.CompareDryness
+1.28% due to main effect: pos.HomophilyCornStocks.div.CompareDistance
+1.23% due to main effect: pos.CompareQuality
+1.09% due to interaction: neg.CompareQuality x neg.CompareDryness.mul.CompareYield
+1.06% due to interaction: neg.CompareQuality x neg.CompareDistance.mul.flee-migrate
+1.05% due to interaction: neg.HomophilyCornStocks.div.CompareQuality x neg.CompareQuality
+
+----- ./counts//AA_EMDRun2_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 66.36%
+Sum of fractions for pairwise interaction effects 21.41%
+18.97% due to main effect: pos.CompareYield.div.CompareYield
+9.73% due to main effect: pos.HomophilyAge.mul.flee-migrate
+5.56% due to main effect: pos.HomophilyAge
+4.13% due to main effect: pos.CompareYield.mul.HomophilyCornStocks
+3.63% due to main effect: neg.SocialPresence.div.CompareYield
+3.19% due to main effect: pos.HomophilyCornStocks.div.CompareWater
+2.88% due to main effect: pos.CompareYield
+2.27% due to main effect: neg.CompareYield.mul.HomophilyCornStocks
+2.23% due to main effect: pos.CompareQuality
+2.05% due to main effect: pos.CompareQuality.div.CompareWater
+1.50% due to main effect: pos.CompareQuality.div.SocialPresence
+1.27% due to main effect: neg.HomophilyAge.div.CompareDistance
+1.06% due to main effect: pos.CompareYield.div.CompareQuality
+1.00% due to interaction: pos.CompareYield.div.CompareYield x neg.HomophilyAge.div.CompareDistance
+
+----- ./counts//AA_EMDRun3_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 69.03%
+Sum of fractions for pairwise interaction effects 25.30%
+20.45% due to main effect: neg.CompareQuality.div.CompareQuality
+11.04% due to main effect: pos.CompareQuality
+8.84% due to main effect: neg.CompareQuality
+5.94% due to interaction: pos.flee-migrate.div.HomophilyCornStocks x neg.CompareQuality
+4.96% due to interaction: pos.flee-migrate.div.HomophilyCornStocks x pos.CompareQuality
+4.49% due to main effect: neg.HomophilyAge.div.CompareDistance
+3.93% due to main effect: pos.CompareYield.div.CompareDryness
+3.43% due to main effect: pos.flee-migrate.div.HomophilyCornStocks
+3.18% due to main effect: pos.HomophilyAge.div.CompareQuality
+2.77% due to main effect: pos.CompareDryness.mul.HomophilyAge
+2.73% due to interaction: pos.CompareQuality x neg.CompareQuality
+2.15% due to main effect: pos.CompareDistance.div.CompareDistance
+1.57% due to interaction: pos.CompareQuality x neg.CompareWater.mul.HomophilyAge
+1.06% due to main effect: pos.HomophilyCornStocks.div.CompareQuality
+1.04% due to main effect: neg.CompareDistance.div.CompareDistance
+
+----- ./counts//AA_EMDRun4_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 66.81%
+Sum of fractions for pairwise interaction effects 26.79%
+25.40% due to main effect: pos.CompareQuality
+13.02% due to main effect: neg.HomophilyAge.div.flee-migrate
+8.77% due to main effect: neg.CompareQuality
+6.50% due to main effect: pos.CompareWater.div.CompareWater
+6.48% due to main effect: neg.CompareWater.mul.CompareDistance
+6.22% due to interaction: pos.CompareQuality x neg.CompareQuality
+4.20% due to interaction: pos.CompareQuality x neg.HomophilyCornStocks.div.CompareWater
+3.67% due to interaction: pos.CompareQuality x neg.HomophilyAge.div.flee-migrate
+1.85% due to main effect: pos.SocialPresence
+1.50% due to interaction: pos.CompareWater.div.CompareWater x pos.CompareQuality
+1.37% due to interaction: pos.HomophilyAge.div.CompareQuality x pos.CompareQuality
+
+----- ./counts//AA_EMDRun5_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 50.95%
+Sum of fractions for pairwise interaction effects 32.78%
+8.91% due to main effect: neg.CompareQuality
+7.00% due to main effect: neg.CompareDistance.div.CompareDistance
+6.08% due to interaction: neg.CompareWater x neg.CompareQuality
+5.63% due to main effect: neg.CompareQuality.div.CompareDryness
+5.37% due to main effect: neg.CompareWater
+3.64% due to main effect: pos.CompareQuality
+3.44% due to main effect: pos.CompareQuality.mul.CompareWater
+3.10% due to main effect: neg.CompareDistance.div.HomophilyAge
+1.81% due to main effect: pos.CompareDryness.mul.CompareDryness
+1.60% due to main effect: pos.CompareQuality.div.CompareDryness
+1.41% due to main effect: neg.CompareDistance
+1.36% due to interaction: pos.CompareQuality x neg.CompareQuality
+1.26% due to main effect: neg.SocialPresence.div.CompareYield
+1.18% due to main effect: neg.CompareQuality.div.CompareYield
+1.13% due to main effect: pos.CompareWater
+1.05% due to main effect: pos.CompareWater.mul.HomophilyAge
+1.03% due to interaction: neg.CompareDistance.div.CompareDistance x neg.CompareDistance
+1.00% due to interaction: pos.CompareQuality.mul.CompareWater x neg.CompareWater
+
+----- ./counts//AA_EMDRun6_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 50.17%
+Sum of fractions for pairwise interaction effects 35.98%
+25.95% due to main effect: neg.CompareQuality
+8.98% due to interaction: pos.CompareQuality x neg.CompareQuality
+8.86% due to main effect: pos.CompareQuality
+8.30% due to interaction: neg.CompareQuality.div.CompareDryness x neg.CompareQuality
+6.54% due to main effect: neg.CompareQuality.div.CompareDryness
+3.49% due to interaction: pos.HomophilyCornStocks x neg.CompareQuality
+3.21% due to interaction: neg.CompareQuality.mul.CompareQuality x neg.CompareQuality
+3.09% due to main effect: pos.HomophilyCornStocks
+2.89% due to main effect: neg.CompareQuality.mul.SocialPresence
+1.35% due to interaction: neg.CompareQuality.mul.SocialPresence x neg.CompareQuality
+1.25% due to main effect: neg.CompareQuality.mul.CompareQuality
+1.13% due to interaction: pos.CompareQuality x neg.CompareQuality.div.CompareDryness
+1.11% due to interaction: pos.CompareQuality x neg.CompareQuality.mul.SocialPresence
+1.08% due to interaction: pos.CompareQuality.mul.CompareQuality x pos.CompareQuality
+
+----- ./counts//AA_EMDRun7_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Sum of fractions for main effects 47.68%
+Sum of fractions for pairwise interaction effects 33.62%
+13.67% due to main effect: neg.CompareQuality
+6.77% due to main effect: pos.CompareDryness.div.CompareWater
+5.50% due to main effect: pos.CompareQuality
+4.72% due to main effect: pos.CompareWater
+2.87% due to main effect: neg.CompareDryness.div.CompareWater
+2.83% due to main effect: pos.CompareWater.div.CompareQuality
+2.47% due to interaction: pos.CompareDryness.div.CompareWater x neg.CompareQuality
+2.31% due to main effect: neg.CompareWater.div.CompareQuality
+2.25% due to main effect: pos.CompareDryness
+1.88% due to interaction: pos.CompareQuality x neg.CompareQuality
+1.87% due to interaction: pos.CompareDryness.div.CompareWater x neg.CompareDryness.div.CompareWater
+1.80% due to interaction: neg.CompareQuality.mul.HomophilyAge x neg.CompareQuality
+1.66% due to interaction: pos.CompareQuality x pos.CompareDryness.div.CompareWater
+1.54% due to main effect: pos.flee-migrate
+1.53% due to interaction: pos.CompareDryness x neg.CompareQuality
+1.44% due to interaction: pos.CompareDryness.div.CompareWater x neg.CompareDryness
+1.22% due to main effect: neg.CompareDryness
+1.07% due to interaction: pos.flee-migrate x pos.CompareDryness.div.CompareWater
+1.06% due to main effect: neg.CompareQuality.mul.HomophilyAge
+1.01% due to interaction: neg.CompareWater.div.CompareQuality x neg.CompareQuality
+
+----- ./counts//AA_EMDRun8_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Memory error!!
+
+----- ./counts//AA_EMDRun9_AllIndividuals_connectivity_and_factor_counts/fANOVA.out ------
+Memory error!!
