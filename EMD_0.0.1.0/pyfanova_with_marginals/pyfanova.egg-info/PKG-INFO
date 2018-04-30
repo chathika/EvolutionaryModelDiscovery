@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: pyfanova
+Version: 1.0
+Summary: Functional ANOVA: an implementation of the ICML 2014 paper 'An Efficient Approach for Assessing Hyperparameter Importance' by Frank Hutter, Holger Hoos and Kevin Leyton-Brown.
+Home-page: http://automl.org/fanova
+Author: Tobias Domhan, Aaron Klein (python wrapper). Frank Hutter (FANOVA)
+Author-email: kleinaa@cs.uni-freiburg.de
+License: FANOVA is free for academic & non-commercial usage. Please contact Frank Hutter(fh@informatik.uni-freiburg.de) to discuss obtaining a license for commercial purposes.
+Description: UNKNOWN
+Keywords: hyperparameter parameter optimization bayesian smac global variance analysis
+Platform: UNKNOWN

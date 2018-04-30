@@ -1,0 +1,5 @@
+- Requirements of state-dir:
+	+ Instance file must have the name of (exactly) "instances.txt"
+	+ must not containt any file that has name with length <= 4 (crazy :( (
+- Error with matplotlib when calling create_pairwise_marginal_plot(,): rename mplot3d in python2.7 to sth else, and pip install --upgrade matplotlib[mplot3d] (I don't understand :-s, since fanova use python2.7 and the upgraded mplot3d is in python3.4)
+- Install seaborn (pip install seaborn) for drawing grouped boxplots (visualizer.py -> NGUYEN_plot_pairwise_marginal_twoCats)

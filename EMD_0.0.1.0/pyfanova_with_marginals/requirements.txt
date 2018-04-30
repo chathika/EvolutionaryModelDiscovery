@@ -1,0 +1,5 @@
+numpy
+docutils>=0.3
+setuptools
+matplotlib>=1.4.2
+git+https://github.com/automl/ParameterConfigSpace.git
