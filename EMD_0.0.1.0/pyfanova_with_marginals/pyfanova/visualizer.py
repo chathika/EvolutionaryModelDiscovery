@@ -18,6 +18,7 @@ class Visualizer(object):
     text_size = 15
     x_axis_title = ['True','False'][1]
     alpha = 0.4 # opaque
+    savingOutput = True
 
     def get_random_color(self,pastel_factor = 0.5):
         return [(x+pastel_factor)/(1.0+pastel_factor) for x in [random.uniform(0,1.0) for i in [1,2,3]]]
@@ -54,7 +55,7 @@ class Visualizer(object):
             plt.clf()
             outfile_name = os.path.join(directory, param_name.replace(os.sep, "_") + "." + self.file_format) #NGUYEN: add file_format
             print("creating %s" % outfile_name)
-            self.plot_categorical_marginal(param_name)
+            self.plot_categorical_marginal(param_name,directory)
             plt.savefig(outfile_name, format = self.file_format, bbox_inches='tight') #NGUYEN: add the last two params
 
         #continuous and integer parameters
@@ -65,7 +66,7 @@ class Visualizer(object):
             plt.clf()
             outfile_name = os.path.join(directory, param_name.replace(os.sep, "_") + "." + self.file_format) #NGUYEN: add file_format
             print("creating %s" % outfile_name)
-            self.plot_marginal(param_name)
+            self.plot_marginal(param_name, directory)
             plt.savefig(outfile_name, format = self.file_format, bbox_inches='tight') #NGUYEN: add the last two params
 
     def create_most_important_pairwise_marginal_plots(self, directory, n=20):
@@ -94,7 +95,7 @@ class Visualizer(object):
                 plt.savefig(outfile_name)
             
    
-    def plot_categorical_marginal(self, param):
+    def plot_categorical_marginal(self, param, directory):
         
         #NGUYEN: add two args: text_size and x_axis_title
         
@@ -139,6 +140,15 @@ class Visualizer(object):
             plt.setp(gca().get_yticklabels(), fontsize=self.text_size)
             #rotation_for_wrap_xtick
              #.set_xticklabels(labels, rotation=rotation_for_wrap_xtick, ha="right")
+
+        # save output to text file
+        split = ' '
+        lsOut = [param_name, split.join(labels), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
+        if self.savingOutput:
+            outTextFile = directory + '/' + param_name + '.png.txt'
+            print('saving to ' + outTextFile)
+            with open(outTextFile, 'wt') as f:
+                f.write('\n'.join(lsOut))
         
         min_y = mean[0]
         max_y = mean[0]
@@ -219,6 +229,7 @@ class Visualizer(object):
                 outfile_name = os.path.join(directory, param_name_1.replace(os.sep, "_") + "x" + param_name_2.replace(os.sep, "_") + "x" + categorical_val + '.' + self.file_format)
                 print("creating %s" % outfile_name)
                 plt.savefig(outfile_name)
+    
     #NGUYEN: in case one of the two params is categorical, print one plots, each curve in the plot is for one value of the categorical param
     def NGUYEN_plot_pairwise_marginal_oneCat_onePlot(self, directory, param_1, param_2, lower_bound_1=0, upper_bound_1=1, lower_bound_2=0, upper_bound_2=1, resolution=20):
 
@@ -256,8 +267,8 @@ class Visualizer(object):
             grid = np.linspace(0, 1, resolution)
             display_grid = [self._fanova.unormalize_value(param_name_1, value) for value in grid]
 
-            print(display_grid)
             lsOut.append(split.join([str(i) for i in display_grid]))
+            lsOut.append(split.join([str(i) for i in ls_categorical_vals]))
 
             for categorical_id in range(categorical_size):
                 categorical_val = ls_categorical_vals[categorical_id]
@@ -278,8 +289,8 @@ class Visualizer(object):
                 
                 # save output values as text
                 lsOut.append(split.join([categorical_val,
-                            str(min(std)),
-                            split.join([str(i) for i in mean])]))
+                            split.join([str(i) for i in mean]),
+                            split.join([str(i) for i in std])]))
 
             outfile_name = os.path.join(directory, param_name_1.replace(os.sep, "_") + "x" + param_name_2.replace(os.sep, "_") + "." + self.file_format)
             print("creating %s" % outfile_name)
@@ -292,8 +303,7 @@ class Visualizer(object):
             plt.savefig(outfile_name,bbox_extra_artists=(lgd,), bbox_inches='tight')
 
             # saving output to text files (for further plotting)
-            savingOutput = True
-            if savingOutput:
+            if self.savingOutput:
                 outTextFile = outfile_name + '.txt'
                 with open(outTextFile, 'wt') as f:
                     f.write('\n'.join(lsOut))
@@ -317,13 +327,18 @@ class Visualizer(object):
 
         dim1, param_name_1 = self._check_param(param_1)
         dim2, param_name_2 = self._check_param(param_2)    
-        print("here")
+
+        # save values in text file
+        split = ' '
+        lsOut = [split.join([param_name_1,param_name_2])]
         
         if (param_name_1 in self._fanova.get_config_space().get_categorical_parameters()) and (param_name_2 in self._fanova.get_config_space().get_categorical_parameters()):
             # do something
             plt.clf()
             ls_categorical_vals_1 = self._fanova.get_config_space().get_categorical_values(param_name_1)
             ls_categorical_vals_2 = self._fanova.get_config_space().get_categorical_values(param_name_2)
+            lsOut.append(split.join(ls_categorical_vals_1))
+            lsOut.append(split.join(ls_categorical_vals_2))
             n_val1 = len(ls_categorical_vals_1)
             ls_colors=['red','green','blue','yellow','black','cyan','magenta']
             color_id=0
@@ -343,6 +358,7 @@ class Visualizer(object):
                 legend_label = param_name_2 + ' = ' + categorical_val_2
                 plt.errorbar(np.arange(n_val1), mean, std, fmt = '.', color = 'black', markersize = 5, elinewidth = 5, ecolor=ls_colors[color_id], capthick=1, label = legend_label)
                 color_id=color_id+1
+                lsOut.append(split.join([categorical_val_2, split.join([str(x) for x in mean]), split.join([str(x) for x in std])]))
             outfile_name = os.path.join(directory, param_name_1.replace(os.sep, "_") + "x" + param_name_2.replace(os.sep, "_") + "." + self.file_format)
             print("creating %s" % outfile_name)
             plt.xlim(-1,n_val1)
@@ -359,6 +375,13 @@ class Visualizer(object):
             plt.setp(gca().get_yticklabels(), fontsize=self.text_size)
             #plt.tight_layout()
             plt.savefig(outfile_name,bbox_extra_artists=(lgd,), bbox_inches='tight')
+
+            # saving output to text files (for further plotting)
+            if self.savingOutput:
+                outTextFile = outfile_name + '.txt'
+                with open(outTextFile, 'wt') as f:
+                    f.write('\n'.join(lsOut))
+
             
     def plot_pairwise_marginal(self, param_1, param_2, lower_bound_1=0, upper_bound_1=1, lower_bound_2=0, upper_bound_2=1, resolution=20):
 
@@ -392,10 +415,20 @@ class Visualizer(object):
         ax.set_ylabel(param_name_2, fontsize=self.text_size)
         ax.set_zlabel("Cost", fontsize=self.text_size)
         fig.colorbar(surface, shrink=0.5, aspect=5)
+		
+		# save output to file
+        split = ' '
+		if self.savingOutput:
+            lsOut = [param_name, split.join([str(x) for x in display_grid]), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
+            outTextFile = directory + '/' + param_name + '.png.txt'
+            print('saving to ' + outTextFile)
+            with open(outTextFile, 'wt') as f:
+                f.write('\n'.join(lsOut))        
+		
         return plt
     
     
-    def plot_marginal(self, param, lower_bound=0, upper_bound=1, is_int=False, resolution=100, log_scale=False, text_size = 10, x_axis_title = True):
+    def plot_marginal(self, param, directory, lower_bound=0, upper_bound=1, is_int=False, resolution=100, log_scale=False, text_size = 10, x_axis_title = True):
         #NGUYEN: add two args: text_size and x_axis_title
         if isinstance(param, int):
             dim = param
@@ -440,6 +473,16 @@ class Visualizer(object):
             plt.xlabel(param_name, fontsize = self.text_size)
 
         plt.ylabel("Cost", fontsize = self.text_size)
+
+	# save output to file
+        split = ' '
+		if self.savingOutput:
+	            lsOut = [param_name, split.join([str(x) for x in display_grid]), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
+	            outTextFile = directory + '/' + param_name + '.png.txt'
+	            print('saving to ' + outTextFile)
+	            with open(outTextFile, 'wt') as f:
+	                f.write('\n'.join(lsOut))            
+
         return plt
     
 #     def create_pdf_file(self):
