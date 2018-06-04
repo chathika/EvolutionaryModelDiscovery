@@ -1,0 +1,53 @@
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Failed checking Java version. Make sure Java version 7 or greater is installed.
+Sum of fractions for main effects 47.13%
+Sum of fractions for pairwise interaction effects 35.90%
+14.74% due to main effect: pos.HomophilyCornStocks
+13.45% due to main effect: pos.CompareQuality
+8.66% due to main effect: pos.HomophilyAge
+6.90% due to interaction: pos.HomophilyCornStocks x pos.CompareQuality
+5.13% due to interaction: pos.CompareQuality x pos.CompareDryness
+5.12% due to main effect: pos.CompareDistance
+4.57% due to interaction: pos.HomophilyAge x pos.CompareQuality
+4.18% due to interaction: pos.CompareQuality x pos.CompareDistance
+2.98% due to interaction: pos.flee.migrate x pos.CompareQuality
+1.67% due to main effect: pos.CompareDryness
+1.52% due to interaction: pos.CompareYield x pos.CompareQuality
+1.20% due to interaction: pos.SocialPresence x pos.CompareQuality
+1.19% due to interaction: pos.CompareWater x pos.CompareDryness
+1.14% due to interaction: pos.HomophilyCornStocks x pos.CompareDistance
+1.01% due to main effect: pos.flee.migrate
+0.97% due to interaction: pos.CompareWater x pos.CompareQuality
+0.95% due to interaction: pos.HomophilyCornStocks x pos.CompareYield
+0.89% due to interaction: pos.HomophilyCornStocks x pos.HomophilyAge
+0.88% due to main effect: pos.CompareWater
+0.81% due to main effect: pos.SocialPresence
+0.79% due to main effect: pos.CompareYield
+0.50% due to interaction: pos.SocialPresence x pos.CompareDistance
+0.47% due to interaction: pos.CompareYield x pos.CompareDryness
+0.46% due to interaction: pos.CompareDryness x pos.CompareDistance
+0.43% due to interaction: pos.flee.migrate x pos.CompareDistance
+0.40% due to interaction: pos.HomophilyAge x pos.CompareDistance
+0.30% due to interaction: pos.CompareYield x pos.CompareDistance
+0.24% due to interaction: pos.flee.migrate x pos.CompareDryness
+0.20% due to interaction: pos.SocialPresence x pos.HomophilyCornStocks
+0.20% due to interaction: pos.HomophilyAge x pos.CompareDryness
+creating ./plots/potentialFarms.png
+rotating
+creating ./plots/pos.CompareDistance.png
+creating ./plots/pos.CompareQuality.png
+creating ./plots/pos.CompareYield.png
+creating ./plots/pos.HomophilyCornStocks.png
+creating ./plots/pos.flee.migrate.png
+creating ./plots/pos.CompareDryness.png
+creating ./plots/pos.HomophilyAge.png
+creating ./plots/pos.CompareWater.png
+creating ./plots/pos.SocialPresence.png
+[('pos.HomophilyCornStocks', 'pos.CompareQuality'), ('pos.CompareQuality', 'pos.CompareDryness'), ('pos.HomophilyAge', 'pos.CompareQuality'), ('pos.CompareQuality', 'pos.CompareDistance'), ('pos.flee.migrate', 'pos.CompareQuality')]
+creating ./plots/pos.HomophilyCornStocksxpos.CompareQuality.png
+creating ./plots/pos.CompareQualityxpos.CompareDryness.png
+creating ./plots/pos.HomophilyAgexpos.CompareQuality.png
+creating ./plots/pos.CompareQualityxpos.CompareDistance.png
+creating ./plots/pos.flee.migratexpos.CompareQuality.png
