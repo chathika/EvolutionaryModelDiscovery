@@ -423,7 +423,7 @@ class Visualizer(object):
             outTextFile = './plots' + param_name_1 + "_" +param_name_2 + '.png.txt'
             print('saving to ' + outTextFile)
             with open(outTextFile, 'wt') as f:
-                f.write(lsOut)        
+                f.write(split.join([str(x) for x in lsOut]))        
                 
         return plt
     
