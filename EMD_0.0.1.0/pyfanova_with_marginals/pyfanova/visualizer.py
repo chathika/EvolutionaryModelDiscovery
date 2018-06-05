@@ -419,8 +419,8 @@ class Visualizer(object):
         # save output to file
         split = ' '
         if self.savingOutput:
-            lsOut = [param_name_1, split.join([str(x) for x in display_xx]),param_name_2, split.join([str(x) for x in display_yy])]
-            outTextFile = './plots' + param_name_1 + "_" +param_name_2 + '.png.txt'
+            lsOut = [param_name_1, split.join([str(x) for x in display_xx]),param_name_2, split.join([str(x) for x in display_yy]),"Cost", split.join([str(x) for x in zz])]
+            outTextFile = './plots/' + param_name_1 + "_" +param_name_2 + '.png.txt'
             print('saving to ' + outTextFile)
             with open(outTextFile, 'wt') as f:
                 print(split.join([str(x) for x in lsOut]))
