@@ -420,7 +420,7 @@ class Visualizer(object):
         split = ' '
         if self.savingOutput:
             lsOut = [str(param_name_1 + "_" +param_name_2), split.join([str(x) for x in display_grid]), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
-            outTextFile = directory + '/' + param_name + '.png.txt'
+            outTextFile = directory + '/' + param_name_1 + "_" +param_name_2 + '.png.txt'
             print('saving to ' + outTextFile)
             with open(outTextFile, 'wt') as f:
                 f.write('\n'.join(lsOut))        
