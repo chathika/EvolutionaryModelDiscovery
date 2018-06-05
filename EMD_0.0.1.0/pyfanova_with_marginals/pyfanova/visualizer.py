@@ -29,15 +29,15 @@ class Visualizer(object):
     def generate_new_color(self,existing_colors,pastel_factor = 0.5):
         max_distance = None
         best_color = None
-	for i in range(0,100):
-	    color = self.get_random_color(pastel_factor = pastel_factor)
-	    if not existing_colors:
-		return color
-	    best_distance = min([self.color_distance(color,c) for c in existing_colors])
-	    if not max_distance or best_distance > max_distance:
-		max_distance = best_distance
-		best_color = color
-	return best_color
+    for i in range(0,100):
+        color = self.get_random_color(pastel_factor = pastel_factor)
+        if not existing_colors:
+            return color
+        best_distance = min([self.color_distance(color,c) for c in existing_colors])
+        if not max_distance or best_distance > max_distance:
+            max_distance = best_distance
+        best_color = color
+    return best_color
 
     def __init__(self, fanova):
         self._fanova = fanova
@@ -240,13 +240,13 @@ class Visualizer(object):
              
         # if there is any categorical parameter, it must be param_2
         if param_name_1 in self._fanova.get_config_space().get_categorical_parameters():
-			temp = param_1
-			param_1 = param_2
-			param_2 = temp
-			dim1, param_name_1 = self._check_param(param_1)
-			dim2, param_name_2 = self._check_param(param_2)		
-			
-			print(dim1, dim2)
+            temp = param_1
+            param_1 = param_2
+            param_2 = temp
+            dim1, param_name_1 = self._check_param(param_1)
+            dim2, param_name_2 = self._check_param(param_2)
+            
+            print(dim1, dim2)
         
         # save values in text file
         split = ' '
@@ -415,16 +415,16 @@ class Visualizer(object):
         ax.set_ylabel(param_name_2, fontsize=self.text_size)
         ax.set_zlabel("Cost", fontsize=self.text_size)
         fig.colorbar(surface, shrink=0.5, aspect=5)
-		
-		# save output to file
+        
+        # save output to file
         split = ' '
-		if self.savingOutput:
+        if self.savingOutput:
             lsOut = [param_name, split.join([str(x) for x in display_grid]), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
             outTextFile = directory + '/' + param_name + '.png.txt'
             print('saving to ' + outTextFile)
             with open(outTextFile, 'wt') as f:
                 f.write('\n'.join(lsOut))        
-		
+                
         return plt
     
     
@@ -474,14 +474,14 @@ class Visualizer(object):
 
         plt.ylabel("Cost", fontsize = self.text_size)
 
-	# save output to file
+        # save output to file
         split = ' '
-		if self.savingOutput:
-	            lsOut = [param_name, split.join([str(x) for x in display_grid]), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
-	            outTextFile = directory + '/' + param_name + '.png.txt'
-	            print('saving to ' + outTextFile)
-	            with open(outTextFile, 'wt') as f:
-	                f.write('\n'.join(lsOut))            
+        if self.savingOutput:
+            lsOut = [param_name, split.join([str(x) for x in display_grid]), split.join([str(x) for x in mean]), split.join([str(x) for x in std])]
+            outTextFile = directory + '/' + param_name + '.png.txt'
+            print('saving to ' + outTextFile)
+            with open(outTextFile, 'wt') as f:
+                f.write('\n'.join(lsOut))            
 
         return plt
     
