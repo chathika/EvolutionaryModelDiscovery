@@ -1,5 +1,7 @@
 # Evolutionary Model Discovery
 
+For the version of EMD with ECJ and fANOVA analysis on the Artificial Anasazi please check the ```fanova_anasazi_analysis``` branch.
+
 # References:
 
 Gunaratne, C., & Garibay, I. (2018). Evolutionary Model Discovery of Factors for Farm Selection by the Artificial Anasazi. arXiv preprint arXiv:1802.00435.
