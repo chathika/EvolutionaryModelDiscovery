@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: EvolutionaryModelDiscovery
+Version: 0.0.4
+Summary: EvolutionaryModelDiscovery: Automated agent rule generation and importance evaluation for agent-based models with Genetic Programming.
+Home-page: https://github.com/chathika/EvolutionaryModelDiscovery/
+Author: Chathika Gunaratne
+Author-email: chathikagunaratne@gmail.com
+License: GPL
+Project-URL: Source, https://github.com/chathika/EvolutionaryModelDiscovery
+Project-URL: Thanks!, http://complexity.cecs.ucf.edu/
+Description: https://github.com/chathika/EvolutionaryModelDiscovery
+Platform: UNKNOWN
+Description-Content-Type: text/markdown

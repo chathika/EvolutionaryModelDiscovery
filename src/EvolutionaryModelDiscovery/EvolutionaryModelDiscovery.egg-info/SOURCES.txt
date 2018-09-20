@@ -1,0 +1,17 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+setup.py
+EvolutionaryModelDiscovery/ABMEvaluator.py
+EvolutionaryModelDiscovery/Factor.py
+EvolutionaryModelDiscovery/FactorGenerator.py
+EvolutionaryModelDiscovery/ModelFactors.py
+EvolutionaryModelDiscovery/NetLogoWriter.py
+EvolutionaryModelDiscovery/PrimitiveSetGenerator.py
+EvolutionaryModelDiscovery/Util.py
+EvolutionaryModelDiscovery/__init__.py
+EvolutionaryModelDiscovery.egg-info/PKG-INFO
+EvolutionaryModelDiscovery.egg-info/SOURCES.txt
+EvolutionaryModelDiscovery.egg-info/dependency_links.txt
+EvolutionaryModelDiscovery.egg-info/requires.txt
+EvolutionaryModelDiscovery.egg-info/top_level.txt
