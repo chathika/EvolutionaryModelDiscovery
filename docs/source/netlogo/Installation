@@ -1,0 +1,20 @@
+Installation of the NetLogo-Plug-In for Pygments
+
+
+1. Install Python (http://www.python.org/download/)
+
+2. Install easy_install (http://pypi.python.org/pypi/setuptools)
+
+3. open Shell/MS DOS prompt and type (as administrator): easy_install Pygments
+
+Voila! If this runs without error, Pygments is successfully installed!
+
+Next step: Install the NetLogo-Plug-In.
+
+4. Unzip the NetLogo-Plug-In.zip file
+
+5. Open Shell/MS DOS promt, navigate to the extracted Plug-In folder, where the setup.py file is located and type: python setup.py install
+
+If this runs without errors: Congratulations! The NetLogo Plug-In is installed and ready to use!
+
+See the HowToDo file for a short usage example. 

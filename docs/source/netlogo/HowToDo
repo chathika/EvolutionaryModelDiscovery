@@ -1,0 +1,73 @@
+For installation instructions see file "Installation".
+
+
+How to use the plugin:
+
+see Pygments Documentation <http://pygments.org/docs/> for details!
+
+
+The following examples are all command line examples!
+
+e.g. 
+
+1. Create an image file of the NetLogo code test1.nlogo:
+
+(Python Image Library (PIL) has to be installed! (http://www.pythonware.com/products/pil/))
+
+a. for bitmap:
+> pygmentize -l NetLogo -O full,style=NetLogo -f bmp -o test1.bmp test1.nlogo
+
+b. for gif:
+> pygmentize -l NetLogo -O full,style=NetLogo -f gif -o test1.gif test1.nlogo
+
+c. for png:
+> pygmentize -l NetLogo -O full,style=NetLogo -f png -o test1.png test1.nlogo
+
+d. for jpeg:
+> pygmentize -l NetLogo -O full,style=NetLogo -f jpeg -o test1.jpeg test1.nlogo
+
+2. Create a rtf file for NetLogo model test1.nlogo:
+
+> pygmentize -l NetLogo -O full,style=NetLogo -f rtf -o test1.rtf test1.nlogo
+
+3. Create a html output for NetLogo model test1.nlogo:
+
+a. with embedded css-style:
+
+>pygmentize -l NetLogo -O full,style=NetLogo -f html -o test1.html test1.nlogo
+
+b. with extra css-file:
+
+Create the html file:
+> pygmentize -l NetLogo -f html -o test1.html test1.nlogo
+Export the style to css file:
+> pygmentize -f html -S NetLogo -a .syntax > netlogosyle.css
+
+Finally paste header and footer around your html-code (test1.html):
+
+header:
+<html>
+<head>
+  <title>NetLogo Code highlighted with NetLogo-Plugin for Pygments</title>
+  <link rel="stylesheet" href="netlogostyle.css">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div class="syntax"><pre>
+
+
+footer:
+</pre></div>
+</body>
+</html>
+
+
+4. Create a latex file for NetLogo model test1.nlogo:
+
+> pygmentize -l NetLogo -O full,style=NetLogo -f latex -o test1.latex test1.nlogo
+
+
+5. Create a svg file for NetLogo model test1.nlogo:
+
+> pygmentize -l NetLogo -O full,style=NetLogo -f svg -o test1.svg test1.nlogo
+
