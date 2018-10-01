@@ -13,10 +13,10 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 # import os
-# import sys
+import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import sphinx_rtd_theme
-
+from sphinx.highlighting import lexers
 # -- Project information -----------------------------------------------------
 
 project = 'EvolutionaryModelDiscovery'
@@ -158,3 +158,7 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+
+sys.path.append('C:\\Users\\ch328575\\Downloads\\NetLogoPlugIn_Pygments_0.1.2\\netlogo')
+from netlogo import NetLogoLexer
+lexers['netlogo'] = NetLogoLexer()
