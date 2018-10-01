@@ -159,6 +159,6 @@ texinfo_documents = [
 
 # -- Extension configuration -------------------------------------------------
 
-sys.path.append('C:\\Users\\ch328575\\Downloads\\NetLogoPlugIn_Pygments_0.1.2\\netlogo')
+sys.path.append('.\\netlogo')
 from netlogo import NetLogoLexer
 lexers['netlogo'] = NetLogoLexer()
