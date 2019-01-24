@@ -23,3 +23,11 @@ def netLogoEMDLineToArray(netlogoEMDLine):
 def getModelFactorsPath():
     modelFactorsFilePath = pkg_resources.resource_filename('EvolutionaryModelDiscovery', 'ModelFactors.py')    
     return modelFactorsFilePath
+
+def slugify(value):
+    """
+    Normalizes string, converts to lowercase, removes non-alpha characters,
+    and converts spaces to hyphens."""
+    value = str(re.sub('[^\w\s-]', '', value).strip().lower())
+    value = str(re.sub('[-\s]+', '_', value).lower())
+    return value

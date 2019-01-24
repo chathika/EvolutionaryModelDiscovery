@@ -38,10 +38,13 @@ class FactorGenerator:
             factor_identified = False
             factor_return_type = ""
             factor_parameter_types = []
+            lineNumber = 0
             for line in f: 
                 line = line.lower()
-                if not factor_identified:
-                    if "@emd" in line and "@factor" in line:
+                lineNumber = lineNumber + 1
+                
+                if not factor_identified:                    
+                    if "@emd" in line and "@factor" in line and not ("@evolvenextline" in line) :
                         factor_identified = True
                         factor_return_type = ""
                         factor_parameter_types = []
@@ -50,9 +53,10 @@ class FactorGenerator:
                             if "return-type=" in emd_parameter:
                                 factor_return_type = "EMD" + emd_parameter.replace("return-type=", "")
                             elif "parameter-type=" in emd_parameter:
-                                factor_parameter_types.append("EMD" + emd_parameter.replace("parameter-type=", ""))
+                                parameter_type = emd_parameter.replace("parameter-type=", "")
+                                factor_parameter_types.append("EMD" + parameter_type )
                             else:
-                                print("Invalid EMD annotation argument.")
+                                print("Invalid EMD annotation argument at line {0}.".format(lineNumber))
                 elif "to" in line or "to-report" in line:
                     factor = Factor(re.sub("[\s]+"," ",line).split(" ")[1])
                     factor.setReturnType(factor_return_type)
@@ -94,12 +98,17 @@ class FactorGenerator:
     def writePythonClassFromFactor(self, factor):
         # Compile the NetLogo String for the factor
         parameterString = " "
-        for parameterType in factor.getParameterTypes():
-            parameterString = parameterString + "{0}, ".format(parameterType)
+        occurances = 0
+        for parameterType in factor.getParameterTypes():            
+            parameterString = parameterString + "{0}, ".format((parameterType + str(occurances)))
+            occurances = occurances + 1
         parameterString = parameterString[:-2]
-        netlogoString = '"( {0} "'.format(str(factor.getName()))
+        netlogoString = '"( {0} '.format(str(factor.getName()))
+        occurances = 0
         for parameterType in factor.getParameterTypes():
-            netlogoString = netlogoString + ' + str({0}) '.format(parameterType)
+            netlogoString = netlogoString +  '(" + str({0}) + ") '.format((parameterType +  str(occurances))) 
+            occurances = occurances + 1
+        netlogoString = netlogoString + '"'
         netlogoString = '{0} + " ) "'.format(netlogoString)
         with open(self._modelFactorsPath, "a+") as f:
             f.write ("\nclass {0}:".format(factor.getSafeName()))

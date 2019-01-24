@@ -1,87 +1,175 @@
 
-classNames = ["calc_fraction_of_friends","happy","same_color_group","similar_tolerance","requires_more_friends_than_me","less_tolerant_than_me","getneighbor","gethomepatch"]
-class calc_fraction_of_friends:
-	__name__ = "calc_fraction_of_friends"
-	def __init__(self, EMDpatch):
-		self.__name__ = "( calc-fraction-of-friends " + str(EMDpatch)  + " ) "
+classNames = ["combine","subtract","divide","multiply","get_max_one_of","get_min_one_of","compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
+class combine:
+	__name__ = "combine"
+	def __init__(self, emdcomparator0, emdcomparator1):
+		self.__name__ = "( combine (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class happy:
-	__name__ = "happy"
+class subtract:
+	__name__ = "subtract"
+	def __init__(self, emdcomparator0, emdcomparator1):
+		self.__name__ = "( subtract (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class divide:
+	__name__ = "divide"
+	def __init__(self, emdcomparator0, emdcomparator1):
+		self.__name__ = "( divide (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class multiply:
+	__name__ = "multiply"
+	def __init__(self, emdcomparator0, emdcomparator1):
+		self.__name__ = "( multiply (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class get_max_one_of:
+	__name__ = "get_max_one_of"
+	def __init__(self, emdfarmplots0, emdcomparator1):
+		self.__name__ = "( get-max-one-of (" + str(emdfarmplots0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class get_min_one_of:
+	__name__ = "get_min_one_of"
+	def __init__(self, emdfarmplots0, emdcomparator1):
+		self.__name__ = "( get-min-one-of (" + str(emdfarmplots0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class compare_quality:
+	__name__ = "compare_quality"
 	def __init__(self,):
-		self.__name__ = "( happy? " + " ) "
+		self.__name__ = "( compare-quality " + " ) "
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class same_color_group:
-	__name__ = "same_color_group"
-	def __init__(self, EMDpatch):
-		self.__name__ = "( same-color-group? " + str(EMDpatch)  + " ) "
-	def __str__(self):
-		return self.__name__
-	def __repr__(self):
-		return self.__name__
-class similar_tolerance:
-	__name__ = "similar_tolerance"
-	def __init__(self, EMDpatch):
-		self.__name__ = "( similar-tolerance? " + str(EMDpatch)  + " ) "
-	def __str__(self):
-		return self.__name__
-	def __repr__(self):
-		return self.__name__
-class requires_more_friends_than_me:
-	__name__ = "requires_more_friends_than_me"
-	def __init__(self, EMDpatch):
-		self.__name__ = "( requires-more-friends-than-me? " + str(EMDpatch)  + " ) "
-	def __str__(self):
-		return self.__name__
-	def __repr__(self):
-		return self.__name__
-class less_tolerant_than_me:
-	__name__ = "less_tolerant_than_me"
-	def __init__(self, EMDpatch):
-		self.__name__ = "( less-tolerant-than-me? " + str(EMDpatch)  + " ) "
-	def __str__(self):
-		return self.__name__
-	def __repr__(self):
-		return self.__name__
-class getneighbor:
-	__name__ = "getneighbor"
+class compare_dryness:
+	__name__ = "compare_dryness"
 	def __init__(self,):
-		self.__name__ = "( getneighbor " + " ) "
+		self.__name__ = "( compare-dryness " + " ) "
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class gethomepatch:
-	__name__ = "gethomepatch"
+class compare_yeild:
+	__name__ = "compare_yeild"
 	def __init__(self,):
-		self.__name__ = "( gethomepatch " + " ) "
+		self.__name__ = "( compare-yeild " + " ) "
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class EMDpatch:
-	__name__ = "EMDpatch"
+class compare_distance:
+	__name__ = "compare_distance"
+	def __init__(self,):
+		self.__name__ = "( compare-distance " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class compare_water_availability:
+	__name__ = "compare_water_availability"
+	def __init__(self,):
+		self.__name__ = "( compare-water-availability " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class desire_social_presence:
+	__name__ = "desire_social_presence"
+	def __init__(self,):
+		self.__name__ = "( desire-social-presence " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class homophily_age:
+	__name__ = "homophily_age"
+	def __init__(self,):
+		self.__name__ = "( homophily-age " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class homophily_agricultural_productivity:
+	__name__ = "homophily_agricultural_productivity"
+	def __init__(self,):
+		self.__name__ = "( homophily-agricultural-productivity " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class desire_migration:
+	__name__ = "desire_migration"
+	def __init__(self,):
+		self.__name__ = "( desire-migration " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class all_potential_farms:
+	__name__ = "all_potential_farms"
+	def __init__(self,):
+		self.__name__ = "( all-potential-farms " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class potential_farms_near_best_performers:
+	__name__ = "potential_farms_near_best_performers"
+	def __init__(self,):
+		self.__name__ = "( potential-farms-near-best-performers " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class potential_family_farms:
+	__name__ = "potential_family_farms"
+	def __init__(self,):
+		self.__name__ = "( potential-family-farms " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class potential_neighborhood_farms:
+	__name__ = "potential_neighborhood_farms"
+	def __init__(self,):
+		self.__name__ = "( potential-neighborhood-farms " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class emdfarmplots:
+	__name__ = "emdfarmplots"
 	def __init__(self, nlString):
 		self.__name__ = str(nlString)
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class EMDfloat:
-	__name__ = "EMDfloat"
+class emdfarmplot:
+	__name__ = "emdfarmplot"
 	def __init__(self, nlString):
 		self.__name__ = str(nlString)
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class EMDboolean:
-	__name__ = "EMDboolean"
+class emdcomparator:
+	__name__ = "emdcomparator"
 	def __init__(self, nlString):
 		self.__name__ = str(nlString)
 	def __str__(self):
@@ -99,16 +187,37 @@ class EMD_ModelEvaluation:
 from deap import gp
 def getDEAPPrimitiveSet():
 	pset = gp.PrimitiveSetTyped("main", [], EMD_ModelEvaluation)
-	pset.addPrimitive(calc_fraction_of_friends,  [ EMDpatch ], EMDfloat, name = "calc_fraction_of_friends")
-	pset.addTerminal(EMDboolean(happy()), EMDboolean, name = "happy")
-	pset.addPrimitive(EMDboolean, [EMDboolean], EMDboolean)
-	pset.addPrimitive(same_color_group,  [ EMDpatch ], EMDboolean, name = "same_color_group")
-	pset.addPrimitive(similar_tolerance,  [ EMDpatch ], EMDboolean, name = "similar_tolerance")
-	pset.addPrimitive(requires_more_friends_than_me,  [ EMDpatch ], EMDboolean, name = "requires_more_friends_than_me")
-	pset.addPrimitive(less_tolerant_than_me,  [ EMDpatch ], EMDboolean, name = "less_tolerant_than_me")
-	pset.addTerminal(EMDpatch(getneighbor()), EMDpatch, name = "getneighbor")
-	pset.addPrimitive(EMDpatch, [EMDpatch], EMDpatch)
-	pset.addTerminal(EMDpatch(gethomepatch()), EMDpatch, name = "gethomepatch")
-	pset.addPrimitive(EMDpatch, [EMDpatch], EMDpatch)
-	pset.addPrimitive(EMD_ModelEvaluation, [EMDfloat], EMD_ModelEvaluation)
+	pset.addPrimitive(combine,  [ emdcomparator,emdcomparator ], emdcomparator, name = "combine")
+	pset.addPrimitive(subtract,  [ emdcomparator,emdcomparator ], emdcomparator, name = "subtract")
+	pset.addPrimitive(divide,  [ emdcomparator,emdcomparator ], emdcomparator, name = "divide")
+	pset.addPrimitive(multiply,  [ emdcomparator,emdcomparator ], emdcomparator, name = "multiply")
+	pset.addPrimitive(get_max_one_of,  [ emdfarmplots,emdcomparator ], emdfarmplot, name = "get_max_one_of")
+	pset.addPrimitive(get_min_one_of,  [ emdfarmplots,emdcomparator ], emdfarmplot, name = "get_min_one_of")
+	pset.addTerminal(emdcomparator(compare_quality()), emdcomparator, name = "compare_quality")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(compare_dryness()), emdcomparator, name = "compare_dryness")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(compare_yeild()), emdcomparator, name = "compare_yeild")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(compare_distance()), emdcomparator, name = "compare_distance")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(compare_water_availability()), emdcomparator, name = "compare_water_availability")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(desire_social_presence()), emdcomparator, name = "desire_social_presence")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(homophily_age()), emdcomparator, name = "homophily_age")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(homophily_agricultural_productivity()), emdcomparator, name = "homophily_agricultural_productivity")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdcomparator(desire_migration()), emdcomparator, name = "desire_migration")
+	pset.addPrimitive(emdcomparator, [emdcomparator], emdcomparator)
+	pset.addTerminal(emdfarmplots(all_potential_farms()), emdfarmplots, name = "all_potential_farms")
+	pset.addPrimitive(emdfarmplots, [emdfarmplots], emdfarmplots)
+	pset.addTerminal(emdfarmplots(potential_farms_near_best_performers()), emdfarmplots, name = "potential_farms_near_best_performers")
+	pset.addPrimitive(emdfarmplots, [emdfarmplots], emdfarmplots)
+	pset.addTerminal(emdfarmplots(potential_family_farms()), emdfarmplots, name = "potential_family_farms")
+	pset.addPrimitive(emdfarmplots, [emdfarmplots], emdfarmplots)
+	pset.addTerminal(emdfarmplots(potential_neighborhood_farms()), emdfarmplots, name = "potential_neighborhood_farms")
+	pset.addPrimitive(emdfarmplots, [emdfarmplots], emdfarmplots)
+	pset.addPrimitive(EMD_ModelEvaluation, [emdfarmplot], EMD_ModelEvaluation)
 	return pset
