@@ -6,7 +6,7 @@ import fanova
 import fanova.visualizer as viz
 
 import pandas as pd
-data=pd.read_csv("examples/example_data/anasazi/FactorScores.csv")
+data=pd.read_csv("FactorScores.csv")
 x = data.iloc[:,4:]
 y = data.iloc[:,3]
 
@@ -23,7 +23,7 @@ f = fanova.fANOVA(x.values,y,config_space=cs)
 
 v = viz.Visualizer(f, f.cs,".")
 
-v.create_all_plots(three_d=False,resolution=10)
+#v.create_all_plots(three_d=False,resolution=10)
 
 allImportance = {}
 
@@ -34,6 +34,17 @@ from multiprocessing import pool
 import multiprocessing
 
 combinations = list(itertools.combinations(list(range(x.shape[1])), 2))
-P = pool.Pool(multiprocessing.cpu_count)
+P = pool.Pool(multiprocessing.cpu_count())
 
-results = p.map(calcImportancePair,combinations)
+results = P.map(calcImportancePair,combinations)
+
+df = {}
+
+for r in results:
+    for k in list(r.keys()):
+        if not k in df:
+            df[k] = r[k]
+
+df=pd.DataFrame(df).T.reset_index().rename(columns={"level_0":"Factor0","level_1":"Factor1"})
+df.to_csv("EMD_FANOVA_Importances.csv")
+
