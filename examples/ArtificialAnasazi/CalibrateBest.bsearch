@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!DOCTYPE search SYSTEM "behaviorsearch.dtd">
+<search>
+<bsearchVersionNumber>1.10</bsearchVersionNumber>
+<modelInfo>
+<modelFile>C:\Users\ch328575\Documents\Projects\EvolutionaryModelDiscovery\examples\ArtificialAnasazi\Artificial Anasazi Ver 6.nlogo</modelFile>
+<modelSetupCommands>setup</modelSetupCommands>
+<modelStepCommands>go</modelStepCommands>
+<modelStopCondition>count turtles = 0</modelStopCondition>
+<modelStepLimit>550</modelStepLimit>
+<modelMetricReporter>L2-error</modelMetricReporter>
+<modelMeasureIf>true</modelMeasureIf>
+</modelInfo>
+<fitnessInfo>
+<fitnessMinimized>true</fitnessMinimized>
+<fitnessCollecting>AT_FINAL_STEP</fitnessCollecting>
+<fitnessSamplingReplications>10</fitnessSamplingReplications>
+<fitnessCombineReplications>MEAN</fitnessCombineReplications>
+</fitnessInfo>
+<searchSpace>
+<paramSpec>["harvest-adjustment" [0.5 0.01 1.5]]</paramSpec>
+<paramSpec>["harvest-variance" [0 0.01 0.5]]</paramSpec>
+<paramSpec>["base-nutrition-need" [100 5 200]]</paramSpec>
+<paramSpec>["min-death-age" [26 1 40]]</paramSpec>
+<paramSpec>["death-age-span" [0 1 10]]</paramSpec>
+<paramSpec>["min-fertility-ends-age" [26 1 40]]</paramSpec>
+<paramSpec>["fertility-ends-age-span" [0 1 10]]</paramSpec>
+<paramSpec>["min-fertility" [0 0.01 0.2]]</paramSpec>
+<paramSpec>["fertility-span" [0 0.01 0.1]]</paramSpec>
+<paramSpec>["maize-gift-to-child" [0 0.0.1 0.5]]</paramSpec>
+<paramSpec>["water-source-distance" [6 0.5 24]]</paramSpec>
+</searchSpace>
+<searchMethod type="StandardGA">
+<searchMethodParameter name="mutation-rate" value="0.03"/>
+<searchMethodParameter name="population-size" value="50"/>
+<searchMethodParameter name="crossover-rate" value="0.7"/>
+<searchMethodParameter name="population-model" value="generational"/>
+<searchMethodParameter name="tournament-size" value="3"/>
+</searchMethod>
+<chromosomeRepresentation type="GrayBinaryChromosome"/>
+<caching>true</caching>
+<evaluationLimit>300</evaluationLimit>
+<bestCheckingNumReplications>0</bestCheckingNumReplications>
+</search>
