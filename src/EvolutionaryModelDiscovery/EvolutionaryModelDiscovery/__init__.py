@@ -41,11 +41,16 @@ isInitialized = False
 evolved = False
 netLogoWriter = None
 ModelFactors = None
+MeasureableFactors = None
+NegativeOps = None
+pop_init_size = 5
 class EvolutionaryModelDiscovery:
     mutationRate_ = 0.2
     crossoverRate_ = 0.8
     generations_ = 10
+    run_count = 20
     objectiveFunction_ = None
+    factorGenerator_ = None
     factorScores = pd.DataFrame()
     def __init__(self,netlogoPath, modelPath, setupCommands, measurementCommands, ticksToRun, goCommand = "go"):
         # Initialize ABM
@@ -94,7 +99,8 @@ class EvolutionaryModelDiscovery:
         toolbox.register("mutate", gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
         toolbox.register("map", futures.map)
         global pop
-        pop = toolbox.population(n=5)
+        global pop_init_size
+        pop = toolbox.population(n=pop_init_size)
         global hof
         hof = tools.HallOfFame(1)
         global stats
@@ -109,9 +115,13 @@ class EvolutionaryModelDiscovery:
         self.crossoverRate_ = crossoverRate
     def setGenerations(self, generations):
         self.generations_ = generations
+    def setReplications(self, replications):
+        self.run_count = replications
     def setPopulationSize(self, populationSize):
         global pop
-        pop = toolbox.population(n=populationSize)
+        global pop_init_size
+        pop_init_size = populationSize
+        pop = toolbox.population(n=pop_init_size)
     def setObjectiveFunction(self, objectiveFunction):
         self.objectiveFunction_ = objectiveFunction
     def setDepth (self, min__, max__):
@@ -133,15 +143,31 @@ class EvolutionaryModelDiscovery:
             print('Evolving!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             evolved = True
             initialized = False
-            population, logbook, factorScores = EMDEA(pop, toolbox, self.crossoverRate_, self.mutationRate_, self.generations_, stats, halloffame=hof)
-            self.visualize(hof[0])
-            factorScores.to_csv("FactorScores.csv")
+            global pop_init_size
+            for run in range(self.run_count):
+                pop = toolbox.population(n=pop_init_size)
+                population, logbook, factorScores = EMDEA(pop, toolbox, self.crossoverRate_, self.mutationRate_, self.generations_, stats, halloffame=hof, verbose=True)
+                #self.visualize(hof[0])
+                factorscores_filename = "FactorScores.csv"
+                factorScores["Run"] = run
+                for priority_col in ["Rule","Gen","Run"]:
+                    col = factorScores[priority_col]
+                    factorScores.drop(labels=[priority_col], axis=1,inplace = True)
+                    factorScores.insert(0, priority_col, col)
+                #factorScores = factorScores.set_index("Run")
+                #with open(factorscores_filename,"a") as f:
+                if path.isfile(factorscores_filename):
+                    factorScores.to_csv(factorscores_filename, mode='a', header=False,index=False)
+                else:
+                    factorScores.to_csv(factorscores_filename,  header=True,index=False)
             return pop, hof, stats
         nl4py.stopServer() 
     def startup(self, netlogoPath, modelPath):
         global isInitialized
         global evolved
         global netLogoWriter
+        global MeasureableFactors
+        global NegativeOps
         netLogoWriter = NetLogoWriter(modelPath)
         try:
             isScoopMain = scoop.IS_ORIGIN and scoop.IS_RUNNING
@@ -152,30 +178,27 @@ class EvolutionaryModelDiscovery:
             nl4py.startServer(netlogoPath)
             purge(".",".*.EMD.nlogo")
             #Read in annotations from .nlogo file and generate EMD factors
-            factorGenerator = FactorGenerator()
-            factorGenerator.generate(netLogoWriter.getFactorsFilePath())
+            factorGenerator_ = FactorGenerator()
+            factorGenerator_.generate(netLogoWriter.getFactorsFilePath())
             #Generate the ModelFactors.py file
             primitiveSetGenerator = PrimitiveSetGenerator()
-            primitiveSetGenerator.generate(factorGenerator.getFactors(), netLogoWriter.getEMDReturnType())  
+            primitiveSetGenerator.generate(factorGenerator_.getFactors(), netLogoWriter.getEMDReturnType())  
             isInitialized = True
             evolved = False
     
     def evaluate(self,individual):
-        print("..........")
         scores = scoreFactors(individual)
-        #self.factorScores = self.factorScores.append(scores)
-        print("..........")
         newRule = str(gp.compile(individual, pset))
-        #netLogoWriter = NetLogoWriter(modelPath_)
         newModelPath = netLogoWriter.injectNewRule(newRule)
         abmEvaluator = ABMEvaluator()
         abmEvaluator.initialize (setupCommands_, measurementCommands_, ticksToRun_, goCommand_)
         if self.objectiveFunction_ != None:
             abmEvaluator.setObjectiveFunction(self.objectiveFunction_)
         fitness = abmEvaluator.evaluateABM(newModelPath)
-        print(str(fitness) + " <- " + newRule)
-        scores["fitness"] = fitness
-        scores = pd.Series(list(scores.values()),index=scores.keys(),name=newRule)
+        #print(str(fitness) + " <- " + newRule)
+        scores["Fitness"] = fitness
+        scores["Rule"] = newRule[:-1]
+        scores = pd.Series(list(scores.values()),index=scores.keys())
         return [(fitness,),scores]
 
     def visualize(self,expr):
@@ -339,7 +362,6 @@ def EMDEA(population, toolbox, cxpb, mutpb, ngen, stats=None,
     """
     logbook = tools.Logbook()
     logbook.header = ['gen', 'nevals'] + (stats.fields if stats else [])
-    print(population)
     # Evaluate the individuals with an invalid fitness
     invalid_ind = [ind for ind in population if not ind.fitness.valid]
     factorScores = pd.DataFrame()
@@ -348,8 +370,9 @@ def EMDEA(population, toolbox, cxpb, mutpb, ngen, stats=None,
     factorScores = pd.DataFrame()
     for result in results:
         fitnesses.append(result[0])
-        factorScores = factorScores.append(result[1])
-    print(factorScores) 
+        fs = result[1]
+        fs["Gen"] = 0
+        factorScores = factorScores.append(fs,ignore_index=True)
     for ind, fit in zip(invalid_ind, fitnesses):
         ind.fitness.values = fit
 
@@ -368,14 +391,18 @@ def EMDEA(population, toolbox, cxpb, mutpb, ngen, stats=None,
 
         # Vary the pool of individuals
         offspring = algorithms.varAnd(offspring, toolbox, cxpb, mutpb)
-
+        for off in offspring:
+            del off.fitness.values
+        
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
         results = list(toolbox.map(toolbox.evaluate, invalid_ind))
         fitnesses = []
         for result in results:
             fitnesses.append(result[0])
-            factorScores = factorScores.append(result[1])
+            fs = result[1]
+            fs["Gen"] = gen
+            factorScores = factorScores.append(fs,ignore_index=True)
         for ind, fit in zip(invalid_ind, fitnesses):
             ind.fitness.values = fit
 
@@ -399,13 +426,9 @@ def scoreFactors(ind):
     ## need to mark: Operators: Positive or Negative?
     ################ Operators: Interaction or not?
     #positiveOps = ["combine",","get_max_one_of"]
-    print(str(gp.compile(ind, pset)))
-    negativeOps = {
-        "subtract" : [1, -1],
-        "get_min_one_of" : [1, -1]
-    }
+    ### This part of the source should be generalized 
     factor_interactions = ["multiply", "divide"]
-    factors = ["compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
+    factors = ModelFactors.measureableFactors#factorGenerator.getMeasureableFactors()#["compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
     presence = {}
     for factor in factors:
         presence[factor] = 0
@@ -419,11 +442,9 @@ def scoreFactors(ind):
         ######Update presence counts
         #Check negate
         parent = stack[-1] 
-        #print(parent[1].name + " " + childString + " " + str(parent[0]))
         if interaction == None:            
-            if parent[1].name in negativeOps.keys():                
-                coef = coef * negativeOps[parent[1].name][parent[0]]
-                #print (parent[1].name + " is negative " + str(coef))
+            if parent[1].name in ModelFactors.negativeOps.keys():                
+                coef = coef * ModelFactors.negativeOps[parent[1].name][parent[0]]
             #Count child        
             if childString in factors :
                 #Countable
@@ -433,7 +454,6 @@ def scoreFactors(ind):
             if childString in factor_interactions:
                 interaction = [childString]
                 interactionRoot = len(stack)
-                print("Interaction Root " + str(interactionRoot))
         elif type(interaction) == list:
             interaction.append(childString)
         ######Traverse
@@ -443,10 +463,8 @@ def scoreFactors(ind):
         #Resolve children if any
         if childArity == 0 :
             #Terminal found. 
-            print("Found Terminal " + childString)
             #Travel up the stack and pop any completed parents
             while parent[0] == parent[1].arity:
-                print("popping " + parent[1].name + " " + str(parent[0]))
                 root = stack.pop()
                 if len(stack) == 0:
                     break
@@ -455,14 +473,11 @@ def scoreFactors(ind):
                 if len(stack) == interactionRoot:
                     #Interaction is done processing 
                     interactionString = str(gp.compile(interaction, pset))
-                    print("Interaction Done " + interactionString)
                     presence[interactionString] = presence.get(interactionString,0) + coef
                     interaction = None
                     interactionRoot = None
                     coef = 1
         else:
             #primitive found. Add to family stack with arity
-            print("Adding " + str(childString) )
             stack.append( [0, ind[child]])
-        print("Stack length is now " + str(len(stack)))
     return presence
