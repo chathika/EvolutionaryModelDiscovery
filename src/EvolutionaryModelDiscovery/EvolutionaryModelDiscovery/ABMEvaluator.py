@@ -28,21 +28,23 @@ class ABMEvaluator:
     _setupCommands = None
     _measurementCommands = None
     _ticksToRun = -1    
+    _goCommand = "go"
     #returns pandas dataframe
     def evaluateABM(self, modelPath):        
-        rawMeasures = self._runAndReturnResults(modelPath, self._setupCommands, self._measurementCommands, self._ticksToRun)
+        rawMeasures = self._runAndReturnResults(modelPath, self._setupCommands, self._measurementCommands, self._ticksToRun, self._goCommand)
         measures = pd.DataFrame(rawMeasures)
         measures = measures.apply(pd.to_numeric, errors='ignore')
         measures.columns = self._measurementCommands
         result = _objectiveFunction(measures)
         return result
 
-    def initialize (self, setupCommands, measurementCommands, ticksToRun):
+    def initialize (self, setupCommands, measurementCommands, ticksToRun, goCommand = "go"):
         self._setupCommands = setupCommands
         self._measurementCommands = measurementCommands
         self._ticksToRun = ticksToRun
+        self._goCommand = goCommand
 
-    def _runAndReturnResults(self, modelname, setupCommands, metricCommands, ticksToRun):
+    def _runAndReturnResults(self, modelname, setupCommands, metricCommands, ticksToRun, goCommand):
         with open(modelname, "r") as f:
             workspace = nl4py.newNetLogoHeadlessWorkspace()
             workspace.openModel(modelname)
@@ -53,7 +55,7 @@ class ABMEvaluator:
             if ticksToRun < 0:
                 ticksToRun = math.pow(2,31)
             #print(metricCommands)
-            workspace.scheduleReportersAndRun(metricCommands, 0,1,ticksToRun, "go")
+            workspace.scheduleReportersAndRun(metricCommands, 0,1,ticksToRun, goCommand)
             workspaceResults = workspace.getScheduledReporterResults()
             #print(workspaceResults)
             while len(workspaceResults) == 0:

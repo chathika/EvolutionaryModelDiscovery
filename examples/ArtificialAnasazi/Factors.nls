@@ -1,0 +1,164 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;; Operators ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; run by a patch
+;; takes two subscore reporters and concats them with an addition operator
+;; @EMD @Factor @return-type=comparator @parameter-type=comparator @parameter-type=comparator
+to-report combine [a b]
+  report (word "(" a " + " b ")")
+end
+;; run by a patch
+;; takes two subscore reporters and concats them with an addition operator
+;; @EMD @Factor @return-type=comparator @parameter-type=comparator @parameter-type=comparator
+to-report subtract [a b]
+  report (word "(" a " - " b ")")
+end
+;; run by a patch
+;; takes two subscore reporters and concats them with a division operator
+;; @EMD @Factor @return-type=comparator @parameter-type=comparator @parameter-type=comparator
+to-report divide [a b]
+  report (word "(" a " / 0.0000000001 + " b ")")
+end
+;; run by a patch
+;; takes two subscore reporters and concats them with a multiplication operator
+;; @EMD @Factor @return-type=comparator @parameter-type=comparator @parameter-type=comparator
+to-report multiply [a b]
+  report (word "(" a " * " b ")")
+end
+;; run by a household
+;; takes in a patch set of potential farms and a string of callback reporters
+;; the callback reporters are the composite of the factors in the farm selection 
+;; decision by the household.
+;; Gets the potential farm with the max produced by the factor subscores
+;; @EMD @Factor @return-type=farmplot @parameter-type=farmplots @parameter-type=comparator
+to-report get-max-one-of [ p reporters]
+  let _selection max-one-of p [runresult reporters]
+  report _selection
+end
+;; run by a household
+;; takes in a patch set of potential farms and a string of callback reporters
+;; the callback reporters are the composite of the factors in the farm selection 
+;; decision by the household.
+;; Gets the potential farm with the min produced by the factor subscores
+;; @EMD @Factor @return-type=farmplot @parameter-type=farmplots @parameter-type=comparator
+to-report get-min-one-of [ p reporters]
+  let _selection min-one-of p [runresult reporters]
+  report _selection
+end
+;;;;;;;;;;;;;;;;;;;;;;; Rational factors ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; run by a patch
+;; reports its soil quality
+;; @EMD @Factor @return-type=comparator
+to-report compare-quality
+  report "(quality / 2)"
+end
+;; run by a patch
+;; reports its normalized dryness
+;; @EMD @Factor @return-type=comparator
+to-report compare-dryness 
+  report "(apdsi / 9)"
+end
+;; run by a patch
+;; reports its previous year's yeild
+;; @EMD @Factor @return-type=comparator
+to-report compare-yeild
+  report "(yield / 1201)"
+end
+;; run by a patch called by a household
+;; compares its own location to the location of the farm of the calling household
+;; @EMD @Factor @return-type=comparator
+to-report compare-distance
+  report "((distance [farm-plot] of myself) / 144)"
+end
+;; run by a patch 
+;; reports the water availability of the nearby patches
+;; @EMD @Factor @return-type=comparator
+to-report compare-water-availability
+   report "((mean [hydro] of patches in-radius water-source-distance) / 10)"
+end
+;;;;;;;;;;;;;;;;;;;;;;; Social/emotional factors ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; run by a patch
+;; reports the number of nearby households
+;; @EMD @Factor @return-type=comparator
+to-report desire-social-presence
+  report "((sum [num-occupying-households] of patches in-radius (water-source-distance)) / 230)"
+end
+;; run by a patch
+;; reports a higher subscore for patches with households of similar age nearby
+to-report calc-normalized-similarity-by-age
+  let _households-nearby other households in-radius water-source-distance
+  let _mean-age-households-nearby ifelse-value (count _households-nearby != 0) [mean [age] of _households-nearby] [0]
+  let subscore 1 - ((abs ([age] of myself - _mean-age-households-nearby )) / (0.0000000001 + max [age] of households) )
+  report subscore
+end
+;; @EMD @Factor @return-type=comparator
+to-report homophily-age
+  report "calc-normalized-similarity-by-age"
+end
+;; run by a patch
+;; reports a higher subscore for patches with households of similar agricultural productivity
+to-report calc-normalized-similarity-by-agricultural-productivity
+  let _households-nearby other households in-radius water-source-distance
+  let _mean-corn-stocks-of-households-nearby ifelse-value (count _households-nearby != 0 ) [mean [ifelse-value (is-list? aged-corn-stocks)  [reduce + aged-corn-stocks][0]] of _households-nearby] [0]
+  let _max-corn-stocks-of-households max [ifelse-value (is-list? aged-corn-stocks)  [reduce + aged-corn-stocks][0]] of households
+  let _my-corn-stocks [reduce + aged-corn-stocks ] of myself
+  let subscore 1 - ((abs (_my-corn-stocks - _mean-corn-stocks-of-households-nearby )) / (0.0000000001 + _max-corn-stocks-of-households ))
+  report subscore
+end
+;; @EMD @Factor @return-type=comparator
+to-report homophily-agricultural-productivity
+  report "calc-normalized-similarity-by-agricultural-productivity"
+end
+;; run by a patch
+;; reports a higher subscore for patches with that are in a different zone than the current farm plot
+to-report calc-change-by-farm-plot-zone
+  let my-zone [zone] of self
+  let current-farm-zone [zone] of [farm-plot] of myself
+  let subscore ifelse-value (my-zone = current-farm-zone)  [0] [1] 
+  report subscore
+end
+;; @EMD @Factor @return-type=comparator
+to-report desire-migration
+  report "calc-change-by-farm-plot-zone"
+end
+;;;;;;;;;;;;;;;;;;;;;;; Social connectivity configurations ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; run by a household
+;; Household knows all potential farm plots in the vally (Full Information)
+;; @EMD @Factor @return-type=farmplots
+to-report all-potential-farms
+  report patches with [(zone != "Empty") and (num-occupying-farms = 0) and (num-occupying-households = 0) and (base-yield >= household-min-nutrition-need) ]
+end
+
+;; run by a household
+;; Household only considers potential farms near the households with best agricultural performance last year
+;; @EMD @Factor @return-type=farmplots
+to-report potential-farms-near-best-performers
+  let _potential-farms nobody
+  ask households with-max [last-harvest] [
+     let farm-of-best-performer patch-at farm-x farm-y
+     set _potential-farms (patch-set _potential-farms (all-potential-farms with-min [distance farm-of-best-performer]))
+   ]
+  report _potential-farms
+end
+
+;; run by a household
+;; Household only considers farm plots known by their family households
+;; @EMD @Factor @return-type=farmplots
+to-report potential-family-farms
+  let _potential-farms nobody
+  ask family [
+     let family-members-farm patch-at farm-x farm-y
+     set _potential-farms (patch-set _potential-farms (all-potential-farms with-min [distance family-members-farm]))
+   ]   
+  report _potential-farms
+end
+
+;; run by a household
+;; Household only considers farm plots in their own neighborhood
+;; @EMD @Factor @return-type=farmplots
+to-report potential-neighborhood-farms
+  let _potential-farms nobody
+  ask households with-min [distance self] [
+     let neighbors-farm patch-at farm-x farm-y
+      set _potential-farms (patch-set _potential-farms (all-potential-farms with-min [distance neighbors-farm]))
+   ]
+  report _potential-farms
+end

@@ -17,6 +17,8 @@ import unicodedata
 from .Util import *
 import os, re
 import time
+import uuid
+from .Util import slugify
 '''Responsible for Writing Customized NetLogo models for EMD'''
 class NetLogoWriter:
     __original_model_path = ""
@@ -30,7 +32,7 @@ class NetLogoWriter:
     def __init__(self, model_string):
         self.__terminalsByTypes = {}
         self.__original_model_path = model_string
-        #purge(".",".*.EMD.nlogo")
+        
         #find EMD entry point
         wait_for_files([self.__original_model_path])
         with  open(self.__original_model_path, 'r') as file_reader:#should probably catch an exception here
@@ -51,6 +53,7 @@ class NetLogoWriter:
                                     self.__terminalsByTypes[terminalType] = [terminal]'''
                         elif "return-type=" in emd_parameter:
                             self.__EMDReturnType = "EMD" + emd_parameter.replace("return-type=", "")     
+                            self.__EMDReturnType = slugify(self.__EMDReturnType)
             file_reader.close()
         if (self.__EMD_line < 0):
             raise ValueError("No @EMD annotation detected!")
@@ -66,31 +69,24 @@ class NetLogoWriter:
     '''if EMD annotation exists, then inject the new rule string'''
     def injectNewRule (self, new_rule):
         # with is like your try .. finally block in this case
-        wait_for_files([self.__original_model_path])
+        #wait_for_files([self.__original_model_path])
         with open(self.__original_model_path, 'r') as file:  #should probably catch an exception here
             # read a list of lines into data
             data = file.readlines()
             file.close()
-        self.__rule_injected_model_path = self.__original_model_path[:-5] + slugify(new_rule) + ".EMD.nlogo"
+        self.__rule_injected_model_path = self.__original_model_path[:-5] + slugify(uuid.uuid4().hex) + ".EMD.nlogo"
         if not (os.path.isfile(self.__rule_injected_model_path)):
             #print("Model already injected with this rule. Using cached version.")
             if self.__EMD_line >= 0:
                 #print( "Your line: " + data[self.__EMD_line])
                 data[self.__EMD_line] = new_rule
                 # and write everything back
-                wait_for_files([self.__rule_injected_model_path])
+                #wait_for_files([self.__rule_injected_model_path])
                 with open(self.__rule_injected_model_path, 'w') as file:
                     file.writelines( data )
                     file.flush()
                     file.close()
         return self.__rule_injected_model_path
-def slugify(value):
-    """
-    Normalizes string, converts to lowercase, removes non-alpha characters,
-    and converts spaces to hyphens."""
-    value = str(re.sub('[^\w\s-]', '', value).strip().lower())
-    value = str(re.sub('[-\s]+', '-', value))
-    return value
 
 def purge(dir, pattern):
     for f in os.listdir(dir):
@@ -139,5 +135,6 @@ def wait_for_files(filepaths):
         # If the file exists but locked, wait wait_time seconds and check
         # again until it's no longer locked by another process.
         while is_locked(filepath):
+            print("waiting on file")
             #print("{0} is currently in use. Waiting {1} seconds.".format(filepath, wait_time))
             time.sleep(wait_time)

@@ -12,6 +12,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
 import re
+from .Util import slugify
 class Factor(object):
     _parameterTypes = None
     _returnType = None
@@ -25,14 +26,12 @@ class Factor(object):
         self._factorName = factorName
         self._parameterTypes = []
     def addParameterType(self, parameterType):
-        self._parameterTypes.append(parameterType)
-    
+        self._parameterTypes.append(slugify(parameterType))
     def removeParameterType(self, parameterType):
         self._parameterTypes.remove(parameterType)
     
     def setReturnType(self, returnType):
-        self._returnType = returnType
-
+        self._returnType = slugify(returnType)
     def getReturnType(self):
         return self._returnType
 
@@ -43,12 +42,12 @@ class Factor(object):
         return self._parameterTypes
     
     def getSafeName(self):
-        return self.slugify(self._factorName)
+        return slugify(self._factorName)
 
-    def slugify(self, value):
+'''    def slugify(self, value):
         """
         Normalizes string, converts to lowercase, removes non-alpha characters,
         and converts spaces to hyphens."""
         value = str(re.sub('[^\w\s-]', '', value).strip().lower())
         value = str(re.sub('[-\s]+', '_', value))
-        return value
+        return value'''
