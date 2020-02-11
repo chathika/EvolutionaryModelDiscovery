@@ -141,12 +141,14 @@ class EvolutionaryModelDiscovery:
             isScoopMain = scoop.IS_ORIGIN and scoop.IS_RUNNING
         except:
             isScoopMain = True
+        pop = None
         if isScoopMain and isInitialized and not evolved:
-            print('Evolving!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print('Evolving...')
             evolved = True
             initialized = False
             global pop_init_size
             for run in range(self.run_count):
+                print("Starting run " + str(run))
                 pop = toolbox.population(n=pop_init_size)
                 population, logbook, factorScores = EMDEA(pop, toolbox, self.crossoverRate_, self.mutationRate_, self.generations_, stats, halloffame=hof, verbose=True)
                 #self.visualize(hof[0])
@@ -162,8 +164,9 @@ class EvolutionaryModelDiscovery:
                     factorScores.to_csv(factorscores_filename, mode='a', header=False,index=False)
                 else:
                     factorScores.to_csv(factorscores_filename,  header=True,index=False)
-            return pop, hof, stats
-        nl4py.stopServer() 
+        print("GP Finished.")
+        return pop, hof, stats
+        
     def startup(self, netlogoPath, modelPath):
         global isInitialized
         global evolved
@@ -176,7 +179,7 @@ class EvolutionaryModelDiscovery:
         except:
             isScoopMain = True
         if isScoopMain and not isInitialized:
-            print('Starting!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print('Initializing...')
             nl4py.startServer(netlogoPath)
             purge(".",".*.EMD.nlogo")
             #Read in annotations from .nlogo file and generate EMD factors
@@ -188,6 +191,11 @@ class EvolutionaryModelDiscovery:
             isInitialized = True
             evolved = False
     
+    def shutdown(self):
+        nl4py.stopServer()
+        futures.shutdown(False)
+        
+
     def evaluate(self,individual):
         scores = scoreFactors(individual)
         newRule = str(gp.compile(individual, pset))

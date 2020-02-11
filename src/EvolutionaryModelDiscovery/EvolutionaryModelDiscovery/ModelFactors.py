@@ -2,7 +2,7 @@
 classNames = ["combine","subtract","divide","multiply","get_max_one_of","get_min_one_of","compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
 negativeOps = {}
 measureableFactors = ['combine', 'subtract', 'divide', 'multiply', 'get_max_one_of', 'get_min_one_of', 'compare_quality', 'compare_dryness', 'compare_yeild', 'compare_distance', 'compare_water_availability', 'desire_social_presence', 'homophily_age', 'homophily_agricultural_productivity', 'desire_migration', 'all_potential_farms', 'potential_farms_near_best_performers', 'potential_family_farms', 'potential_neighborhood_farms']
-interactions = ['divide', 'multiply']
+interactions = []
 class combine:
 	__name__ = "combine"
 	def __init__(self, emdcomparator0, emdcomparator1):
@@ -155,8 +155,8 @@ class potential_neighborhood_farms:
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class emdfarmplots:
-	__name__ = "emdfarmplots"
+class emdfarmplot:
+	__name__ = "emdfarmplot"
 	def __init__(self, nlString):
 		self.__name__ = str(nlString)
 	def __str__(self):
@@ -171,8 +171,8 @@ class emdcomparator:
 		return self.__name__
 	def __repr__(self):
 		return self.__name__
-class emdfarmplot:
-	__name__ = "emdfarmplot"
+class emdfarmplots:
+	__name__ = "emdfarmplots"
 	def __init__(self, nlString):
 		self.__name__ = str(nlString)
 	def __str__(self):
