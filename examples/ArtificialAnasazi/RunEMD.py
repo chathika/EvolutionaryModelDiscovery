@@ -1,6 +1,13 @@
 from EvolutionaryModelDiscovery import *
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
+import argparse
+import sys
+from scoop import futures
+
+parser = argparse.ArgumentParser(description="Evolutionary Model Discovery Example: Farm Selection of the Artificial Anasazi")
+parser.add_argument("NETLOGO_PATH", help="Please provide the path to the top level of your NetLogo installation.")
+args = parser.parse_args()
 
 modelPath = "./Artificial Anasazi Ver 6.nlogo"
 var = 0.05
@@ -17,14 +24,14 @@ setup = ["set harvest-adjustment (0.64 + ((" + str(2*var) + " * 0.64) * random-f
 "set water-source-distance (11.5  + ((" + str(2*var) + " * 11.5) * random-float 1 - (" + str(var) + "  * 11.5)) )",
 'setup']
 measurements = ["L2-error"]
-ticks = 550
-emd = EvolutionaryModelDiscovery("/opt/netlogo/", modelPath,setup, measurements, ticks)
+ticks = 5#50
+emd = EvolutionaryModelDiscovery(args.NETLOGO_PATH, modelPath,setup, measurements, ticks)
 emd.setMutationRate(0.1)
 emd.setCrossoverRate(0.8)
-emd.setGenerations(2)
-emd.setReplications(20)
-emd.setDepth(4,10)
-emd.setPopulationSize(5)
+emd.setGenerations(1)
+emd.setReplications(1)
+emd.setDepth(4,4)
+emd.setPopulationSize(4)
 emd.setIsMinimize(True)
 def cindexObjective(results):
     #print(results.iloc[-1][0])
@@ -32,8 +39,6 @@ def cindexObjective(results):
 
 emd.setObjectiveFunction(cindexObjective)
 
-if __name__ == '__main__':
-    
-    emd.evolve()
-    
-    
+if __name__ == '__main__':    
+    print(emd.evolve()) #Results are written to FactorScores.csv
+    emd.shutdown()
