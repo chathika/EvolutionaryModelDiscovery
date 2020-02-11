@@ -37,6 +37,8 @@ import random
 import sys
 from inspect import isclass
 import pandas as pd
+from collections import OrderedDict
+
 isInitialized = False
 evolved = False
 netLogoWriter = None
@@ -421,13 +423,9 @@ def EMDEA(population, toolbox, cxpb, mutpb, ngen, stats=None,
         purge(".",".*.EMD.nlogo") 
     return population, logbook, factorScores,
 
-from collections import OrderedDict
+
 def scoreFactors(ind):
-    ## need to mark: Operators: Positive or Negative?
-    ################ Operators: Interaction or not?
-    #positiveOps = ["combine",","get_max_one_of"]
-    ### This part of the source should be generalized 
-    factor_interactions = ["multiply", "divide"]
+    factor_interactions = ModelFactors.interactions
     factors = ModelFactors.measureableFactors#factorGenerator.getMeasureableFactors()#["compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
     presence = {}
     for factor in factors:

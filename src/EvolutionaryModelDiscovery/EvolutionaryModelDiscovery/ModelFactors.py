@@ -1,7 +1,8 @@
 
-classNames = ["combine","subtract","get_max_one_of","get_min_one_of","compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
-negativeOps = {'get_min_one_of': [1, -1], 'subtract': [1, -1]}
-measureableFactors = ['compare_quality', 'compare_dryness', 'compare_yeild', 'compare_distance', 'compare_water_availability', 'desire_social_presence', 'homophily_age', 'homophily_agricultural_productivity', 'desire_migration', 'all_potential_farms', 'potential_farms_near_best_performers', 'potential_family_farms', 'potential_neighborhood_farms']
+classNames = ["combine","subtract","divide","multiply","get_max_one_of","get_min_one_of","compare_quality","compare_dryness","compare_yeild","compare_distance","compare_water_availability","desire_social_presence","homophily_age","homophily_agricultural_productivity","desire_migration","all_potential_farms","potential_farms_near_best_performers","potential_family_farms","potential_neighborhood_farms"]
+negativeOps = {}
+measureableFactors = ['combine', 'subtract', 'divide', 'multiply', 'get_max_one_of', 'get_min_one_of', 'compare_quality', 'compare_dryness', 'compare_yeild', 'compare_distance', 'compare_water_availability', 'desire_social_presence', 'homophily_age', 'homophily_agricultural_productivity', 'desire_migration', 'all_potential_farms', 'potential_farms_near_best_performers', 'potential_family_farms', 'potential_neighborhood_farms']
+interactions = ['divide', 'multiply']
 class combine:
 	__name__ = "combine"
 	def __init__(self, emdcomparator0, emdcomparator1):
@@ -14,6 +15,22 @@ class subtract:
 	__name__ = "subtract"
 	def __init__(self, emdcomparator0, emdcomparator1):
 		self.__name__ = "( subtract (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class divide:
+	__name__ = "divide"
+	def __init__(self, emdcomparator0, emdcomparator1):
+		self.__name__ = "( divide (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
+	def __str__(self):
+		return self.__name__
+	def __repr__(self):
+		return self.__name__
+class multiply:
+	__name__ = "multiply"
+	def __init__(self, emdcomparator0, emdcomparator1):
+		self.__name__ = "( multiply (" + str(emdcomparator0) + ") (" + str(emdcomparator1) + ") " + " ) "
 	def __str__(self):
 		return self.__name__
 	def __repr__(self):
@@ -175,6 +192,8 @@ def getDEAPPrimitiveSet():
 	pset = gp.PrimitiveSetTyped("main", [], EMD_ModelEvaluation)
 	pset.addPrimitive(combine,  [ emdcomparator,emdcomparator ], emdcomparator, name = "combine")
 	pset.addPrimitive(subtract,  [ emdcomparator,emdcomparator ], emdcomparator, name = "subtract")
+	pset.addPrimitive(divide,  [ emdcomparator,emdcomparator ], emdcomparator, name = "divide")
+	pset.addPrimitive(multiply,  [ emdcomparator,emdcomparator ], emdcomparator, name = "multiply")
 	pset.addPrimitive(get_max_one_of,  [ emdfarmplots,emdcomparator ], emdfarmplot, name = "get_max_one_of")
 	pset.addPrimitive(get_min_one_of,  [ emdfarmplots,emdcomparator ], emdfarmplot, name = "get_min_one_of")
 	pset.addTerminal(emdcomparator(compare_quality()), emdcomparator, name = "compare_quality")

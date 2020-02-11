@@ -29,6 +29,7 @@ class FactorGenerator:
         self._factors = []
         self._operators = []
         self._negativeOps = {}
+        self._interactions = []
         self._typeSignatures = {}
         self._types = set([])
         self._modelFactorsPath = getModelFactorsPath()
@@ -41,14 +42,14 @@ class FactorGenerator:
         with open(str(factorFilePath.replace("\"","").replace("'","")),"r") as f: 
             factor_identified = False
             operator_identified = False
+            interaction_identified = False
             factor_return_type = ""
             factor_parameter_types = []
             parameter_contributions_to_fitness = []
             lineNumber = 0
             for line in f: 
                 line = line.lower()
-                lineNumber = lineNumber + 1
-                
+                lineNumber = lineNumber + 1                
                 if not factor_identified:                    
                     if "@emd" in line and ("@factor" in line  or "@operator" in line)  and not ("@evolvenextline" in line) :
                         factor_identified = True
@@ -65,6 +66,8 @@ class FactorGenerator:
                                 factor_parameter_types.append("EMD" + parameter_type )
                             elif "structure=" in emd_parameter:
                                 parameter_contributions_to_fitness = emd_parameter.replace("structure=", "")[1:-1].split(",")
+                            elif "interaction" in emd_parameter:
+                                interaction_identified = True
                             else:
                                 print("Invalid EMD annotation argument at line {0}.".format(lineNumber))
                 elif "to" in line or "to-report" in line:
@@ -77,9 +80,13 @@ class FactorGenerator:
                         if "-" in parameter_contributions_to_fitness:
                             self._negativeOps[factor.getSafeName()] = [ -1 if sgn == "-" else 1 for sgn in parameter_contributions_to_fitness]
                         self._operators.append(factor)
+                    if interaction_identified:
+                        self._interactions.append(factor.getSafeName())
                     factor_identified = False
                     operator_identified = False
+                    interaction_identified = False
                     factor = None
+            self._interactions = list(set(self._interactions))
     #define the factor classes 
     '''def extractNLTypeSignatures(self):        
         for factor in self._factors:
@@ -101,6 +108,7 @@ class FactorGenerator:
         self.writeClassNames()
         self.writeNegativeOpsDictionary()
         self.writeMeasureableFactors()
+        self.writeInteractions()
         for factor in self._factors:
             self.writePythonClassFromFactor(factor)
         for nlType in self._types:
@@ -162,6 +170,12 @@ class FactorGenerator:
             f.write(str(self.getMeasureableFactors()))
             f.flush()
             f.close()
+    def writeInteractions(self):
+        with open(self._modelFactorsPath, "a+") as f:
+            f.write("\ninteractions = ")
+            f.write(str(self.getInteractions()))
+            f.flush()
+            f.close()
     def getFactors(self):
         return self._factors
     def getOperators(self):
@@ -174,3 +188,5 @@ class FactorGenerator:
             if not f in [op.getSafeName() for op in self._operators]:
                 measureableFactors.append(f)
         return measureableFactors
+    def getInteractions(self):
+        return self._interactions
