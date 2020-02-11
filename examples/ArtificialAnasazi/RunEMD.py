@@ -24,13 +24,13 @@ setup = ["set harvest-adjustment (0.64 + ((" + str(2*var) + " * 0.64) * random-f
 "set water-source-distance (11.5  + ((" + str(2*var) + " * 11.5) * random-float 1 - (" + str(var) + "  * 11.5)) )",
 'setup']
 measurements = ["L2-error"]
-ticks = 5#50
+ticks = 550
 emd = EvolutionaryModelDiscovery(args.NETLOGO_PATH, modelPath,setup, measurements, ticks)
 emd.setMutationRate(0.1)
 emd.setCrossoverRate(0.8)
-emd.setGenerations(1)
+emd.setGenerations(20)
 emd.setReplications(1)
-emd.setDepth(4,4)
+emd.setDepth(4,8)
 emd.setPopulationSize(4)
 emd.setIsMinimize(True)
 def cindexObjective(results):
