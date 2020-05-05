@@ -1,0 +1,1 @@
+v0.0.7  5th May 2020 --Addresses issue #3
