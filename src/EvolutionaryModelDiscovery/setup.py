@@ -15,7 +15,7 @@ from setuptools  import setup
 
 setup(
     name='EvolutionaryModelDiscovery',
-    version='0.0.7',
+    version='0.0.8',
     author='Chathika Gunaratne',
     author_email='chathikagunaratne@gmail.com',
     packages=['EvolutionaryModelDiscovery'],
@@ -30,7 +30,7 @@ setup(
     'Thanks!': 'http://complexity.cecs.ucf.edu/',
     },
     install_requires=[
-        "nl4py",
+        "nl4py==0.5.2",
         "deap",        
         "scoop",
         "numpy",
