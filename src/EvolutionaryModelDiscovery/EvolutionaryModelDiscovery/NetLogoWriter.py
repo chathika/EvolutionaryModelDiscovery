@@ -31,6 +31,7 @@ class NetLogoWriter:
     '''locate the NetLogo file, read it in, and identify the line to be experimented with as EMD_line.'''
     def __init__(self, model_string):
         self.__terminalsByTypes = {}
+        model_dir = os.path.relpath(os.path.dirname(model_string))
         self.__original_model_path = model_string
         
         #find EMD entry point
@@ -43,7 +44,8 @@ class NetLogoWriter:
                     emd_parameters = netLogoEMDLineToArray(line)[3:]
                     for emd_parameter in emd_parameters:
                         if "factors-file=" in emd_parameter:
-                            self.__factorsFilePath = emd_parameter.replace("factors-file=", "")                            
+                            self.__relFactorsFilePath = emd_parameter.replace("factors-file=", "")
+                            self.__factorsFilePath = os.path.join(model_dir,self.__relFactorsFilePath)
                             '''elif "terminal=" in emd_parameter:
                                 terminalType = emd_parameter.replace("terminal=", "")[0]
                                 terminal = emd_parameter.replace("terminal=", "")[1]
@@ -57,7 +59,7 @@ class NetLogoWriter:
             file_reader.close()
         if (self.__EMD_line < 0):
             raise ValueError("No @EMD annotation detected!")
-        if (self.__factorsFilePath == ""):
+        if (self.__relFactorsFilePath == ""):
             raise ValueError("No @factors-file annotation was detected!")
                     
     '''def getTerminalsByTypes(self):
@@ -109,7 +111,7 @@ def is_locked(filepath):
             #print("{0} is not locked.".format(filepath))
             locked = False
     except IOError as message:
-        #print("File is locked (unable to open in append mode).{0}.".format(message))
+        print("(unable to open in append mode).{0}.".format(message))
         locked = True
     finally:
         if file_object:
@@ -135,6 +137,7 @@ def wait_for_files(filepaths):
         # If the file exists but locked, wait wait_time seconds and check
         # again until it's no longer locked by another process.
         while is_locked(filepath):
-            print("waiting on file")
+            #print(filepath)
+            #print("waiting on file")
             #print("{0} is currently in use. Waiting {1} seconds.".format(filepath, wait_time))
             time.sleep(wait_time)
