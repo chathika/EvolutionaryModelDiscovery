@@ -15,7 +15,7 @@ from setuptools  import setup
 
 setup(
     name='EvolutionaryModelDiscovery',
-    version='0.0.9',
+    version='0.0.10',
     author='Chathika Gunaratne',
     author_email='chathikagunaratne@gmail.com',
     packages=['EvolutionaryModelDiscovery'],
@@ -31,6 +31,7 @@ setup(
     },
     install_requires=[
         "nl4py==0.5.2",
+        "pyzmq==18.0.0",
         "deap",        
         "scoop",
         "numpy",
