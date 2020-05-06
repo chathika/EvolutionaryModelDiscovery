@@ -161,7 +161,8 @@ class EvolutionaryModelDiscovery:
                 #factorScores = factorScores.set_index("Run")
                 #with open(factorscores_filename,"a") as f:
                 if path.isfile(factorscores_filename):
-                    factorScores.to_csv(factorscores_filename, mode='a', header=False,index=False)
+                    old_factorScores = pd.read_csv(factorscores_filename)
+                    old_factorScores.append(factorScores,ignore_index=True).to_csv(factorscores_filename,index=False)
                 else:
                     factorScores.to_csv(factorscores_filename,  header=True,index=False)
         print("GP Finished.")
