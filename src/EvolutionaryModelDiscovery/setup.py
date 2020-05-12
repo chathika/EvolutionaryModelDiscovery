@@ -32,9 +32,9 @@ setup(
     install_requires=[
         "nl4py==0.5.2",
         "pyzmq==18.0.0",
-        "deap",        
-        "scoop",
+        "deap",
         "numpy",
-        "pandas"
+        "pandas",
+        "networkx"
     ]
 )
