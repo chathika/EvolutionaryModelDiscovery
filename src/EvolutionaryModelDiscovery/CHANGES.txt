@@ -2,3 +2,5 @@ v0.0.7  5th May 2020 --Addresses issue #3
 v0.0.8  5th May 2020 --Fixed integration bug
 v0.0.9  6th May 2020 --Fix to issue #3 (if model not in cur dir)
 v0.0.10  6th May 2020 --Addressing pyzmq 19.0.0 garbage collection issue by requiring pyzmq 18.0.0 instead.
+v0.0.11  6th May 2020 --ModelFactors.py removed on object deletion and remove from package. Created dynamically.
+v1.0.0rc 12th May 2020 --Random forest importance analysis and Mann Whitney U tests with Bonferroni correction for optimal factor presence added. PEP 8 naming convention adherence. GP code modularized. Shutdown fixed.
