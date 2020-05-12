@@ -35,6 +35,9 @@ setup(
         "deap",
         "numpy",
         "pandas",
-        "networkx"
+        "networkx",
+        "scipy",
+        "scikit-learn",
+        "eli5"
     ]
 )
