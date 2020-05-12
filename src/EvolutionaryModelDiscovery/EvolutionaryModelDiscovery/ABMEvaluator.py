@@ -21,53 +21,48 @@ from deap import base
 from deap import tools
 import pandas as pd
 import numpy as np
-def defaultObjective(results):
+def default_objective(results):
     return results.iloc[0].sum()
-_objectiveFunction = defaultObjective
+objective_function = default_objective
 class ABMEvaluator:
-    _setupCommands = None
-    _measurementCommands = None
-    _ticksToRun = -1    
-    _goCommand = "go"
+    
     #returns pandas dataframe
-    def evaluateABM(self, modelPath):        
-        rawMeasures = self._runAndReturnResults(modelPath, self._setupCommands, self._measurementCommands, self._ticksToRun, self._goCommand)
-        measures = pd.DataFrame(rawMeasures)
+    def evaluate_ABM(self, model_path):        
+        raw_measures = self.run_and_return_results(model_path, self.setup_commands, self.measurement_commands, self.ticks_to_run, self.go_command)
+        measures = pd.DataFrame(raw_measures)
         measures = measures.apply(pd.to_numeric, errors='ignore')
-        measures.columns = self._measurementCommands
-        result = _objectiveFunction(measures)
+        measures.columns = self.measurement_commands
+        result = objective_function(measures)
         return result
 
-    def initialize (self, setupCommands, measurementCommands, ticksToRun, goCommand = "go"):
-        self._setupCommands = setupCommands
-        self._measurementCommands = measurementCommands
-        self._ticksToRun = ticksToRun
-        self._goCommand = goCommand
+    def initialize (self, setup_commands, measurement_commands, ticks_to_run, go_command = "go"):
+        self.setup_commands = setup_commands
+        self.measurement_commands = measurement_commands
+        self.ticks_to_run = ticks_to_run
+        self.go_command = go_command
 
-    def _runAndReturnResults(self, modelname, setupCommands, metricCommands, ticksToRun, goCommand):
-        with open(modelname, "r") as f:
+    def run_and_return_results(self, model_name, setup_commands, metric_commands, ticks_to_run, go_command):
+        with open(model_name, "r") as f:
             workspace = nl4py.newNetLogoHeadlessWorkspace()
-            workspace.openModel(modelname)
+            workspace.openModel(model_name)
             #workspace.setParamsRandom()
-            for setupCommand in setupCommands:
-                workspace.command(setupCommand)
+            for setup_command in setup_commands:
+                workspace.command(setup_command)
             #workspace.command("setup")
-            if ticksToRun < 0:
-                ticksToRun = math.pow(2,31)
-            #print(metricCommands)
-            workspace.scheduleReportersAndRun(metricCommands, 0,1,ticksToRun, goCommand)
-            workspaceResults = workspace.getScheduledReporterResults()
-            #print(workspaceResults)
-            while len(workspaceResults) == 0:
-                workspaceResults = workspace.getScheduledReporterResults()
+            if ticks_to_run < 0:
+                ticks_to_run = math.pow(2,31)
+            #print(metric_commands)
+            workspace.scheduleReportersAndRun(metric_commands, 0,1,ticks_to_run, go_command)
+            workspace_results = workspace.getScheduledReporterResults()
+            while len(workspace_results) == 0:
+                workspace_results = workspace.getScheduledReporterResults()
                 time.sleep(2)
-            #nl4py.getAllHeadlessWorkspaces().remove(workspace)
             workspace.deleteWorkspace()
             workspace = None
-            return workspaceResults
+            return workspace_results
 
-    def setObjectiveFunction(self, objectiveFunction):
-        global _objectiveFunction 
-        _objectiveFunction = objectiveFunction
+    def set_objective_function(self, objective_function_):
+        global objective_function 
+        objective_function = objective_function_
 ###############################
 

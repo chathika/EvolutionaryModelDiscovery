@@ -19,12 +19,7 @@ from .Util import *
 # @EMD: return-type: what type is returned
 # @EMD: parameter-type: parameter types
 class FactorGenerator:
-    _factors = None
-    _operators = None
-    _negativeOps = None
-    _typeSignatures = None # map of return types to possible parameters 
-    _types = None
-    _modelFactorsPath = ""
+    
     def __init__(self):        
         self._factors = []
         self._operators = []
@@ -32,14 +27,14 @@ class FactorGenerator:
         self._interactions = []
         self._typeSignatures = {}
         self._types = set([])
-        self._modelFactorsPath = getModelFactorsPath()
-    def generate(self,factorFilePath):
-        self.readNetLogoFunctionFile(factorFilePath)    
-        self.extractNLTypes()
-        self.writePythonClasses()        
+        self.model_factor_path = get_model_factors_path()
+    def generate(self,factor_file_path):
+        self.read_netlogo_function_file(factor_file_path)    
+        self.extract_NL_types()
+        self.write_python_classes()        
     # Read the factors from a .nls file
-    def readNetLogoFunctionFile(self,factorFilePath):
-        with open(str(factorFilePath.replace("\"","").replace("'","")),"r") as f: 
+    def read_netlogo_function_file(self,factor_file_path):
+        with open(str(factor_file_path.replace("\"","").replace("'","")),"r") as f: 
             factor_identified = False
             operator_identified = False
             interaction_identified = False
@@ -57,7 +52,7 @@ class FactorGenerator:
                             operator_identified = True
                         factor_return_type = ""
                         factor_parameter_types = []
-                        emd_parameters = netLogoEMDLineToArray(line)[3:]
+                        emd_parameters = netlogo_EMD_line_to_array(line)[3:]
                         for emd_parameter in emd_parameters:
                             if "return-type=" in emd_parameter:
                                 factor_return_type = "EMD" + emd_parameter.replace("return-type=", "")
@@ -72,72 +67,63 @@ class FactorGenerator:
                                 print("Invalid EMD annotation argument at line {0}.".format(lineNumber))
                 elif "to" in line or "to-report" in line:
                     factor = Factor(re.sub("[\s]+"," ",line).split(" ")[1])
-                    factor.setReturnType(factor_return_type)
+                    factor.set_return_type(factor_return_type)
                     for factor_parameter_type in factor_parameter_types:
-                        factor.addParameterType(factor_parameter_type)
+                        factor.add_parameter_type(factor_parameter_type)
                     self._factors.append(factor)
                     if operator_identified:
                         if "-" in parameter_contributions_to_fitness:
-                            self._negativeOps[factor.getSafeName()] = [ -1 if sgn == "-" else 1 for sgn in parameter_contributions_to_fitness]
+                            self._negativeOps[factor.get_safe_name()] = [ -1 if sgn == "-" else 1 for sgn in parameter_contributions_to_fitness]
                         self._operators.append(factor)
                     if interaction_identified:
-                        self._interactions.append(factor.getSafeName())
+                        self._interactions.append(factor.get_safe_name())
                     factor_identified = False
                     operator_identified = False
                     interaction_identified = False
                     factor = None
             self._interactions = list(set(self._interactions))
-    #define the factor classes 
-    '''def extractNLTypeSignatures(self):        
+    
+    def extract_NL_types(self):
         for factor in self._factors:
-            if factor.getReturnType() in self._typeSignatures.keys() :
-                parameters = self._typeSignatures[str(factor.getReturnType())]
-                parameters.append(factor.getParameterTypes())                
-                self._typeSignatures[str(factor.getReturnType())] = [ii for n,ii in enumerate(parameters) if ii not in parameters[:n]]
-            else:
-                self._typeSignatures[str(factor.getReturnType())] = [factor.getParameterTypes()]
-        print(self._typeSignatures)'''
-    def extractNLTypes(self):
-        for factor in self._factors:
-            self._types.add(factor.getReturnType())
-            self._types = self._types.union(set(factor.getParameterTypes()))
+            self._types.add(factor.get_return_type())
+            self._types = self._types.union(set(factor.get_parameter_types()))
         #print(self._typeSignatures)
-    def writePythonClasses(self):
-        if os.path.exists(self._modelFactorsPath):
-            os.remove(self._modelFactorsPath)
-        self.writeClassNames()
-        self.writeNegativeOpsDictionary()
-        self.writeMeasureableFactors()
-        self.writeInteractions()
+    def write_python_classes(self):
+        if os.path.exists(self.model_factor_path):
+            os.remove(self.model_factor_path)
+        self.write_class_names()
+        self.write_negative_ops_dictionary()
+        self.write_measureable_factors()
+        self.write_interactions()
         for factor in self._factors:
-            self.writePythonClassFromFactor(factor)
+            self.write_python_class_from_factor(factor)
         for nlType in self._types:
-            self.writePythonClassFromNLType(nlType)
-    def writeClassNames(self):
+            self.write_python_class_from_nl_type(nlType)
+    def write_class_names(self):
         classNamesString = "\nclassNames = ["
-        with open(self._modelFactorsPath, "a+") as f:
+        with open(self.model_factor_path, "a+") as f:
             for factor in self._factors:
-                classNamesString = '{0}"{1}",'.format(classNamesString,factor.getSafeName())
+                classNamesString = '{0}"{1}",'.format(classNamesString,factor.get_safe_name())
             classNamesString = classNamesString[:(len(classNamesString)-1)] + "]"
             f.write(classNamesString)
-    def writePythonClassFromFactor(self, factor):
+    def write_python_class_from_factor(self, factor):
         # Compile the NetLogo String for the factor
         parameterString = " "
         occurances = 0
-        for parameterType in factor.getParameterTypes():            
+        for parameterType in factor.get_parameter_types():            
             parameterString = parameterString + "{0}, ".format((parameterType + str(occurances)))
             occurances = occurances + 1
         parameterString = parameterString[:-2]
-        netlogoString = '"( {0} '.format(str(factor.getName()))
+        netlogoString = '"( {0} '.format(str(factor.get_name()))
         occurances = 0
-        for parameterType in factor.getParameterTypes():
+        for parameterType in factor.get_parameter_types():
             netlogoString = netlogoString +  '(" + str({0}) + ") '.format((parameterType +  str(occurances))) 
             occurances = occurances + 1
         netlogoString = netlogoString + '"'
         netlogoString = '{0} + " ) "'.format(netlogoString)
-        with open(self._modelFactorsPath, "a+") as f:
-            f.write ("\nclass {0}:".format(factor.getSafeName()))
-            f.write('\n\t__name__ = "{0}"'.format(factor.getSafeName()))
+        with open(self.model_factor_path, "a+") as f:
+            f.write ("\nclass {0}:".format(factor.get_safe_name()))
+            f.write('\n\t__name__ = "{0}"'.format(factor.get_safe_name()))
             f.write('\n\tdef __init__(self,{0}):'.format(parameterString))
             f.write('\n\t\tself.__name__ = {0}'.format(netlogoString))
             f.write('\n\tdef __str__(self):')
@@ -146,47 +132,47 @@ class FactorGenerator:
             f.write('\n\t\treturn self.__name__')
             f.flush()
             f.close()
-    def writePythonClassFromNLType(self,nlType):
-        with open(self._modelFactorsPath, "a+") as f:
+    def write_python_class_from_nl_type(self,nlType):
+        with open(self.model_factor_path, "a+") as f:
             f.write ("\nclass {0}:".format(nlType))
             f.write('\n\t__name__ = "{0}"'.format(nlType))
-            f.write('\n\tdef __init__(self, nlString):')
-            f.write('\n\t\tself.__name__ = str(nlString)')
+            f.write('\n\tdef __init__(self, nl_string):')
+            f.write('\n\t\tself.__name__ = str(nl_string)')
             f.write('\n\tdef __str__(self):')
             f.write('\n\t\treturn self.__name__')
             f.write('\n\tdef __repr__(self):')
             f.write('\n\t\treturn self.__name__')
             f.flush()
             f.close()
-    def writeNegativeOpsDictionary(self):
-        with open(self._modelFactorsPath, "a+") as f:
+    def write_negative_ops_dictionary(self):
+        with open(self.model_factor_path, "a+") as f:
             f.write("\nnegativeOps = ")
-            f.write(str(self.getNegativeOps()))
+            f.write(str(self.get_negative_ops()))
             f.flush()
             f.close()
-    def writeMeasureableFactors(self):
-        with open(self._modelFactorsPath, "a+") as f:
-            f.write("\nmeasureableFactors = ")
-            f.write(str(self.getMeasureableFactors()))
+    def write_measureable_factors(self):
+        with open(self.model_factor_path, "a+") as f:
+            f.write("\nmeasureable_factors = ")
+            f.write(str(self.get_measureable_factors()))
             f.flush()
             f.close()
-    def writeInteractions(self):
-        with open(self._modelFactorsPath, "a+") as f:
+    def write_interactions(self):
+        with open(self.model_factor_path, "a+") as f:
             f.write("\ninteractions = ")
-            f.write(str(self.getInteractions()))
+            f.write(str(self.get_interactions()))
             f.flush()
             f.close()
-    def getFactors(self):
+    def get_factors(self):
         return self._factors
-    def getOperators(self):
+    def get_operators(self):
         return self._operators
-    def getNegativeOps(self):
+    def get_negative_ops(self):
         return self._negativeOps
-    def getMeasureableFactors(self):
-        measureableFactors = []        
-        for f in [ fac.getSafeName() for fac in self._factors]:
-            if not f in [op.getSafeName() for op in self._operators]:
-                measureableFactors.append(f)
-        return measureableFactors
-    def getInteractions(self):
+    def get_measureable_factors(self):
+        measureable_factors = []        
+        for f in [ fac.get_safe_name() for fac in self._factors]:
+            if not f in [op.get_safe_name() for op in self._operators]:
+                measureable_factors.append(f)
+        return measureable_factors
+    def get_interactions(self):
         return self._interactions

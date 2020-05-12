@@ -14,40 +14,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
 import re
 from .Util import slugify
 class Factor(object):
-    _parameterTypes = None
-    _returnType = None
-    _factorName = None
-    _factorFunctionCode = None
+    
     def __repr__(self):
-        return str(self._factorName) + " " + str(self._parameterTypes) + " " + str(self._returnType)
+        return str(self.factor_name) + " " + str(self.parameter_types) + " " + str(self.return_type)
     def __init__(self, factorName):
         if (factorName == None or factorName == ""):
             print("Invalid factor name!")
-        self._factorName = factorName
-        self._parameterTypes = []
-    def addParameterType(self, parameterType):
-        self._parameterTypes.append(slugify(parameterType))
-    def removeParameterType(self, parameterType):
-        self._parameterTypes.remove(parameterType)
+        self.factor_name = factorName
+        self.parameter_types = []
+    def add_parameter_type(self, parameterType):
+        self.parameter_types.append(slugify(parameterType))
+    def remove_parameter_type(self, parameterType):
+        self.parameter_types.remove(parameterType)
     
-    def setReturnType(self, returnType):
-        self._returnType = slugify(returnType)
-    def getReturnType(self):
-        return self._returnType
+    def set_return_type(self, returnType):
+        self.return_type = slugify(returnType)
+    def get_return_type(self):
+        return self.return_type
 
-    def getName(self):
-        return self._factorName
+    def get_name(self):
+        return self.factor_name
 
-    def getParameterTypes(self):
-        return self._parameterTypes
+    def get_parameter_types(self):
+        return self.parameter_types
     
-    def getSafeName(self):
-        return slugify(self._factorName)
-
-'''    def slugify(self, value):
-        """
-        Normalizes string, converts to lowercase, removes non-alpha characters,
-        and converts spaces to hyphens."""
-        value = str(re.sub('[^\w\s-]', '', value).strip().lower())
-        value = str(re.sub('[-\s]+', '_', value))
-        return value'''
+    def get_safe_name(self):
+        return slugify(self.factor_name)

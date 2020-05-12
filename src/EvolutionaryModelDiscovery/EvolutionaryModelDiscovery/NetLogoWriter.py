@@ -18,126 +18,69 @@ from .Util import *
 import os, re
 import time
 import uuid
-from .Util import slugify
 '''Responsible for Writing Customized NetLogo models for EMD'''
 class NetLogoWriter:
-    __original_model_path = ""
-    __rule_injected_model_path = ""
-    __factorsFilePath = ""
-    #__terminalsByTypes = None
-    __EMDReturnType = None
-    __EMD_line = -1000
     
     '''locate the NetLogo file, read it in, and identify the line to be experimented with as EMD_line.'''
     def __init__(self, model_string):
-        self.__terminalsByTypes = {}
+        self.EMD_return_type = None
+        self.EMD_line = -1000
+        self.terminal_by_type = {}
+        self.original_model_path = model_string
         model_dir = os.path.relpath(os.path.dirname(model_string))
-        self.__original_model_path = model_string
-        
+
         #find EMD entry point
-        wait_for_files([self.__original_model_path])
-        with  open(self.__original_model_path, 'r') as file_reader:#should probably catch an exception here
+        wait_for_files([self.original_model_path])
+        with  open(self.original_model_path, 'r') as file_reader:#should probably catch an exception here
             for i, line in enumerate(file_reader):      
                 line = line.lower()          
                 if "@emd" in line and "@evolvenextline" in line:
-                    self.__EMD_line = i + 1
-                    emd_parameters = netLogoEMDLineToArray(line)[3:]
+                    self.EMD_line = i + 1
+                    emd_parameters = netlogo_EMD_line_to_array(line)[3:]
                     for emd_parameter in emd_parameters:
                         if "factors-file=" in emd_parameter:
-                            self.__relFactorsFilePath = emd_parameter.replace("factors-file=", "")
-                            self.__factorsFilePath = os.path.join(model_dir,self.__relFactorsFilePath)
+                            self.rel_factors_file_path = emd_parameter.replace("factors-file=", "")
+                            self.factors_file_path = os.path.join(model_dir,self.rel_factors_file_path)
                             '''elif "terminal=" in emd_parameter:
                                 terminalType = emd_parameter.replace("terminal=", "")[0]
                                 terminal = emd_parameter.replace("terminal=", "")[1]
-                                if terminalType in self.__terminalsByTypes.keys():
-                                    self.__terminalsByTypes[terminalType].append(terminal)
+                                if terminalType in self.terminal_by_type.keys():
+                                    self.terminal_by_type[terminalType].append(terminal)
                                 else:
-                                    self.__terminalsByTypes[terminalType] = [terminal]'''
+                                    self.terminal_by_type[terminalType] = [terminal]'''
                         elif "return-type=" in emd_parameter:
-                            self.__EMDReturnType = "EMD" + emd_parameter.replace("return-type=", "")     
-                            self.__EMDReturnType = slugify(self.__EMDReturnType)
+                            self.EMD_return_type = "EMD" + emd_parameter.replace("return-type=", "")     
+                            self.EMD_return_type = slugify(self.EMD_return_type)
             file_reader.close()
-        if (self.__EMD_line < 0):
+        if (self.EMD_line < 0):
             raise ValueError("No @EMD annotation detected!")
-        if (self.__relFactorsFilePath == ""):
+        if (self.rel_factors_file_path == ""):
             raise ValueError("No @factors-file annotation was detected!")
                     
     '''def getTerminalsByTypes(self):
-        return self.__terminalsByTypes'''
-    def getFactorsFilePath(self):
-        return self.__factorsFilePath
-    def getEMDReturnType(self):
-        return self.__EMDReturnType
+        return self.terminal_by_type'''
+    def get_factors_file_path(self):
+        return self.factors_file_path
+    def get_EMD_return_type(self):
+        return self.EMD_return_type
     '''if EMD annotation exists, then inject the new rule string'''
-    def injectNewRule (self, new_rule):
+    def inject_new_rule (self, new_rule):
         # with is like your try .. finally block in this case
-        #wait_for_files([self.__original_model_path])
-        with open(self.__original_model_path, 'r') as file:  #should probably catch an exception here
+        #wait_for_files([self.original_model_path])
+        with open(self.original_model_path, 'r') as file:  #should probably catch an exception here
             # read a list of lines into data
             data = file.readlines()
             file.close()
-        self.__rule_injected_model_path = self.__original_model_path[:-5] + slugify(uuid.uuid4().hex) + ".EMD.nlogo"
-        if not (os.path.isfile(self.__rule_injected_model_path)):
+        self.rule_injected_model_path = self.original_model_path[:-5] + slugify(uuid.uuid4().hex) + ".EMD.nlogo"
+        if not (os.path.isfile(self.rule_injected_model_path)):
             #print("Model already injected with this rule. Using cached version.")
-            if self.__EMD_line >= 0:
-                #print( "Your line: " + data[self.__EMD_line])
-                data[self.__EMD_line] = new_rule
+            if self.EMD_line >= 0:
+                #print( "Your line: " + data[self.EMD_line])
+                data[self.EMD_line] = new_rule
                 # and write everything back
-                #wait_for_files([self.__rule_injected_model_path])
-                with open(self.__rule_injected_model_path, 'w') as file:
+                #wait_for_files([self.rule_injected_model_path])
+                with open(self.rule_injected_model_path, 'w') as file:
                     file.writelines( data )
                     file.flush()
                     file.close()
-        return self.__rule_injected_model_path
-
-def purge(dir, pattern):
-    for f in os.listdir(dir):
-        if re.search(pattern, f):
-            os.remove(os.path.join(dir, f))
-
-def is_locked(filepath):
-    """Checks if a file is locked by opening it in append mode.
-    If no exception thrown, then the file is not locked.
-    """
-    locked = None
-    file_object = None
-    #if os.path.exists(filepath):
-    try:
-        #print("Trying to open {0}.".format( filepath))
-        buffer_size = 8
-        # Opening file in append mode and read the first 8 characters.
-        file_object = open(filepath, 'a', buffer_size)
-        if file_object:
-            #print("{0} is not locked.".format(filepath))
-            locked = False
-    except IOError as message:
-        print("(unable to open in append mode).{0}.".format(message))
-        locked = True
-    finally:
-        if file_object:
-            file_object.close()
-            #print("{0} closed.".format(filepath))
-    #else:
-    #    print("{0} not found.".format(filepath))
-    return locked
-
-def wait_for_files(filepaths):
-    """Checks if the files are ready.
-
-    For a file to be ready it must exist and can be opened in append
-    mode.
-    """
-    wait_time = 0.05
-    for filepath in filepaths:
-        # If the file doesn't exist, wait wait_time seconds and try again
-        # until it's found.
-        #while not os.path.exists(filepath):
-        #    print("{0} hasn't arrived. Waiting {1} seconds.".format(filepath, wait_time))
-        #    time.sleep(wait_time)
-        # If the file exists but locked, wait wait_time seconds and check
-        # again until it's no longer locked by another process.
-        while is_locked(filepath):
-            #print(filepath)
-            #print("waiting on file")
-            #print("{0} is currently in use. Waiting {1} seconds.".format(filepath, wait_time))
-            time.sleep(wait_time)
+        return self.rule_injected_model_path
