@@ -1,6 +1,8 @@
 # Evolutionary Model Discovery
 
-For the version of EMD with ECJ and fANOVA analysis on the Artificial Anasazi please check the ```fanova_anasazi_analysis``` branch.
+Documentation available at: [https://evolutionarymodeldiscovery.readthedocs.io/en/latest/](https://evolutionarymodeldiscovery.readthedocs.io/en/latest/)
+
+Note: For the version of EMD with ECJ and fANOVA analysis on the Artificial Anasazi please check the ```fanova_anasazi_analysis``` branch.
 
 # References:
 
