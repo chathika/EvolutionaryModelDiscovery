@@ -45,18 +45,12 @@ class ABMEvaluator:
         with open(model_name, "r") as f:
             workspace = nl4py.newNetLogoHeadlessWorkspace()
             workspace.openModel(model_name)
-            #workspace.setParamsRandom()
             for setup_command in setup_commands:
                 workspace.command(setup_command)
-            #workspace.command("setup")
             if ticks_to_run < 0:
-                ticks_to_run = math.pow(2,31)
-            #print(metric_commands)
+                ticks_to_run = math.pow(2,31) # Run "forever" because no stop condition provided.
             workspace.scheduleReportersAndRun(metric_commands, 0,1,ticks_to_run, go_command)
-            workspace_results = workspace.getScheduledReporterResults()
-            while len(workspace_results) == 0:
-                workspace_results = workspace.getScheduledReporterResults()
-                time.sleep(2)
+            workspace_results = workspace.awaitScheduledReporterResults()
             workspace.deleteWorkspace()
             workspace = None
             return workspace_results
