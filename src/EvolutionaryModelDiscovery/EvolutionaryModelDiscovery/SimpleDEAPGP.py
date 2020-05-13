@@ -42,7 +42,7 @@ class SimpleDEAPGP:
         '''
         Sets up a DEAP GP
         '''
-        print('-- Setting up genetic program')
+        # Setting up genetic program
         # Setup DEAP GP
         creator.create("FitnessMax", base.Fitness, weights=(1.0,))
         creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
@@ -69,7 +69,7 @@ class SimpleDEAPGP:
         self.stats.register("max", np.max)
         self.isInitialized = True
         self.evolved = False
-        print('-- Genetic program setup successfully')  
+        # Genetic program setup successfully
     
     
     def set_mutation_rate(self, mutation_rate):
@@ -223,7 +223,6 @@ class SimpleDEAPGP:
         if self.objective_function != None:
             abmEvaluator.set_objective_function(self.objective_function)
         fitness = abmEvaluator.evaluate_ABM(newModelPath)
-        #print(str(fitness) + " <- " + newRule)
         scores["Fitness"] = fitness
         scores["Rule"] = newRule[:-1]
         scores = pd.Series(list(scores.values()),index=scores.keys())

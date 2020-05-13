@@ -19,7 +19,7 @@ class Factor(object):
         return str(self.factor_name) + " " + str(self.parameter_types) + " " + str(self.return_type)
     def __init__(self, factorName):
         if (factorName == None or factorName == ""):
-            print("Invalid factor name!")
+            raise Exception("Invalid factor name: {}".format(factorName))
         self.factor_name = factorName
         self.parameter_types = []
     def add_parameter_type(self, parameterType):

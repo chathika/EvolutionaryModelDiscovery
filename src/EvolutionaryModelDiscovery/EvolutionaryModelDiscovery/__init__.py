@@ -66,35 +66,32 @@ class EvolutionaryModelDiscovery:
         self.isInitialized = False
         self.netLogoWriter = NetLogoWriter(self.model_init_data["model_path"])
         if not self.isInitialized:
-            print('------- Evolutionary Model Discovery Initializing -------')
-            print('-- Starting NL4Py')
+            #  Evolutionary Model Discovery Initializing
+            # Starting NL4Py
             nl4py.startServer(netlogoPath)
-            print('-- Removing Temporary Files')
             #Remove temporary model files
             purge(".",".*.EMD.nlogo")
             #Reset Factors files
             remove_model_factors_file()
             create_model_factors_file()
-            print('-- Parsing NetLogo model {} into syntax tree primitives \
-                    and Python classes'.format(self.model_init_data["model_path"]))
-            #Read in annotations from .nlogo file and generate EMD factors
+            # Parsing NetLogo model into syntax tree primitives and Python classes
+            # by reading in annotations from .nlogo file and generate EMD factors
             self.factorGenerator = FactorGenerator()
             self.factorGenerator.generate(self.netLogoWriter.get_factors_file_path())
-            #Generate the ModelFactors.py file
+            # Generate the ModelFactors.py file, Loading parsed primitives as Python classes
             self.primitiveSetGenerator = PrimitiveSetGenerator()
             self.primitiveSetGenerator.generate(self.factorGenerator.get_factors(),
-                    self.netLogoWriter.get_EMD_return_type()) 
-            print('-- Loading parsed primitives as Python classes')    
+                    self.netLogoWriter.get_EMD_return_type())
     
     def evolve(self, num_procs = -1):
         '''
         Conduct evolution using initialized genetic program
         '''
-        print('-- Begining evolution')
+        # Begining evolution
         self.evolved = True
         self.initialized = False
         for run in range(self.replications):
-            print("--- Starting run {}".format(run))                
+            print("--- Starting GP Run {} ---".format(run))                
             self.population, self.logbook, self.factor_scores = self.gp.evolve(num_procs=num_procs)
             #self.visualize(hof[0])
             self.factor_scores["Run"] = run
@@ -108,7 +105,7 @@ class EvolutionaryModelDiscovery:
                             sort=False).to_csv(self.factor_scores_file_name,index=False)
             else:
                 self.factor_scores.to_csv(self.factor_scores_file_name,  header=True,index=False)
-        print("-- Genetic program runs finished, output written to {}".format(self.factor_scores_file_name))
+        print("--- Genetic program runs finished, output written to {} ---".format(self.factor_scores_file_name))
         return self.factor_scores
         
     def get_factor_importances_calculator(self, factor_scores=None):

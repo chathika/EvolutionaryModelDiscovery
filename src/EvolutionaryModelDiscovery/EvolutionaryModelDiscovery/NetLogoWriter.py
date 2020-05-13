@@ -73,9 +73,8 @@ class NetLogoWriter:
             file.close()
         self.rule_injected_model_path = self.original_model_path[:-5] + slugify(uuid.uuid4().hex) + ".EMD.nlogo"
         if not (os.path.isfile(self.rule_injected_model_path)):
-            #print("Model already injected with this rule. Using cached version.")
+            # Model already injected with this rule. Using cached version.
             if self.EMD_line >= 0:
-                #print( "Your line: " + data[self.EMD_line])
                 data[self.EMD_line] = new_rule
                 # and write everything back
                 #wait_for_files([self.rule_injected_model_path])

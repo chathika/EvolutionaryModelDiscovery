@@ -25,7 +25,7 @@ from eli5.sklearn import PermutationImportance
 class FactorImportances:
 
     def __init__(self, factor_scores):
-        print("-- Loading factor scores")
+        # Loading factor scores
         if isinstance(factor_scores, pd.DataFrame):
             self.factor_scores = factor_scores.fillna(0)
         elif isinstance(factor_scores, str):
@@ -39,12 +39,12 @@ class FactorImportances:
     def train_random_forest(self, num_trees = 520, interactions = False):
         self.y = self.factor_scores["Fitness"]
         if not interactions:
-            print("-- Training random forest with first order factors (excluding interactions)")
+            # Training random forest with first order factors (excluding interactions)
             self.x_first_order = self.factor_scores[self.model_factors.measureable_factors]
             self.rf_first_order = RandomForestRegressor(n_estimators=num_trees,random_state=0,n_jobs=multiprocessing.cpu_count(),bootstrap=False)
             self.rf_first_order.fit(self.x_first_order,self.y)
         else:
-            print("-- Training random forest with factors and factor interactions")
+            # Training random forest with factors and factor interactions
             self.x_with_interactions = self.factor_scores[list(filter(lambda col: (col not in ["Run","Gen","Rule","Fitness"]), self.factor_scores.columns))]
             self.rf_with_interactions = RandomForestRegressor(n_estimators=num_trees,random_state=0,n_jobs=multiprocessing.cpu_count(),bootstrap=False)
             self.rf_with_interactions.fit(self.x_with_interactions,self.y)

@@ -23,7 +23,7 @@ def netlogo_EMD_line_to_array(netlogo_EMD_line):
     if "@emd" in netlogo_EMD_line:
         return re.sub("[\s;]","",netlogo_EMD_line).split("@")
     else:
-        print("Not and EMD annotated line!")
+        raise Exception("Not an EMD annotated line: {}".format(netlogo_EMD_line))
 
 def get_model_factors_path():
     model_factors_file_path = pkg_resources.resource_filename('EvolutionaryModelDiscovery', 'ModelFactors.py')    
@@ -67,7 +67,7 @@ def is_locked(filepath):
             #print("{0} is not locked.".format(filepath))
             locked = False
     except IOError as message:
-        print("(unable to open in append mode).{0}.".format(message))
+        raise Exception("(unable to open in append mode).{0}.".format(message))
         locked = True
     finally:
         if file_object:

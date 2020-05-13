@@ -64,7 +64,7 @@ class FactorGenerator:
                             elif "interaction" in emd_parameter:
                                 interaction_identified = True
                             else:
-                                print("Invalid EMD annotation argument at line {0}.".format(lineNumber))
+                                raise Exception("Invalid EMD annotation argument {1} at line {0}.".format(lineNumber, emd_parameter))
                 elif "to" in line or "to-report" in line:
                     factor = Factor(re.sub("[\s]+"," ",line).split(" ")[1])
                     factor.set_return_type(factor_return_type)
@@ -87,7 +87,6 @@ class FactorGenerator:
         for factor in self._factors:
             self._types.add(factor.get_return_type())
             self._types = self._types.union(set(factor.get_parameter_types()))
-        #print(self._typeSignatures)
     def write_python_classes(self):
         if os.path.exists(self.model_factor_path):
             os.remove(self.model_factor_path)
