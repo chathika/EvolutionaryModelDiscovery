@@ -103,7 +103,7 @@ class FactorImportances:
         presence_comparisons = pd.DataFrame(presence_comparisons,columns=["presence_A","presence_B","pvalue_A_{}_than_B".format(how_A_compares_to_B)])
         G = nx.DiGraph()
         for i, row in presence_comparisons.iterrows():
-            if row["pvalue_A_{}_than_B".format(how_A_compares_to_B)] <= (0.05 / presence_comparisons.shape[0]):
+            if row["pvalue_A_{}_than_B".format(how_A_compares_to_B)] <= (significance / presence_comparisons.shape[0]): #Bonferroni correction
                 G.add_edge(row["presence_A"],row["presence_B"], p_value = row["pvalue_A_{}_than_B".format(how_A_compares_to_B)])
         T = nx.transitive_closure(G)
         significant_differences = nx.to_pandas_adjacency(T).sum(axis=1)
