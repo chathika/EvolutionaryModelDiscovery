@@ -5,7 +5,7 @@
 
 Welcome to the EvolutionaryModelDiscovery Documentation
 =======================================================
-Automated agent rule generation and importance evaluation for agent-based models with Genetic Programming and fANOVA.
+Automated agent rule generation and importance evaluation for agent-based models with Genetic Programming and Random Forests.
 
 EvolutionaryModelDiscovery is a framework through which Factors affecting human decision making maybe be assessed on their importance towards the production of a social outcome.
 
