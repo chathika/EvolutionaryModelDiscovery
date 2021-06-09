@@ -30,7 +30,7 @@ setup(
     'Thanks!': 'http://complexity.cecs.ucf.edu/',
     },
     install_requires=[
-        "nl4py>=0.5.11",
+        "nl4py>=0.9.0",
         "deap",
         "numpy",
         "pandas",
