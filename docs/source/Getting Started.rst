@@ -146,10 +146,4 @@ The model can then be evolved using the ``evolve()`` command. NOTE: due to how p
 
 Parallelization
 ^^^^^^^^^^^^^^^
-
-EvolutionaryModelDiscovery can run model evaluations of the genetic program in parallel over multiple processors and multiple nodes on a cluster, using SCoOP. In order to parallelize EvolutionaryModelDiscovery execution, include the Python code in steps 3 and 4 in a single Python script (e.g.: RunEMD.py) and use the ``-m scoop`` directive:
-
-.. code-block:: shell
-
-   python -m scoop RunEMD.py
-   
+Parallelization has been paused on the latest version due to compatibility with Windows and will be reintroduced soon!
