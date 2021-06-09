@@ -1,0 +1,177 @@
+Run,Gen,Rule,Fitness,anchoring_bias,attentional_bias,cognitive_dissonance,confirmation_bias,conformity_bias,egocentric_bias,recency_bias
+0,0.0,( exec-two-species (( pick_from_list (( enlist (( anchoring-bias  ) ) (( anchoring-bias  ) )  ) )  ) ) (( recency-bias  ) )  ) ,0.10060886685171294,2.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,0.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37114388760815364,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,0.0,( exec-two-species (( cognitive-dissonance  ) ) (( attentional-bias  ) )  ) ,0.3892710879944212,0.0,1.0,1.0,0.0,0.0,0.0,0.0
+0,0.0,( exec-homogenous (( pick_from_list (( enlist (( confirmation-bias  ) ) (( conformity-bias  ) )  ) )  ) )  ) ,1.1554039730553174e-16,0.0,0.0,0.0,1.0,1.0,0.0,0.0
+0,0.0,( exec-two-species (( recency-bias  ) ) (( attentional-bias  ) )  ) ,0.4413413726977955,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+0,0.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.36745721070215487,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,0.0,( exec-two-species (( cognitive-dissonance  ) ) (( conformity-bias  ) )  ) ,0.3555324971135986,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+0,0.0,( exec-two-species (( attentional-bias  ) ) (( anchoring-bias  ) )  ) ,0.3550227078488924,1.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,0.0,( exec-homogenous (( pick_from_list (( enlist (( recency-bias  ) ) (( egocentric-bias  ) )  ) )  ) )  ) ,0.07216115635500503,0.0,0.0,0.0,0.0,0.0,1.0,1.0
+0,0.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.38779484879671616,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,0.0,( exec-two-species (( conformity-bias  ) ) (( conformity-bias  ) )  ) ,2.3314683517128287e-15,0.0,0.0,0.0,0.0,2.0,0.0,0.0
+0,0.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.37939959104904986,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,0.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36274125228171655,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,0.0,( exec-homogenous (( recency-bias  ) )  ) ,0.44360370010372463,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,0.0,( exec-two-species (( recency-bias  ) ) (( conformity-bias  ) )  ) ,0.13878011275119972,0.0,0.0,0.0,0.0,1.0,0.0,1.0
+0,0.0,( exec-homogenous (( pick_from_list (( enlist (( confirmation-bias  ) ) (( pick_from_list (( enlist (( attentional-bias  ) ) (( conformity-bias  ) )  ) )  ) )  ) )  ) )  ) ,2.3841173105430056e-08,0.0,1.0,0.0,1.0,1.0,0.0,0.0
+0,1.0,( exec-two-species (( cognitive-dissonance  ) ) (( attentional-bias  ) )  ) ,0.3768873687247348,0.0,1.0,1.0,0.0,0.0,0.0,0.0
+0,1.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.3857837480483691,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,1.0,( exec-two-species (( egocentric-bias  ) ) (( conformity-bias  ) )  ) ,0.37857340644731285,0.0,0.0,0.0,0.0,1.0,1.0,0.0
+0,1.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3799154781695415,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,1.0,( exec-homogenous (( recency-bias  ) )  ) ,0.20162867414946437,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,1.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.37585158689976556,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,1.0,( exec-homogenous (( recency-bias  ) )  ) ,0.14397936146018347,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,1.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37731030637378526,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,1.0,( exec-two-species (( recency-bias  ) ) (( attentional-bias  ) )  ) ,0.38262528558593234,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+0,1.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.38672228811603115,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,1.0,( exec-homogenous (( confirmation-bias  ) )  ) ,8.326672684688674e-17,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+0,1.0,( exec-homogenous (( recency-bias  ) )  ) ,0.2799762011336988,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,1.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.35305025389410954,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,1.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.39719366053802363,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,1.0,( exec-homogenous (( recency-bias  ) )  ) ,0.47118461934121897,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,1.0,( exec-homogenous (( recency-bias  ) )  ) ,0.3612238178388815,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,2.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.37584341251697084,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,2.0,( exec-two-species (( conformity-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.38800269990573927,0.0,0.0,2.0,0.0,1.0,0.0,0.0
+0,2.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.3913371927493465,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,2.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3860572525013373,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,2.0,( exec-homogenous (( recency-bias  ) )  ) ,0.23585404776813768,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+0,2.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.34842430956771375,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,2.0,( exec-two-species (( egocentric-bias  ) ) (( cognitive-dissonance  ) )  ) ,0.3948052801325637,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+0,2.0,( exec-homogenous (( conformity-bias  ) )  ) ,1.9984014443252818e-15,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+0,2.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.3960974164668059,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,2.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.40042363791017443,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,2.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37009698476886643,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,2.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.3806026311567901,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,2.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37858872602671806,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,2.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.359306911491723,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,2.0,( exec-homogenous (( conformity-bias  ) )  ) ,7.216449660063518e-16,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+0,2.0,( exec-two-species (( egocentric-bias  ) ) (( recency-bias  ) )  ) ,0.2891868447048896,0.0,0.0,0.0,0.0,0.0,1.0,1.0
+0,3.0,( exec-two-species (( egocentric-bias  ) ) (( egocentric-bias  ) )  ) ,0.37313847721070964,0.0,0.0,0.0,0.0,0.0,2.0,0.0
+0,3.0,( exec-two-species (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) ,0.36857155277838893,0.0,0.0,2.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.38469033114799556,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.40601583414532544,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,3.0,( exec-two-species (( conformity-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.41042547481101666,0.0,0.0,2.0,0.0,1.0,0.0,0.0
+0,3.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37450972128595716,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,3.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.4036130483909997,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.3722634836869754,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,3.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.4083198726406734,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.3738204364269221,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,3.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.39889842286031507,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.40017937257045283,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.35646849485130705,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-two-species (( conformity-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.34267539964383953,0.0,0.0,2.0,0.0,1.0,0.0,0.0
+0,3.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.3441397363316349,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,3.0,( exec-two-species (( egocentric-bias  ) ) (( cognitive-dissonance  ) )  ) ,0.40558903425232434,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+0,4.0,( exec-two-species (( egocentric-bias  ) ) (( egocentric-bias  ) )  ) ,0.3961170155790248,0.0,0.0,0.0,0.0,0.0,2.0,0.0
+0,4.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3557772629549899,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.37035759702882703,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.36367460645257965,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-two-species (( egocentric-bias  ) ) (( recency-bias  ) )  ) ,0.3729129093398576,0.0,0.0,0.0,0.0,0.0,1.0,1.0
+0,4.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.40037443161852465,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,4.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.39152594658091056,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( attentional-bias  ) )  ) )  ) )  ) ,0.36210178028083945,0.0,2.0,1.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.35929390886137247,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.3663135711381339,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-homogenous (( conformity-bias  ) )  ) ,3.3306690738754696e-16,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+0,4.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.380504870238477,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-two-species (( conformity-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( egocentric-bias  ) )  ) )  ) )  ) ,0.3903034042423637,0.0,0.0,1.0,0.0,1.0,1.0,0.0
+0,4.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36634182877993104,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,4.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37850950472892925,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,4.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.37349684480005585,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36730332009860434,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.400062221610799,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-two-species (( egocentric-bias  ) ) (( recency-bias  ) )  ) ,0.37465224687195237,0.0,0.0,0.0,0.0,0.0,1.0,1.0
+0,5.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.34875463515926264,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,5.0,( exec-two-species (( attentional-bias  ) ) (( attentional-bias  ) )  ) ,0.38173223997741984,0.0,2.0,0.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.39136490138779473,0.0,0.0,2.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37162559262819733,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,5.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4045005810424169,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-two-species (( attentional-bias  ) ) (( egocentric-bias  ) )  ) ,0.379748397241341,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+0,5.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.3934334275294817,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3937876782600182,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( attentional-bias  ) )  ) ,0.3499573840865758,0.0,1.0,0.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38925198043098913,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.3654686921694161,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,5.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.370524528089199,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,5.0,( exec-homogenous (( conformity-bias  ) )  ) ,3.0531133177191805e-16,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+0,6.0,( exec-homogenous (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.3915625563153923,0.0,0.0,2.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.352863431225311,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.40499742661029703,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( anchoring-bias  ) )  ) ,7.216449660063518e-16,1.0,0.0,0.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3760645336971807,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.380886734940895,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( conformity-bias  ) )  ) )  ) )  ) ,0.36588405866052376,0.0,1.0,1.0,0.0,1.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.37825289368084275,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-two-species (( attentional-bias  ) ) (( pick_from_list (( enlist (( cognitive-dissonance  ) ) (( cognitive-dissonance  ) )  ) )  ) )  ) ,0.37288926551097745,0.0,1.0,2.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38283007841561056,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3921330083558317,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38125828479398655,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4030900148440993,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-two-species (( attentional-bias  ) ) (( attentional-bias  ) )  ) ,0.3644303306547206,0.0,2.0,0.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38158295627719496,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,6.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3811172341781364,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3875663749279661,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3873275781494156,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36962155031801885,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3866256989349008,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3558143025660055,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.3899297406839504,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36484808042975897,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36525730518544736,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3618920601083638,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36436455870081963,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38759743527171553,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.40199460225467687,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3937443349756382,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-two-species (( egocentric-bias  ) ) (( recency-bias  ) )  ) ,0.34725015168214546,0.0,0.0,0.0,0.0,0.0,1.0,1.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.35455731595866546,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,7.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4014624453338917,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.39556571790959355,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38527059675935055,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.39526378599901024,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.37334795215261785,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36770482357195433,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3634045579986954,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3567353363687546,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3409948745206887,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38403284482899397,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38666626005785626,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3588345605370555,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.390778604451556,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4070463778170927,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( egocentric-bias  ) )  ) ,0.37736572595554463,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3595768637731653,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,8.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3828799590591813,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3765633586550712,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3939700149415352,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38570162316129036,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4084694788664247,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.35842717093353144,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.39211451419827803,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.37572928604150935,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3856327193854861,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4060399085559164,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.39753439530232515,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3935314357324188,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3603496221983313,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.39327900962716916,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3991301749927519,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.34701437278318126,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,9.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38904928201640704,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3695704653871846,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.40018304468366345,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38134599134773667,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4100247514679495,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36090303061876294,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.37629429559334193,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.37106493242309735,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36350534015430697,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.41715971029411364,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.38966487502670105,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.36705213691326216,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.3868980065042347,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-two-species (( confirmation-bias  ) ) (( attentional-bias  ) )  ) ,0.5532286817426529,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4212799959719563,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.4003399794641514,0.0,0.0,1.0,0.0,0.0,0.0,0.0
+0,10.0,( exec-homogenous (( cognitive-dissonance  ) )  ) ,0.40929123722239746,0.0,0.0,1.0,0.0,0.0,0.0,0.0
