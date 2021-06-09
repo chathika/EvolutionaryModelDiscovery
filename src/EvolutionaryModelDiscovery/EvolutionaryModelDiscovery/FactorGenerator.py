@@ -88,8 +88,8 @@ class FactorGenerator:
             self._types.add(factor.get_return_type())
             self._types = self._types.union(set(factor.get_parameter_types()))
     def write_python_classes(self):
-        if os.path.exists(self.model_factor_path):
-            os.remove(self.model_factor_path)
+        #if os.path.exists(self.model_factor_path):
+        #    os.remove(self.model_factor_path)
         self.write_class_names()
         self.write_negative_ops_dictionary()
         self.write_measureable_factors()

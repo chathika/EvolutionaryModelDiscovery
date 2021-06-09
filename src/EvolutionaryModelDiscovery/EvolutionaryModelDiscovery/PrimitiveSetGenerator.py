@@ -11,15 +11,19 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
+
 from .Factor import Factor
 from .Util import *
-import distutils.sysconfig
-from os import path
+
 class PrimitiveSetGenerator:    
+    
     model_factor_path = ""
+    
     def __init__(self):
         self.model_factor_path = get_model_factors_path()
+    
     def generate(self, factors, final_return_type):
+        wait_for_files([self.model_factor_path])
         with open(self.model_factor_path, "a+") as f:
             f.write('\nclass EMD_model_evaluation:')
             f.write('\n\t__name__ = ""')
@@ -44,5 +48,3 @@ class PrimitiveSetGenerator:
                     f.write('\n\tpset.addPrimitive({0}, {1}, {2}, name = "{0}")'.format(factor.get_safe_name(),parameter_string,factor.get_return_type()))
             f.write('\n\tpset.addPrimitive(EMD_model_evaluation, [{0}], EMD_model_evaluation)'.format(final_return_type))
             f.write('\n\treturn pset')
-        '''f.write('\npset.addPrimitive(inject_rule_and_evaluate_ABM, [nl_agent], float)')
-        f.write('\npset.addPrimitive(nl_min_one_of, [nl_comparator, nl_agent_set], nl_agent)')'''  

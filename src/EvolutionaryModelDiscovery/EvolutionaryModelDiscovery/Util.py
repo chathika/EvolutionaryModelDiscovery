@@ -11,74 +11,98 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
+
+from typing import List
 import re
 import pkg_resources
-import os
 import functools
 import inspect
 import warnings
+from pathlib import Path
+import shutil
 
 def netlogo_EMD_line_to_array(netlogo_EMD_line):
     netlogo_EMD_line = netlogo_EMD_line.lower()
-    if "@emd" in netlogo_EMD_line:
-        return re.sub("[\s;]","",netlogo_EMD_line).split("@")
+    if '@emd' in netlogo_EMD_line:
+        return re.sub('[\s;]','',netlogo_EMD_line).split('@')
     else:
-        raise Exception("Not an EMD annotated line: {}".format(netlogo_EMD_line))
+        raise Exception('Not an EMD annotated line: {}'.format(netlogo_EMD_line))
 
-def get_model_factors_path():
-    model_factors_file_path = pkg_resources.resource_filename('EvolutionaryModelDiscovery', 'ModelFactors.py')    
-    return model_factors_file_path
+def get_model_factors_module_name() -> str:
+    return f'ModelFactors'
+
+def get_model_factors_path() -> str:
+    fpath = f'{get_model_factors_module_name()}.py'
+    model_factors_file_path = pkg_resources.resource_filename('EvolutionaryModelDiscovery', fpath)    
+    return str(model_factors_file_path)
+
+def get_lock_fpath() -> str:
+    lock_fpath = pkg_resources.resource_filename('EvolutionaryModelDiscovery', '.lock')    
+    return lock_fpath
 
 def remove_model_factors_file():
-    if os.path.exists(get_model_factors_path()):
-        os.remove(get_model_factors_path())
+    Path(get_model_factors_path()).unlink(missing_ok=True)
 
 def create_model_factors_file():
-    if os.path.exists(get_model_factors_path()):
-        open(get_model_factors_path(),"w+")
+    if Path.exists(Path(get_model_factors_path())):
+        open(get_model_factors_path(),'w+')
 
 def slugify(value):
     """
     Normalizes string, converts to lowercase, removes non-alpha characters,
-    and converts spaces to hyphens."""
+    and converts spaces to hyphens.
+    """
     value = str(re.sub('[^\w\s-]', '', value).strip().lower())
     value = str(re.sub('[-\s]+', '_', value).lower())
     return value
 
-
-def purge(dir, pattern):
-    for f in os.listdir(dir):
+def purge(dir : str, pattern : str) -> None:
+    for f in dir.iterdir():
         if re.search(pattern, f):
-            os.remove(os.path.join(dir, f))
+            try:
+                Path(dir, f).unlink()
+            except FileNotFoundError:
+                pass
 
-def is_locked(filepath):
-    """Checks if a file is locked by opening it in append mode.
+def clear_cache() -> None:
+    try:
+        path = Path('.cache')
+        for child in path.iterdir():
+            if child.is_file():
+                child.unlink()
+            else:
+                shutil.rm_tree(child)
+        path.rmdir()
+    except Exception:
+        pass
+
+def remove_model(model_path : str):
+    Path(model_path).unlink()
+
+def is_locked(filepath : str) -> bool:
+    """
+    Checks if a file is locked by opening it in append mode.
     If no exception thrown, then the file is not locked.
     """
     locked = None
     file_object = None
-    #if os.path.exists(filepath):
     try:
-        #print("Trying to open {0}.".format( filepath))
         buffer_size = 8
         # Opening file in append mode and read the first 8 characters.
         file_object = open(filepath, 'a', buffer_size)
         if file_object:
-            #print("{0} is not locked.".format(filepath))
             locked = False
     except IOError as message:
-        raise Exception("(unable to open in append mode).{0}.".format(message))
+        raise Exception('(unable to open in append mode).{0}.'.format(message))
         locked = True
     finally:
         if file_object:
             file_object.close()
-            #print("{0} closed.".format(filepath))
-    #else:
-    #    print("{0} not found.".format(filepath))
     return locked
 
-def wait_for_files(filepaths):
-    """Checks if the files are ready.
+def wait_for_files(filepaths : List[str]) -> None:
+    """
+    Checks if the files are ready.
 
     For a file to be ready it must exist and can be opened in append
     mode.
@@ -87,15 +111,9 @@ def wait_for_files(filepaths):
     for filepath in filepaths:
         # If the file doesn't exist, wait wait_time seconds and try again
         # until it's found.
-        #while not os.path.exists(filepath):
-        #    print("{0} hasn't arrived. Waiting {1} seconds.".format(filepath, wait_time))
-        #    time.sleep(wait_time)
         # If the file exists but locked, wait wait_time seconds and check
         # again until it's no longer locked by another process.
         while is_locked(filepath):
-            #print(filepath)
-            #print("waiting on file")
-            #print("{0} is currently in use. Waiting {1} seconds.".format(filepath, wait_time))
             time.sleep(wait_time)
 
 
@@ -122,9 +140,9 @@ def deprecated(reason):
         def decorator(func1):
 
             if inspect.isclass(func1):
-                fmt1 = "Call to deprecated class {name} ({reason})."
+                fmt1 = 'Call to deprecated class {name} ({reason}).'
             else:
-                fmt1 = "Call to deprecated function {name} ({reason})."
+                fmt1 = 'Call to deprecated function {name} ({reason}).'
 
             @functools.wraps(func1)
             def new_func1(*args, **kwargs):
@@ -154,9 +172,9 @@ def deprecated(reason):
         func2 = reason
 
         if inspect.isclass(func2):
-            fmt2 = "Call to deprecated class {name}."
+            fmt2 = 'Call to deprecated class {name}.'
         else:
-            fmt2 = "Call to deprecated function {name}."
+            fmt2 = 'Call to deprecated function {name}.'
 
         @functools.wraps(func2)
         def new_func2(*args, **kwargs):

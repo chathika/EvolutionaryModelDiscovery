@@ -12,15 +12,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
 import os
-import sys
 import importlib
-import numpy as np
 import pandas as pd
 import networkx as nx
 from scipy import stats
 import multiprocessing
 from sklearn.ensemble import RandomForestRegressor
 from eli5.sklearn import PermutationImportance
+
+from .Util import * 
 
 class FactorImportances:
 
@@ -32,8 +32,8 @@ class FactorImportances:
             self.factor_scores = pd.read_csv(os.path.join(factor_scores)).fillna(0)
         else:
             raise TypeError("factor_scores should be a str path or pandas DataFrame.") 
-
-        self.model_factors = importlib.import_module("EvolutionaryModelDiscovery.ModelFactors")
+        module_name = get_model_factors_module_name() 
+        self.model_factors = importlib.import_module(f"EvolutionaryModelDiscovery.{module_name}")
 
 
     def train_random_forest(self, num_trees = 520, interactions = False):
@@ -103,7 +103,7 @@ class FactorImportances:
         presence_comparisons = pd.DataFrame(presence_comparisons,columns=["presence_A","presence_B","pvalue_A_{}_than_B".format(how_A_compares_to_B)])
         G = nx.DiGraph()
         for i, row in presence_comparisons.iterrows():
-            if row["pvalue_A_{}_than_B".format(how_A_compares_to_B)] <= (significance / presence_comparisons.shape[0]): #Bonferroni correction
+            if row["pvalue_A_{}_than_B".format(how_A_compares_to_B)] <= (0.05 / presence_comparisons.shape[0]):
                 G.add_edge(row["presence_A"],row["presence_B"], p_value = row["pvalue_A_{}_than_B".format(how_A_compares_to_B)])
         T = nx.transitive_closure(G)
         significant_differences = nx.to_pandas_adjacency(T).sum(axis=1)
