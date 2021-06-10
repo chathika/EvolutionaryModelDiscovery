@@ -15,7 +15,7 @@ from setuptools  import setup
 
 setup(
     name='EvolutionaryModelDiscovery',
-    version='2.0.0rc',
+    version='2.0.0',
     author='Chathika Gunaratne',
     author_email='chathikagunaratne@gmail.com',
     packages=['EvolutionaryModelDiscovery'],
