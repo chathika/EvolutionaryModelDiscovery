@@ -1,11 +1,17 @@
 from EvolutionaryModelDiscovery import EvolutionaryModelDiscovery
+import argparse
 
-netlogo_path = 'C:/Program Files/NetLogo 6.2.0'
+parser = argparse.ArgumentParser(description="Evolutionary Model Discovery Example: Farm Selection of the Artificial Anasazi")
+parser.add_argument("NETLOGO_PATH", help="Please provide the path to the top level of your NetLogo installation.")
+args = parser.parse_args()
+
 model_path = "polarization.nlogo"
 setup = ['setup']
 measurements = ["ticks", "polarization"]
-ticks = 1
-emd = EvolutionaryModelDiscovery(netlogo_path=netlogo_path, model_path=model_path, setup_commands=setup, measurement_reporters=measurements, ticks_to_run=100)
+ticks = 100
+
+emd = EvolutionaryModelDiscovery(netlogo_path=args.NETLOGO_PATH, model_path=model_path, setup_commands=setup, 
+                                                                        measurement_reporters=measurements, ticks_to_run=ticks)
 
 def averageNumberOfAgents(results):
     return results.iloc[-1].polarization
@@ -13,9 +19,8 @@ def averageNumberOfAgents(results):
 emd.set_objective_function(averageNumberOfAgents)
 emd.set_mutation_rate(0.05)
 emd.set_crossover_rate(0.8)
-emd.set_generations(10)
-emd.set_population_size(16)
-emd.set_replications(10)
+emd.set_generations(20)
+emd.set_population_size(20)
 emd.set_depth(1,20)
 emd.set_is_minimize(False)
 if __name__ == '__main__':

@@ -23,12 +23,12 @@ measurements = ["L2-error"]
 ticks = 550
 
 emd = EvolutionaryModelDiscovery(netlogo_path=args.NETLOGO_PATH, model_path=model_path, setup_commands=setup, 
-                                                                        measurement_reporters=measurements, ticks_to_run=1)
+                                                                        measurement_reporters=measurements, ticks_to_run=ticks)
 emd.set_mutation_rate(0.1)
 emd.set_crossover_rate(0.8)
 emd.set_generations(20)
 emd.set_depth(4,8)
-emd.set_population_size(4)
+emd.set_population_size(20)
 emd.set_is_minimize(True)
 
 def simulation_error(results):
