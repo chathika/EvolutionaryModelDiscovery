@@ -7,3 +7,4 @@ v1.0.0rc 12th May 2020 --Random forest importance analysis and Mann Whitney U te
 v1.1.0 8th June 2021 --Lot of code standardization and clean up. Compatibility with latest NL4Py. Removed parallelization temporarily for Windows support. 
 v1.2.0 9th June 2021 --Lot of code standardization and clean up. Compatibility with latest NL4Py. Removed parallelization temporarily for Windows support. 
 v1.3.0 9th June 2021 --Temporary model file caching bug fix. 
+v2.0.0 10th June 2021 --Parallelization fix for Windows and Ubuntu.
