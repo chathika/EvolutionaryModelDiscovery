@@ -1,4 +1,4 @@
-__includes ["factors.nls"]
+__includes ["Factors.nls"]
 
 breed [historical-settlements historical-settlement] ; historical occupation
 breed [households household]
@@ -236,7 +236,7 @@ to find-farm-and-settlement
     ;GECCO: Evo-code below
     set best-farm
     ;;insert evolutionary code here
-    ;; @EMD @EvolveNextLine @Factors-File="factors.nls" @return-type=farmplot
+    ;; @EMD @EvolveNextLine @Factors-File="Factors.nls" @return-type=farmplot
 (get-max-one-of  all-potential-farms compare-distance)
     ;max-one-of ( potential-farm-set ) [ (APDSI / 9) - (yield / 1201) + (quality / 2) - (quality / 2) - (APDSI / 9) -  (quality / 2) - (APDSI / 9)  -  (quality / 2) - ((distance patch x-of-farm y-of-farm) / 144) - (quality / 2) - ((distance patch x-of-farm y-of-farm) / 144)]
 
@@ -1499,7 +1499,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.4
+NetLogo 6.2.0
 @#$#@#$#@
 need-to-manually-make-preview-for-this-model
 @#$#@#$#@
