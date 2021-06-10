@@ -22,11 +22,8 @@ from pathlib import Path
 import shutil
 
 def netlogo_EMD_line_to_array(netlogo_EMD_line):
-    netlogo_EMD_line = netlogo_EMD_line.lower()
-    if '@emd' in netlogo_EMD_line:
-        return re.sub('[\s;]','',netlogo_EMD_line).split('@')
-    else:
-        raise Exception('Not an EMD annotated line: {}'.format(netlogo_EMD_line))
+    assert '@emd' in netlogo_EMD_line.lower(), f'Not an EMD annotated line: {netlogo_EMD_line}'
+    return re.sub('[\s;]','',netlogo_EMD_line).split('@')
 
 def get_model_factors_module_name() -> str:
     return f'ModelFactors'
@@ -57,8 +54,8 @@ def slugify(value):
     return value
 
 def purge(dir : str, pattern : str) -> None:
-    for f in dir.iterdir():
-        if re.search(pattern, f):
+    for f in Path(dir).iterdir():
+        if re.search(pattern, str(f)):
             try:
                 Path(dir, f).unlink()
             except FileNotFoundError:

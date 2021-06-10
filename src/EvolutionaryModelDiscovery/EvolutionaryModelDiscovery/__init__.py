@@ -12,12 +12,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
 
+from datetime import time
 from typing import Callable, List, Union
 from pathlib import Path
-import nl4py
-import pandas as pd
 import atexit
 import importlib
+import time
+
+import nl4py
+import pandas as pd
 
 from .NetLogoWriter import NetLogoWriter
 from .FactorGenerator import FactorGenerator
@@ -29,7 +32,7 @@ from .Util import *
 
 def exit_handler() -> None:
     remove_model_factors_file()
-    clear_cache()
+    #purge('.','.EMD.nlogo')
 
 atexit.register(exit_handler)
 
@@ -71,10 +74,10 @@ class EvolutionaryModelDiscovery:
             'go_command' : go_command
         }
         self.replications = 1
-        ModelFactors = self._parse_model_into_factors()
+        ModelFactors, netlogo_writer = self._parse_model_into_factors()
         # Starting NL4Py
         nl4py.initialize(netlogo_path)
-        self.gp = SimpleDEAPGP(self.model_init_data, ModelFactors)
+        self.gp = SimpleDEAPGP(self.model_init_data, ModelFactors, netlogo_writer)
         self.factor_scores_file_name = 'FactorScores.csv'
     
     def set_mutation_rate(self, mutation_rate : float) -> None:
@@ -110,22 +113,20 @@ class EvolutionaryModelDiscovery:
         for syntax tree representation
         """
 
-        netLogoWriter = NetLogoWriter(self.model_init_data['model_path'])
+        netlogo_writer = NetLogoWriter(self.model_init_data['model_path'])
         #  Evolutionary Model Discovery Initializing
         #Reset Factors files
-        #remove_model_factors_file()
         create_model_factors_file()
         # Parsing NetLogo model into syntax tree primitives and Python classes
         # by reading in annotations from .nlogo file and generate EMD factors
-        factorGenerator = FactorGenerator()
-        factorGenerator.generate(netLogoWriter.get_factors_file_path())
+        factor_generator = FactorGenerator()
+        factor_generator.generate(netlogo_writer.get_factors_file_path())
         # Generate the ModelFactors.py file, Loading parsed primitives as Python classes
-        primitiveSetGenerator = PrimitiveSetGenerator()
-        primitiveSetGenerator.generate(factorGenerator.get_factors(),netLogoWriter.get_EMD_return_type())
-        #remove_model_factors_file()   
+        primitive_set_generator = PrimitiveSetGenerator()
+        primitive_set_generator.generate(factor_generator.get_factors(),netlogo_writer.get_EMD_return_type())
         module_name = get_model_factors_module_name()
         ModelFactors = importlib.import_module(f'EvolutionaryModelDiscovery.{module_name}')        
-        return ModelFactors
+        return ModelFactors, netlogo_writer
     
     def evolve(self) -> pd.DataFrame:
         '''
@@ -151,8 +152,6 @@ class EvolutionaryModelDiscovery:
                 self.factor_scores.to_csv(self.factor_scores_file_name,  header=True,index=False)
         print('--- Genetic program runs finished, output written to {} ---'.format(
                                                 self.factor_scores_file_name))
-        #clean up any module factors files
-        remove_model_factors_file()
         return self.factor_scores
         
     def get_factor_importances_calculator(self,

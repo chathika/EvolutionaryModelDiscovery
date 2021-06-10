@@ -12,7 +12,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
 
-from typing import Callable, Any, List
+from typing import Callable, Any, List, Dict
 import multiprocessing
 import random
 from inspect import isclass
@@ -22,11 +22,13 @@ import pandas as pd
 import numpy as np
 
 from .Util import *
-from .ABMEvaluator import set_objective_function, set_model_factors, set_model_init_data, evaluate
-
+from .ABMEvaluator import set_objective_function, set_model_factors, set_model_init_data, set_netlogo_writer, evaluate
+from .NetLogoWriter import NetLogoWriter
+ 
 class SimpleDEAPGP:
 
-    def __init__(self, model_init_data, ModelFactors) -> None:
+    def __init__(self, model_init_data : Dict, ModelFactors : 'EvolutionaryModelDiscovery.ModelFactors', 
+                            netlogo_writer : NetLogoWriter) -> None:
         """
         Genetic program that handles the evolution of the agent-based model rule.
 
@@ -42,6 +44,7 @@ class SimpleDEAPGP:
         self._pop_init_size = 5
         set_model_init_data(model_init_data)        
         set_model_factors(ModelFactors)
+        set_netlogo_writer(netlogo_writer)
         self._pset = ModelFactors.get_DEAP_primitive_set()
         self._setup_DEAP_GP()
     
@@ -169,7 +172,8 @@ class SimpleDEAPGP:
         factorScores = pd.DataFrame()
         num_procs = multiprocessing.cpu_count() if num_procs < 1 else num_procs
         
-        results = list(map(evaluate, invalid_ind))
+        with multiprocessing.pool.ThreadPool(num_procs) as pool:
+            results = list(pool.imap(evaluate, invalid_ind))
         fitnesses = []
         factorScores = pd.DataFrame()
         for result in results:
@@ -201,8 +205,9 @@ class SimpleDEAPGP:
             
             # Evaluate the individuals with an invalid fitness
             invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
-           
-            results = list(map(evaluate, invalid_ind))
+
+            with  multiprocessing.pool.ThreadPool(num_procs) as pool:
+                results = list(pool.imap(evaluate, invalid_ind))
             fitnesses = []
             for result in results:
                 fitnesses.append(result.Fitness)

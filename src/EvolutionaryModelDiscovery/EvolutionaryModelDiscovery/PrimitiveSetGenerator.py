@@ -23,7 +23,6 @@ class PrimitiveSetGenerator:
         self.model_factor_path = get_model_factors_path()
     
     def generate(self, factors, final_return_type):
-        wait_for_files([self.model_factor_path])
         with open(self.model_factor_path, "a+") as f:
             f.write('\nclass EMD_model_evaluation:')
             f.write('\n\t__name__ = ""')

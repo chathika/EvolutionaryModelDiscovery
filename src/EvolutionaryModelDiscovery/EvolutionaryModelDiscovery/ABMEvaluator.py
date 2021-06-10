@@ -43,10 +43,14 @@ def set_model_init_data(model_init_data : Dict[str, Any]):
     global MODEL_INIT_DATA
     MODEL_INIT_DATA = model_init_data
 
+def set_netlogo_writer(netlogo_writer : NetLogoWriter):
+    global NETLOGO_WRITER
+    NETLOGO_WRITER = netlogo_writer
+
 def evaluate(individual : List[Any]) -> pd.Series:
     scores = score_factors(individual, MODEL_FACTORS)
     newRule = str(gp.compile(individual, MODEL_FACTORS.get_DEAP_primitive_set()))
-    newModelPath = NetLogoWriter(MODEL_INIT_DATA['model_path']).inject_new_rule(newRule)
+    newModelPath = NETLOGO_WRITER.inject_new_rule(newRule)
     fitness = simulate(newModelPath, MODEL_INIT_DATA["setup_commands"], 
     MODEL_INIT_DATA["measurement_commands"], MODEL_INIT_DATA["ticks_to_run"], 
     MODEL_INIT_DATA["go_command"])
@@ -54,7 +58,6 @@ def evaluate(individual : List[Any]) -> pd.Series:
     scores["Fitness"] = fitness
     scores["Rule"] = newRule[:-1]
     scores = pd.Series(list(scores.values()),index=scores.keys())
-    remove_model_factors_file()
     return scores
 
 def simulate( model_path : str, setup_commands : List[str], measurement_reporters : List[str], 
