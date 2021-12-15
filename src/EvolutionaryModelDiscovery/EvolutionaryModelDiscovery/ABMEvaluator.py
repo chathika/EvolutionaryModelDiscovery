@@ -17,6 +17,7 @@ import math
 import nl4py
 import pandas as pd
 from deap import gp
+import numpy as np
 
 from .Util import *
 from .NetLogoWriter import NetLogoWriter
@@ -53,38 +54,45 @@ def evaluate(individual : List[Any]) -> pd.Series:
     newModelPath = NETLOGO_WRITER.inject_new_rule(newRule)
     fitness = simulate(newModelPath, MODEL_INIT_DATA["setup_commands"], 
     MODEL_INIT_DATA["measurement_commands"], MODEL_INIT_DATA["ticks_to_run"], 
-    MODEL_INIT_DATA["go_command"])
+    MODEL_INIT_DATA["go_command"], MODEL_INIT_DATA['agg_func'])
     remove_model(newModelPath)
     scores["Fitness"] = fitness
     scores["Rule"] = newRule[:-1]
     scores = pd.Series(list(scores.values()),index=scores.keys())
     return scores
 
-def simulate( model_path : str, setup_commands : List[str], measurement_reporters : List[str], 
-                                            ticks_to_run : int, go_command : str) -> pd.DataFrame:
+def simulate( model_path : str, all_setup_commands : List[Any], measurement_reporters : List[str], 
+                                            ticks_to_run : int, go_command : str, agg_func : Callable = np.mean) -> pd.DataFrame:
     """
     Creates a workspace for the NetLogo model and runs it by specified parameters, returning workspace results as pandas dataframe
 
     :param model_path: str file path to .nlogo model file.
-    :param setup_commands: list of str NetLogo commands for simulation setup.
+    :param all_setup_commands: list of str NetLogo commands for simulation setup.
     :param measurement_reporters: list of str NetLogo reporters to measure simulation state per tick.
     :param ticks_to_run: int number of ticks to run simulation for.
     :param go_command: str NetLogo command to run simulation.
-    :returns: List of Lists of measurements sampled per tick of simulation.
+    :param agg_func: function use to aggregate results of replicates.
+    :returns: simulation fitness.
 
     """
     
     workspace = nl4py.create_headless_workspace()
     workspace.open_model(model_path)
-    for setup_command in setup_commands:
-        workspace.command(setup_command)
+    assert (type(all_setup_commands[0]) == str or type(all_setup_commands[0]) == list), (
+        f'setup_commands must be of type List[str] or List[List[str]]!')
+    if type(all_setup_commands[0]) == str:
+        all_setup_commands = [all_setup_commands]
     if ticks_to_run < 0:
         ticks_to_run = math.pow(2,31) # Run "forever" because no stop condition provided.
-    measures = workspace.schedule_reporters(measurement_reporters, 0,1,ticks_to_run, go_command)
+    all_results = []
+    for setup_commands_replicate in all_setup_commands:
+        for setup_command in setup_commands_replicate:
+            workspace.command(setup_command)        
+        measures = workspace.schedule_reporters(measurement_reporters, 0,1,ticks_to_run, go_command)
+        measures = pd.DataFrame(measures, columns=measurement_reporters)
+        all_results.append(OBJECTIVE_FUNCTION(measures))
     workspace.deleteWorkspace()
-    measures = pd.DataFrame(measures, columns=measurement_reporters)
-    result = OBJECTIVE_FUNCTION(measures)
-    return result,
+    return agg_func(all_results),
 
 
 def score_factors(ind, ModelFactors):

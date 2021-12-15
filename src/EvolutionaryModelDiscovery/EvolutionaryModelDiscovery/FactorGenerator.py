@@ -60,7 +60,7 @@ class FactorGenerator:
                                 parameter_type = emd_parameter.replace("parameter-type=", "")
                                 factor_parameter_types.append("EMD" + parameter_type )
                             elif "structure=" in emd_parameter:
-                                parameter_contributions_to_fitness = emd_parameter.replace("structure=", "")[1:-1].split(",")
+                                parameter_contributions_to_fitness = emd_parameter.replace("structure=", "").split(",")
                             elif "interaction" in emd_parameter:
                                 interaction_identified = True
                             else:

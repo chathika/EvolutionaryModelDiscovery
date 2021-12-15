@@ -18,6 +18,7 @@ from pathlib import Path
 import atexit
 import importlib
 import time
+import numpy as np
 
 import nl4py
 import pandas as pd
@@ -32,7 +33,7 @@ from .Util import *
 
 def exit_handler() -> None:
     remove_model_factors_file()
-    #purge('.','.EMD.nlogo')
+    purge('.','.EMD.nlogo')
 
 atexit.register(exit_handler)
 
@@ -40,7 +41,7 @@ class EvolutionaryModelDiscovery:
     
     def __init__(self, netlogo_path : str, model_path : str, setup_commands : List[str], 
                     measurement_reporters : List[str], ticks_to_run : int, 
-                    go_command : str = 'go') -> None:
+                    go_command : str = 'go', agg_func : Callable = np.mean) -> None:
         """
         Evolutionary model discovery experiment. Can be used to perform genetic programming 
         of NetLogo models and factor importance analysis of resulting data using random 
@@ -57,12 +58,14 @@ class EvolutionaryModelDiscovery:
 
         :param netlogo_path: str path to folder with NetLogo executable
         :param model_path: str path to NetLogo .nlogo model file
-        :param setup_commands: List[str] of NetLogo commands to be executed on simulation setup
+        :param setup_commands: List[str] or List[List[str]] of NetLogo commands to be executed on simulation setup. 
+                                            List[List[str]] indicates simulation replicates per element of major list.
         :param measurement_reporters: List[str] of NetLogo reporters to be run per simulation
                                             executed per simulation tick and reported to 
                                             objective function callback
         :param ticks_to_run: int number of ticks to run each simulation for
         :param go_command: str command to run NetLogo simulations (default: 'go')
+        :param agg_func: Callable function used to aggregate results of multiple replicates
 
         """
         # Initialize ABM
@@ -71,7 +74,8 @@ class EvolutionaryModelDiscovery:
             'setup_commands' : setup_commands,
             'measurement_commands' : measurement_reporters,
             'ticks_to_run' : ticks_to_run,
-            'go_command' : go_command
+            'go_command' : go_command,
+            'agg_func' : agg_func
         }
         self.replications = 1
         ModelFactors, netlogo_writer = self._parse_model_into_factors()
