@@ -12,57 +12,87 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
 
-from typing import Dict, List, Callable, Any
+from typing import Dict, List, Callable, Any, Union
 import math
-import nl4py
-import pandas as pd
-from deap import gp
+
 import numpy as np
+import pandas as pd
+import nl4py
+from deap import gp
+
 
 from .Util import *
 from .NetLogoWriter import NetLogoWriter
 
-def default_objective(results : pd.DataFrame) -> float:
+
+def default_objective(results: pd.DataFrame) -> float:
+    '''
+    Placeholder objective function. User must provide an objective function
+    that translates simulation results to fitness for the genetic program.
+
+    :param results: pd.DataFrame of simulation results as returned by NL4Py.
+    :return: simulation results translated into fitness for genetic program.
+    '''
     return 0
+
 
 OBJECTIVE_FUNCTION = default_objective
 
-def set_objective_function(objective_function : Callable):
+
+def set_objective_function(objective_function: Callable) -> None:
     """
     Sets a custom callable as the objective function for the GP. 
 
     :param objective_function: Callable to be executed by GP. Must return a fitness value.
     """
-    global OBJECTIVE_FUNCTION 
+    global OBJECTIVE_FUNCTION
     OBJECTIVE_FUNCTION = objective_function
 
-def set_model_factors(model_factors : 'EvolutionaryModelDiscovery.ModelFactors'):
+
+def set_model_factors(model_factors: 'EvolutionaryModelDiscovery.ModelFactors') -> None:
     global MODEL_FACTORS
     MODEL_FACTORS = model_factors
 
-def set_model_init_data(model_init_data : Dict[str, Any]):
+
+def set_model_init_data(model_init_data: Dict[str, Any]) -> None:
     global MODEL_INIT_DATA
     MODEL_INIT_DATA = model_init_data
 
-def set_netlogo_writer(netlogo_writer : NetLogoWriter):
+
+def set_netlogo_writer(netlogo_writer: NetLogoWriter) -> None:
     global NETLOGO_WRITER
     NETLOGO_WRITER = netlogo_writer
 
-def evaluate(individual : List[Any]) -> pd.Series:
-    scores = score_factors(individual, MODEL_FACTORS)
-    newRule = str(gp.compile(individual, MODEL_FACTORS.get_DEAP_primitive_set()))
-    newModelPath = NETLOGO_WRITER.inject_new_rule(newRule)
-    fitness = simulate(newModelPath, MODEL_INIT_DATA["setup_commands"], 
-    MODEL_INIT_DATA["measurement_commands"], MODEL_INIT_DATA["ticks_to_run"], 
-    MODEL_INIT_DATA["go_command"], MODEL_INIT_DATA['agg_func'])
-    remove_model(newModelPath)
-    scores["Fitness"] = fitness
-    scores["Rule"] = newRule[:-1]
-    scores = pd.Series(list(scores.values()),index=scores.keys())
-    return scores
 
-def simulate( model_path : str, all_setup_commands : List[Any], measurement_reporters : List[str], 
-                                            ticks_to_run : int, go_command : str, agg_func : Callable = np.mean) -> pd.DataFrame:
+def evaluate(individual: Union['gp.creator.IndividualMin', 'gp.creator.IndividualMax']) -> pd.Series:
+    '''
+    Genetic program's evaluation function. 
+
+    Simplifies and scores factor/factor-interaction presence.
+    Compiles gp tree representation into flattened str format.
+    Writes rule to new NetLogo model.
+    Simulates new NetLogo model and records fitness.
+    Cleans up auto-generated NetLogo model.
+
+    :param individual: Union['gp.creator.IndividualMin', 'gp.creator.IndividualMax'] gp individual
+    :return: pd.Series containing presence scores, fitness, and compiled rule of executed gp individual
+    '''
+    ind_record = score_factor_presence(individual, MODEL_FACTORS)
+    newRule = str(gp.compile(
+        individual, MODEL_FACTORS.get_DEAP_primitive_set()))
+    newModelPath = NETLOGO_WRITER.inject_new_rule(newRule)
+    fitness = simulate(newModelPath, MODEL_INIT_DATA["setup_commands"],
+                       MODEL_INIT_DATA["measurement_commands"], MODEL_INIT_DATA["ticks_to_run"],
+                       MODEL_INIT_DATA["go_command"], MODEL_INIT_DATA['agg_func'])
+    remove_model(newModelPath)
+    ind_record["Fitness"] = fitness
+    ind_record["Rule"] = newRule[:-1]
+    ind_record = pd.Series(list(ind_record.values()), index=ind_record.keys())
+    return ind_record
+
+
+def simulate(model_path: str, all_setup_commands: List[Any], measurement_reporters: List[str],
+             ticks_to_run: int, go_command: str, agg_func: Callable = np.mean) -> pd.DataFrame:
     """
     Creates a workspace for the NetLogo model and runs it by specified parameters, returning workspace results as pandas dataframe
 
@@ -72,10 +102,9 @@ def simulate( model_path : str, all_setup_commands : List[Any], measurement_repo
     :param ticks_to_run: int number of ticks to run simulation for.
     :param go_command: str NetLogo command to run simulation.
     :param agg_func: function use to aggregate results of replicates.
-    :returns: simulation fitness.
-
+    :returns: pd.DataFrame of simulation fitness.
     """
-    
+
     workspace = nl4py.create_headless_workspace()
     workspace.open_model(model_path)
     assert (type(all_setup_commands[0]) == str or type(all_setup_commands[0]) == list), (
@@ -83,76 +112,88 @@ def simulate( model_path : str, all_setup_commands : List[Any], measurement_repo
     if type(all_setup_commands[0]) == str:
         all_setup_commands = [all_setup_commands]
     if ticks_to_run < 0:
-        ticks_to_run = math.pow(2,31) # Run "forever" because no stop condition provided.
+        # Run "forever" because no stop condition provided.
+        ticks_to_run = math.pow(2, 31)
     all_results = []
     for setup_commands_replicate in all_setup_commands:
         for setup_command in setup_commands_replicate:
-            workspace.command(setup_command)        
-        measures = workspace.schedule_reporters(measurement_reporters, 0,1,ticks_to_run, go_command)
+            workspace.command(setup_command)
+        measures = workspace.schedule_reporters(
+            measurement_reporters, 0, 1, ticks_to_run, go_command)
         measures = pd.DataFrame(measures, columns=measurement_reporters)
         all_results.append(OBJECTIVE_FUNCTION(measures))
     workspace.deleteWorkspace()
     return agg_func(all_results),
 
 
-def score_factors(ind, ModelFactors):
+def score_factor_presence(ind: Union['gp.creator.IndividualMin', 'gp.creator.IndividualMax'],
+                          ModelFactors: 'EvolutionaryModelDiscovery.ModelFactors') -> Dict[str, int]:
     """
-    Scores factor presence by coefficient of simplified rule.
+    Scores factor or factor interaction presence as coefficient of simplified rule.
 
-    :param ModelFactors: ModelFactors module generated and loaded by EMD.
+    :param ind: 
+    :param ModelFactors: ModelFactors module auto-generated and loaded by EMD.
+    :return: Dict[str, int] mapping factor/factor-interaction name to presence score
     """
     factor_interactions = ModelFactors.interactions
     factors = ModelFactors.measureable_factors
-    presence = {}
+    presence_dict = {}
     for factor in factors:
-        presence[factor] = 0
-    stack = [[0, ind[0]]]
-    coef = 1
+        presence_dict[factor] = 0
+    # items on stack represent primitives being processed.
+    # items have 3 elements param num considered, primitive(deap.gp.Primitive), and polarity (int)
+    stack = [{'param_num': 0, 'obj': ind[0], 'polarity': 1}]
     interaction = None
     interactionRoot = None
-    for child in range(1,len(ind)):
+    polarity = 1
+    for child in range(1, len(ind)):
         childString = ind[child].name
         childArity = ind[child].arity
-        ######Update presence counts
-        #Check negate
-        parent = stack[-1] 
-        if interaction == None:            
-            if parent[1].name in ModelFactors.negativeOps.keys():                
-                coef = coef * ModelFactors.negativeOps[parent[1].name][parent[0]]
-            #Count child        
-            if childString in factors :
-                #Countable
-                presence[childString] = presence[childString] + coef
-                coef = 1
-            ### If interaction
+        # Update presence counts
+        # Check negate
+        parent = stack[-1]
+        if interaction == None:
+            if parent['obj'].name in ModelFactors.negativeOps.keys():
+                child_position_polarity = ModelFactors.negativeOps[
+                    parent['obj'].name][parent['param_num']]
+                polarity = parent['polarity'] * child_position_polarity
+            if childString in factors:
+                # Countable
+                print(childString, parent['obj'].name, polarity)
+                presence_dict[childString] = presence_dict[childString] + polarity
+            # If interaction found start recording
             if childString in factor_interactions:
                 interaction = [childString]
                 interactionRoot = len(stack)
         elif type(interaction) == list:
+            # if interaction still processing, append
             interaction.append(childString)
-        ######Traverse
-        #Tell parent a child has been found...
-        stack[-1][0] = stack[-1][0] + 1
-        parent = stack[-1] 
-        #Resolve children if any
-        if childArity == 0 :
-            #Terminal found. 
-            #Travel up the stack and pop any completed parents
-            while parent[0] == parent[1].arity:
-                root = stack.pop()
+        # Process next
+        # Tell parent a child has been found...
+        stack[-1]['param_num'] = stack[-1]['param_num'] + 1
+        parent = stack[-1]
+        # Resolve children if any
+        if childArity == 0:
+            # Terminal found.
+            # Travel up the stack and pop any completed parents
+            while parent['param_num'] == parent['obj'].arity:
+                _ = stack.pop()
                 if len(stack) == 0:
+                    # root reached
                     break
                 parent = stack[-1]
-                #Now, if all this parent removal revealed an interaction root, process it
+                polarity = parent['polarity']
+                # Now, if all this parent removal revealed an interaction root, process it
                 if len(stack) == interactionRoot:
-                    #Interaction is done processing 
+                    # Interaction is done processing
                     interactionString = str(gp.compile(interaction, pset))
-                    presence[interactionString] = presence.get(interactionString,0) + coef
+                    presence_dict[interactionString] = presence_dict.get(
+                        interactionString, 0) + polarity
                     interaction = None
                     interactionRoot = None
-                    coef = 1
+                    polarity = 1
         else:
-            #primitive found. Add to family stack with arity
-            stack.append( [0, ind[child]])
-    return presence
-
+            # primitive found. Add to family stack with arity
+            stack.append(
+                {'param_num': 0, 'obj': ind[child], 'polarity': polarity})
+    return presence_dict
