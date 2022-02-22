@@ -16,13 +16,12 @@ from typing import List
 
 from .Util import slugify
 
-class Factor(object):
-    """
-    Represents an evolutionary model discovery factor. 
 
-    """
+class Factor(object):
+
     def __init__(self, factor_name: str) -> None:
         """
+        Python containter for an evolutionary model discovery factor. 
         Factors have a name, parameters types, and a return type.
 
         :param factor_name: str name of the Factor.
@@ -31,19 +30,19 @@ class Factor(object):
             raise Exception("Invalid factor name: {}".format(factor_name))
         self._factor_name = factor_name
         self._parameter_types = []
-    
+
     def __repr__(self) -> str:
         return str(self._factor_name) + " " + str(self._parameter_types) + " " + str(self._return_type)
-    
-    def add_parameter_type(self, parameter_type : str):
+
+    def add_parameter_type(self, parameter_type: str) -> None:
         self._parameter_types.append(slugify(parameter_type))
 
-    def remove_parameter_type(self, parameter_type : str):
+    def remove_parameter_type(self, parameter_type: str) -> None:
         self._parameter_types.remove(parameter_type)
-    
-    def set_return_type(self, return_type : str):
+
+    def set_return_type(self, return_type: str) -> None:
         self._return_type = slugify(return_type)
-    
+
     def get_return_type(self) -> str:
         return self._return_type
 
@@ -52,6 +51,6 @@ class Factor(object):
 
     def get_parameter_types(self) -> List[str]:
         return self._parameter_types
-    
+
     def get_safe_name(self) -> str:
         return slugify(self._factor_name)
