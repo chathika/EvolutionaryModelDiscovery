@@ -186,7 +186,7 @@ def score_factor_presence(ind: Union['gp.creator.IndividualMin', 'gp.creator.Ind
                 # Now, if all this parent removal revealed an interaction root, process it
                 if len(stack) == interactionRoot:
                     # Interaction is done processing
-                    interactionString = str(gp.compile(interaction, pset))
+                    interactionString = str(gp.compile(interaction, MODEL_FACTORS.get_DEAP_primitive_set()))
                     presence_dict[interactionString] = presence_dict.get(
                         interactionString, 0) + polarity
                     interaction = None
