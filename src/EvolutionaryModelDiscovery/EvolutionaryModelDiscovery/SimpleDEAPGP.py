@@ -301,8 +301,13 @@ def generate(pset, min_ : int, max_ : int, condition : Callable, type_ : Any = N
                     expr.append(prim)
                     for arg in reversed(prim.args):
                         stack.append((depth + 1, arg))
+                elif len(pset.terminals[type_]) > 0:
+                    term = random.choice(pset.terminals[type_])
+                    if isclass(term):
+                        term = term()
+                    expr.append(term)
                 else:
-                    raise TypeError(f'Invalid tree! No primitives of type {type_}')
+                    raise TypeError(f'Invalid tree! No primitives or terminals of type {type_}')
     return expr
 
 def get_values(ind : Any) -> List[float]:
