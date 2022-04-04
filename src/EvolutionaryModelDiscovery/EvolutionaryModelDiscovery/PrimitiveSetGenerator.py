@@ -51,8 +51,6 @@ class PrimitiveSetGenerator:
                 if len(factor.get_parameter_types()) == 0:
                     f.write('\n\tpset.addTerminal({1}({0}()), {1}, name = "{0}")'.format(
                         factor.get_safe_name(), factor.get_return_type()))
-                    f.write('\n\tpset.addPrimitive({0}, [{0}], {0})'.format(
-                        factor.get_return_type()))
                 else:
                     f.write('\n\tpset.addPrimitive({0}, {1}, {2}, name = "{0}")'.format(
                         factor.get_safe_name(), parameter_string, factor.get_return_type()))
