@@ -1,4 +1,4 @@
-'''EvolutionaryModelDiscovery: Automated agent rule generation and 
+"""EvolutionaryModelDiscovery: Automated agent rule generation and 
 importance evaluation for agent-based models with Genetic Programming.
 Copyright (C) 2018  Chathika Gunaratne
 This program is free software: you can redistribute it and/or modify
@@ -10,7 +10,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.'''
+along with this program.  If not, see <http://www.gnu.org/licenses/>."""
 
 from typing import List
 import re
@@ -21,21 +21,32 @@ import warnings
 from pathlib import Path
 import shutil
 
+
 def netlogo_EMD_line_to_array(netlogo_EMD_line):
-    assert '@emd' in netlogo_EMD_line.lower(), f'Not an EMD annotated line: {netlogo_EMD_line}'
-    return re.sub('[\s;]','',netlogo_EMD_line).split('@')
+    assert (
+        "@emd" in netlogo_EMD_line.lower()
+    ), f"Not an EMD annotated line: {netlogo_EMD_line}"
+    return re.sub("[\s;]", "", netlogo_EMD_line).split("@")
+
 
 def get_model_factors_module_name() -> str:
-    return f'ModelFactors'
+    return f"ModelFactors"
+
 
 def get_model_factors_path() -> str:
-    fpath = f'{get_model_factors_module_name()}.py'
-    model_factors_file_path = pkg_resources.resource_filename('EvolutionaryModelDiscovery', fpath)    
+    fpath = f"{get_model_factors_module_name()}.py"
+    model_factors_file_path = pkg_resources.resource_filename(
+        "EvolutionaryModelDiscovery", fpath
+    )
     return str(model_factors_file_path)
 
+
 def get_lock_fpath() -> str:
-    lock_fpath = pkg_resources.resource_filename('EvolutionaryModelDiscovery', '.lock')    
+    lock_fpath = pkg_resources.resource_filename(
+        "EvolutionaryModelDiscovery", ".lock"
+    )
     return lock_fpath
+
 
 def remove_model_factors_file():
     try:
@@ -43,20 +54,23 @@ def remove_model_factors_file():
     except FileNotFoundError:
         pass
 
+
 def create_model_factors_file():
     if Path.exists(Path(get_model_factors_path())):
-        open(get_model_factors_path(),'w+')
+        open(get_model_factors_path(), "w+")
+
 
 def slugify(value):
     """
     Normalizes string, converts to lowercase, removes non-alpha characters,
     and converts spaces to hyphens.
     """
-    value = str(re.sub('[^\w\s-]', '', value).strip().lower())
-    value = str(re.sub('[-\s]+', '_', value).lower())
+    value = str(re.sub("[^\w\s-]", "", value).strip().lower())
+    value = str(re.sub("[-\s]+", "_", value).lower())
     return value
 
-def purge(dir : str, pattern : str) -> None:
+
+def purge(dir: str, pattern: str) -> None:
     for f in Path(dir).iterdir():
         if re.search(pattern, str(f)):
             try:
@@ -64,9 +78,10 @@ def purge(dir : str, pattern : str) -> None:
             except FileNotFoundError:
                 pass
 
+
 def clear_cache() -> None:
     try:
-        path = Path('.cache')
+        path = Path(".cache")
         for child in path.iterdir():
             if child.is_file():
                 child.unlink()
@@ -76,10 +91,12 @@ def clear_cache() -> None:
     except Exception:
         pass
 
-def remove_model(model_path : str):
+
+def remove_model(model_path: str):
     Path(model_path).unlink()
 
-def is_locked(filepath : str) -> bool:
+
+def is_locked(filepath: str) -> bool:
     """
     Checks if a file is locked by opening it in append mode.
     If no exception thrown, then the file is not locked.
@@ -89,18 +106,19 @@ def is_locked(filepath : str) -> bool:
     try:
         buffer_size = 8
         # Opening file in append mode and read the first 8 characters.
-        file_object = open(filepath, 'a', buffer_size)
+        file_object = open(filepath, "a", buffer_size)
         if file_object:
             locked = False
     except IOError as message:
-        raise Exception('(unable to open in append mode).{0}.'.format(message))
+        raise Exception("(unable to open in append mode).{0}.".format(message))
         locked = True
     finally:
         if file_object:
             file_object.close()
     return locked
 
-def wait_for_files(filepaths : List[str]) -> None:
+
+def wait_for_files(filepaths: List[str]) -> None:
     """
     Checks if the files are ready.
 
@@ -117,7 +135,7 @@ def wait_for_files(filepaths : List[str]) -> None:
             time.sleep(wait_time)
 
 
-string_types = (type(b''), type(u''))
+string_types = (type(b""), type(""))
 
 
 def deprecated(reason):
@@ -140,19 +158,19 @@ def deprecated(reason):
         def decorator(func1):
 
             if inspect.isclass(func1):
-                fmt1 = 'Call to deprecated class {name} ({reason}).'
+                fmt1 = "Call to deprecated class {name} ({reason})."
             else:
-                fmt1 = 'Call to deprecated function {name} ({reason}).'
+                fmt1 = "Call to deprecated function {name} ({reason})."
 
             @functools.wraps(func1)
             def new_func1(*args, **kwargs):
-                warnings.simplefilter('always', DeprecationWarning)
+                warnings.simplefilter("always", DeprecationWarning)
                 warnings.warn(
                     fmt1.format(name=func1.__name__, reason=reason),
                     category=DeprecationWarning,
-                    stacklevel=2
+                    stacklevel=2,
                 )
-                warnings.simplefilter('default', DeprecationWarning)
+                warnings.simplefilter("default", DeprecationWarning)
                 return func1(*args, **kwargs)
 
             return new_func1
@@ -172,19 +190,19 @@ def deprecated(reason):
         func2 = reason
 
         if inspect.isclass(func2):
-            fmt2 = 'Call to deprecated class {name}.'
+            fmt2 = "Call to deprecated class {name}."
         else:
-            fmt2 = 'Call to deprecated function {name}.'
+            fmt2 = "Call to deprecated function {name}."
 
         @functools.wraps(func2)
         def new_func2(*args, **kwargs):
-            warnings.simplefilter('always', DeprecationWarning)
+            warnings.simplefilter("always", DeprecationWarning)
             warnings.warn(
                 fmt2.format(name=func2.__name__),
                 category=DeprecationWarning,
-                stacklevel=2
+                stacklevel=2,
             )
-            warnings.simplefilter('default', DeprecationWarning)
+            warnings.simplefilter("default", DeprecationWarning)
             return func2(*args, **kwargs)
 
         return new_func2
